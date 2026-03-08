@@ -9,7 +9,8 @@ import {
   LivingCostPage, TaxCalcPage, TaxRefundPage,
   RemittancePage, SalaryPage, VisaTrackerPage, EPFPage,
   RentPage, HomeLoanPage, LeavePage, CostComparePage,
-  EPEligPage, ProbationPage, SchoolFeesPage
+  EPEligPage, ProbationPage, SchoolFeesPage,
+  EPLifeGuidePage
 } from './components/Pages'
 import BuyMeCoffee from './components/BuyMeCoffee'
 import { FollowToast } from './components/FollowBanner'
@@ -82,6 +83,7 @@ const PAGE_MAP = {
   leave:       LeavePage,
   costcompare: CostComparePage,
   epelig:      EPEligPage,
+  eplifeguide: EPLifeGuidePage,
   probation:   ProbationPage,
   schoolfees:  SchoolFeesPage,
 }

@@ -20,6 +20,7 @@ import EPEligibility   from './EPEligibility'
 import ProbationCalc   from './ProbationCalc'
 import SchoolFees      from './SchoolFees'
 import TouristHub     from './TouristHub'
+import EPLifeGuide    from './EPLifeGuide'
 import { BuyMeCoffeeCard } from './BuyMeCoffee'
 import { FollowBanner } from './FollowBanner'
 import ShareUrl from './ShareUrl'
@@ -304,3 +305,4 @@ export function ProbationPage()   { return <PageWrapper id="probation"><Probatio
 export function SchoolFeesPage()  { return <PageWrapper id="schoolfees"><SchoolFees /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
 
 export function TouristPage()     { return <PageWrapper id="tourist-hub"><TouristHub /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function EPLifeGuidePage() { return <PageWrapper id="eplifeguide"><EPLifeGuide /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }

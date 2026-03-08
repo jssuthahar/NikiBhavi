@@ -1,0 +1,258 @@
+/* ── EPLifeGuide ─────────────────────────────────────────── */
+.wrap { animation: fadeUp .35s ease both; }
+
+.header {
+  background: linear-gradient(135deg, var(--ink) 0%, #162000 100%);
+  border-radius: var(--r3);
+  padding: 28px 24px 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content:''; position:absolute; inset:0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(201,245,59,0.10) 0%, transparent 70%);
+}
+.headerBadge { font-size: 28px; margin-bottom: 8px; }
+.headerTitle { font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.headerSub   { font-size: 14px; color: rgba(255,255,255,.5); }
+
+/* Nav Grid */
+.navGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.navBtn {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 10px 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: all .15s;
+  text-align: center;
+}
+.navBtn:hover { border-color: var(--lime); background: var(--lime-pale); transform: translateY(-1px); }
+.navBtnActive { background: var(--ink) !important; border-color: var(--ink) !important; }
+.navEmoji { font-size: 22px; }
+.navLabel { font-size: 12px; font-weight: 800; color: var(--text); }
+.navBtnActive .navLabel, .navBtnActive .navSub { color: #fff; }
+.navSub   { font-size: 10px; color: var(--muted); line-height: 1.3; }
+
+/* Content */
+.content {
+  background: #fff;
+  border-radius: var(--r3);
+  padding: 24px;
+  box-shadow: var(--s1);
+  animation: fadeUp .25s ease both;
+}
+.contentHeader {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+}
+.contentEmoji { font-size: 36px; flex-shrink: 0; margin-top: 2px; }
+.contentTitle { font-size: 20px; font-weight: 900; color: var(--ink); margin-bottom: 5px; }
+.contentIntro { font-size: 13px; color: var(--sub); line-height: 1.6; }
+
+.subhead { font-size: 14px; font-weight: 800; color: var(--ink); margin: 16px 0 10px; }
+
+/* Salary */
+.salaryGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 16px; }
+.salaryCard {
+  border: 2px solid var(--accent, var(--border));
+  border-radius: 14px; padding: 16px;
+  background: linear-gradient(135deg, white 0%, #fafcff 100%);
+}
+.salaryCardLabel { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 10px; }
+.salaryBands { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.salaryBand { font-size: 12px; padding: 5px 10px; border-radius: 6px; }
+.salaryTable { width: 100%; font-size: 12px; margin-bottom: 10px; border-collapse: collapse; }
+.salaryTable td { padding: 4px 0; border-bottom: 1px solid var(--border); color: var(--sub); }
+.salaryTable td:last-child { text-align: right; font-weight: 700; color: var(--text); }
+.salaryTip { font-size: 11px; color: var(--sub); background: var(--bg); border-radius: 8px; padding: 8px; line-height: 1.5; }
+
+/* Tables */
+.tableWrap { overflow-x: auto; border-radius: 10px; border: 1.5px solid var(--border); }
+.dataTable { width: 100%; border-collapse: collapse; font-size: 12px; }
+.dataTable th { background: var(--ink); color: #fff; padding: 10px 12px; text-align: left; font-size: 11px; font-weight: 700; }
+.dataTable td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+.dataTable tr:last-child td { border-bottom: none; }
+.starRow { background: rgba(201,245,59,.06); }
+.starTag { font-size: 10px; background: var(--lime); color: var(--ink); padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 700; }
+.verdictCell { color: var(--sub); font-size: 11px; }
+
+/* Docs */
+.docList { display: flex; flex-direction: column; gap: 6px; margin: 10px 0; }
+.docItem { font-size: 13px; color: var(--text); padding: 7px 12px; background: var(--bg); border-radius: 8px; }
+
+/* Highlight box */
+.highlightBox {
+  background: linear-gradient(135deg, rgba(201,245,59,.12) 0%, rgba(201,245,59,.04) 100%);
+  border: 1.5px solid var(--lime);
+  border-radius: 12px; padding: 14px 16px;
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  margin: 14px 0; line-height: 1.55;
+}
+
+/* Steps */
+.stepsList { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.step { display: flex; gap: 14px; align-items: flex-start; }
+.stepNum {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--ink); color: var(--lime);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; flex-shrink: 0;
+}
+.stepTitle { font-size: 14px; font-weight: 800; color: var(--ink); display: block; margin-bottom: 3px; }
+.stepDesc  { font-size: 12px; color: var(--sub); line-height: 1.6; }
+
+/* Flags */
+.flagsGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+.flagCard  { border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; }
+.flagTitle { font-size: 13px; font-weight: 800; margin-bottom: 8px; }
+.flagItem  { font-size: 12px; padding: 4px 0; line-height: 1.4; }
+
+/* Banks */
+.bankGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; margin-bottom: 16px; }
+.bankCard  { border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; }
+.bankName  { font-size: 16px; font-weight: 900; color: var(--ink); margin-bottom: 2px; }
+.bankType  { font-size: 11px; font-weight: 700; color: var(--lime2); background: var(--ink); display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; }
+.bankWhy   { font-size: 12px; color: var(--sub); line-height: 1.5; margin-bottom: 10px; }
+
+/* Credit Cards */
+.checkGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.checkItem { font-size: 12px; color: var(--text); background: var(--bg); padding: 8px 12px; border-radius: 8px; display: flex; gap: 8px; align-items: center; }
+.cardGrid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; margin-bottom: 16px; }
+.ccCard {
+  border: 2px solid var(--accent, var(--border));
+  border-radius: 14px; padding: 14px;
+  background: linear-gradient(135deg, white, #f9f9ff);
+}
+.ccBank { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.ccName { font-size: 14px; font-weight: 900; color: var(--ink); margin: 3px 0 10px; }
+.ccRows div { display: flex; justify-content: space-between; font-size: 11px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.ccRows div span { color: var(--sub); }
+.ccRows div strong { color: var(--text); font-size: 11px; }
+.ccRows div:last-child { border-bottom: none; }
+
+/* Rent costs */
+.costsGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; margin-bottom: 16px; }
+.costCard  { border-left: 4px solid var(--accent); background: #fff; border-radius: 10px; padding: 12px 14px; box-shadow: var(--s0); }
+.costItem  { font-size: 14px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
+.costAmount{ font-size: 16px; font-weight: 900; color: var(--accent); margin-bottom: 3px; }
+.costExample{ font-size: 11px; color: var(--sub); margin-bottom: 6px; }
+.costDesc  { font-size: 11px; color: var(--sub); line-height: 1.5; }
+.totalBox  { background: var(--ink); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.totalTitle{ font-size: 13px; font-weight: 800; color: var(--lime); margin-bottom: 10px; }
+.totalRow  { font-size: 13px; color: rgba(255,255,255,.7); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+.totalFinal{ font-size: 15px; font-weight: 900; color: var(--lime); border-bottom: none; margin-top: 6px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.2); }
+
+/* Timeline */
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before { content:''; position:absolute; left:7px; top:0; bottom:0; width:2px; background:var(--border); }
+.timelineItem { position: relative; margin-bottom: 20px; display: grid; grid-template-columns: 110px 1fr; gap: 12px; }
+.timelineDot  { position: absolute; left: -20px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--lime); border: 2px solid var(--ink); }
+.timelineDays { font-size: 11px; font-weight: 800; color: var(--lime2); background: var(--ink); padding: 3px 8px; border-radius: 6px; height: fit-content; text-align: center; }
+.timelineBody strong { font-size: 14px; color: var(--ink); display: block; margin-bottom: 3px; }
+.timelineBody p { font-size: 12px; color: var(--sub); line-height: 1.55; }
+
+/* Water */
+.waterGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; margin-bottom: 14px; }
+.waterCard { border: 2px solid var(--accent); border-radius: 12px; padding: 14px; }
+.waterType  { font-size: 14px; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
+.waterBrands{ font-size: 11px; color: var(--sub); margin-bottom: 6px; }
+.waterPrice { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+.waterPros, .waterCons, .waterBest { font-size: 11px; color: var(--sub); padding: 3px 0; line-height: 1.4; }
+
+/* Areas */
+.areasGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 12px; }
+.areaCard  { border: 2px solid var(--accent); border-radius: 14px; padding: 14px; }
+.areaHeader{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.areaName  { font-size: 15px; font-weight: 900; color: var(--ink); }
+.areaRating{ font-size: 12px; }
+.areaRent  { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.areaWhy   { font-size: 12px; color: var(--sub); line-height: 1.55; margin-bottom: 8px; }
+.areaMeta  { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--sub); }
+
+/* Grocery */
+.groceryCat { margin-bottom: 20px; }
+.groceryCatTitle { font-size: 15px; font-weight: 900; color: var(--ink); padding: 10px 0 8px; border-bottom: 2px solid var(--border); margin-bottom: 10px; }
+.groceryItems { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
+.groceryItem  { background: var(--bg); border-radius: 10px; padding: 12px; }
+.groceryName  { font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
+.groceryWhere { font-size: 11px; color: var(--blue); margin-bottom: 3px; }
+.groceryWhat  { font-size: 11px; color: var(--sub); line-height: 1.5; }
+
+/* School */
+.schoolGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 12px; margin-bottom: 16px; }
+.schoolCard { border: 2px solid var(--accent); border-radius: 14px; padding: 14px; }
+.schoolType { font-size: 14px; font-weight: 900; color: var(--ink); margin-bottom: 6px; }
+.schoolLang, .schoolFees { font-size: 12px; color: var(--sub); margin-bottom: 4px; }
+.schoolPros { margin: 8px 0; }
+.schoolPros div, .schoolCons div { font-size: 11px; color: var(--sub); padding: 2px 0; line-height: 1.4; }
+.schoolCons { margin-bottom: 8px; }
+.schoolBestFor { font-size: 12px; font-weight: 700; color: var(--ink); background: rgba(0,0,0,.04); border-radius: 6px; padding: 6px 10px; margin-bottom: 6px; }
+.schoolFamous  { font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+/* Malls */
+.mallGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: 12px; }
+.mallCard { border: 2px solid var(--accent); border-radius: 14px; padding: 14px; }
+.mallName { font-size: 15px; font-weight: 900; color: var(--ink); margin-bottom: 3px; }
+.mallArea { font-size: 11px; color: var(--sub); margin-bottom: 6px; }
+.mallWhy  { font-size: 12px; color: var(--sub); line-height: 1.55; margin-bottom: 8px; }
+.mallMeta { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--text); }
+
+/* Weekend */
+.weekendGrid { display: flex; flex-direction: column; gap: 12px; }
+.weekendCard { border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; }
+.weekendHeader { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.weekendName { font-size: 16px; font-weight: 900; color: var(--ink); margin-bottom: 3px; }
+.weekendType { font-size: 12px; color: var(--sub); }
+.weekendDist { font-size: 12px; font-weight: 800; color: var(--lime2); background: var(--ink); padding: 4px 10px; border-radius: 8px; white-space: nowrap; }
+.weekendDesc { font-size: 12px; color: var(--sub); line-height: 1.6; margin-bottom: 10px; }
+.weekendFooter { display: flex; gap: 16px; font-size: 11px; color: var(--sub); flex-wrap: wrap; }
+
+/* Kids */
+.kidsGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 12px; }
+.kidsCard { border: 2px solid var(--accent); border-radius: 14px; padding: 14px; }
+.kidsHeader { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+.kidsName  { font-size: 14px; font-weight: 900; color: var(--ink); }
+.kidsAge   { font-size: 11px; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+.kidsPrice { font-size: 12px; font-weight: 700; color: var(--sub); margin-bottom: 6px; }
+.kidsWhy   { font-size: 12px; color: var(--sub); line-height: 1.55; margin-bottom: 8px; }
+.kidsTip   { font-size: 11px; color: var(--text); background: var(--bg); border-radius: 6px; padding: 7px 10px; }
+
+/* Lunch */
+.lunchSection { margin-bottom: 20px; }
+.lunchType  { font-size: 15px; font-weight: 900; color: var(--ink); padding: 8px 0; border-bottom: 2px solid var(--border); margin-bottom: 12px; }
+.lunchGrid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
+.lunchCard  { background: var(--bg); border-radius: 12px; padding: 12px; }
+.lunchName  { font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
+.lunchArea  { font-size: 10px; color: var(--sub); margin-bottom: 3px; }
+.lunchPrice { font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+.lunchFamous{ font-size: 11px; color: var(--sub); line-height: 1.5; }
+
+/* Shared */
+.notesList { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
+.note { font-size: 12px; color: var(--text); background: var(--bg); padding: 9px 14px; border-radius: 8px; line-height: 1.6; border-left: 3px solid var(--lime); }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .navGrid { grid-template-columns: repeat(3, 1fr); }
+  .flagsGrid, .checkGrid { grid-template-columns: 1fr; }
+  .salaryGrid, .bankGrid, .cardGrid, .kidsGrid, .schoolGrid { grid-template-columns: 1fr; }
+  .timelineItem { grid-template-columns: 90px 1fr; }
+  .weekendHeader { flex-direction: column; gap: 6px; }
+  .contentHeader { flex-direction: column; }
+}
