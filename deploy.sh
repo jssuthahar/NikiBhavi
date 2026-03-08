@@ -18,7 +18,7 @@ git commit -m "Deploy $(date '+%Y-%m-%d %H:%M')"
 
 # Replace YOUR_REPO_URL below with your actual GitHub repo URL
 # Example: https://github.com/jssuthahar/nikibhavi.git
-git push -f https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git gh-pages
+git push -f https://github.com/jssuthahar/NikiBhavi.git gh-pages
 
 cd ..
 echo "✅ Done! Wait 2 minutes then check nikibhavi.msdevbuild.com"
