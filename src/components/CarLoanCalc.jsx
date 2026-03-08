@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { renderPDF } from './pdfExport'
 import styles from './CarLoanCalc.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
@@ -66,12 +67,42 @@ export default function CarLoanCalc() {
 
   const downAmt = result.downAmt
 
+
+  const exportPDF = () => {
+    const r = result
+    renderPDF(
+      'Car Loan Calculator',
+      `Price: RM ${r.p.toLocaleString()} · ${r.months/12} years`,
+      [
+        { type:'summary', title:'Loan Summary', items:[
+          { label:'Car Price',       value:`RM ${r.p.toLocaleString()}` },
+          { label:'Loan Amount',     value:`RM ${Math.round(r.loan).toLocaleString()}` },
+          { label:'Monthly Payment', value:`RM ${Math.round(r.monthly).toLocaleString()}`, highlight:true },
+          { label:'Total Interest',  value:`RM ${Math.round(r.totalInterest).toLocaleString()}` },
+        ]},
+        { type:'keyvalue', title:'Full Cost Breakdown', items:[
+          { label:'Car Price',          value:`RM ${r.p.toLocaleString()}` },
+          { label:'Down Payment (10%)', value:`RM ${Math.round(r.downAmt).toLocaleString()}` },
+          { label:'Loan Amount',        value:`RM ${Math.round(r.loan).toLocaleString()}` },
+          { label:'Interest Rate',      value:`${r.rate}% p.a.` },
+          { label:'Tenure',             value:`${r.months/12} years (${r.months} months)` },
+          { label:'Monthly Instalment', value:`RM ${Math.round(r.monthly).toLocaleString()}`, bold:true },
+          { label:'Total Payment',      value:`RM ${Math.round(r.totalPay).toLocaleString()}` },
+          { label:'Total Interest',     value:`RM ${Math.round(r.totalInterest).toLocaleString()}`, color:'#dc2626' },
+          { label:'Road Tax (est.)',     value:`RM ${Math.round(r.roadTax).toLocaleString()}/year` },
+          { label:'Insurance (est.)',   value:`RM ${Math.round(r.insurance).toLocaleString()}/year` },
+        ]},
+      ],
+      { alert:'Car loan approval requires 3+ months payslips, EP copy, and bank statements.' }
+    )
+  }
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
         <span className={styles.emoji}>🚗</span>
         <div>
           <h1 className={styles.title}>Car Loan Calculator</h1>
+          <button className={styles.pdfBtn} onClick={exportPDF}>📄 Export PDF</button>
           <p className={styles.sub}>Malaysia 2026 — monthly payment, total cost, best banks</p>
         </div>
       </div>

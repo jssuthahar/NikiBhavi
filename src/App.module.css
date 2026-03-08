@@ -1,19 +1,50 @@
-.app { min-height:100vh; background:#f0f2f5; }
+.app { min-height: 100vh; background: var(--bg); }
 
-/* Dim overlay for mobile sidebar */
 .overlay {
-  position:fixed; inset:0;
-  background:rgba(0,0,0,.55); z-index:270;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 250;
+  backdrop-filter: blur(2px);
+  animation: fadeIn .15s ease;
 }
 
-/* Main shifts right on desktop to make room for sidebar */
+/* Main content — push right on desktop to clear sidebar */
 .main {
-  margin-top:62px; /* must equal --th */
-  min-height:calc(100vh - 62px);
-  background:#f0f2f5;
+  padding-top: var(--th);
+  min-height: 100vh;
 }
-@media(min-width:769px){ .main{ margin-left:260px; /* must equal --sw */ } }
+@media(min-width: 769px) {
+  .main { margin-left: var(--sw); }
+}
 
 /* Content wrapper */
-.wrap { max-width:900px; margin:0 auto; padding:24px 20px 80px; }
-@media(max-width:480px){ .wrap{ padding:16px 14px 80px; } }
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 16px 100px;
+}
+@media(min-width: 769px) {
+  .wrap { padding: 24px 28px 60px; }
+}
+@media(max-width: 768px) {
+  .wrap { padding-bottom: calc(var(--bn) + 24px); }
+}
+
+/* Floating chat FAB */
+.fab {
+  position: fixed;
+  bottom: calc(var(--bn) + 14px);
+  right: 16px;
+  z-index: 290;
+  width: 52px; height: 52px;
+  background: var(--ink); color: var(--lime);
+  border: none; border-radius: 50%; font-size: 22px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.25);
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.fab:hover { transform: scale(1.08); box-shadow: 0 8px 30px rgba(0,0,0,.3); }
+@media(min-width: 769px) {
+  .fab { bottom: 28px; right: 28px; }
+}

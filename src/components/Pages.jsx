@@ -31,6 +31,12 @@ import HospitalGuide  from './HospitalGuide'
 import MovingChecklist from './MovingChecklist'
 import DependentPass  from './DependentPass'
 import EPFWithdrawal  from './EPFWithdrawal'
+import HomeHub       from './HomeHub'
+import { TermsPage, PrivacyPage } from './TermsPrivacy'
+import BudgetSim from './BudgetSim'
+import StudentGuide  from './StudentGuide'
+import JobSearch     from './JobSearch'
+import FlightHub     from './FlightHub'
 import { BuyMeCoffeeCard } from './BuyMeCoffee'
 import { FollowBanner } from './FollowBanner'
 import ShareUrl from './ShareUrl'
@@ -49,31 +55,9 @@ function PageWrapper({ id, children }) {
 
 // ════════════════════════════════ HOME ════════════════════════
 export function HomePage({ onNavigate }) {
-  const p = PAGES.home
   return (
     <PageWrapper id="home">
-      <Hero
-        hero={{
-          ...p.hero,
-          actions: [
-            { href: CHANNEL.ytUrl, label: '▶ Watch Videos' },
-            { page: 'epass', label: '💼 Employee Pass' },
-          ]
-        }}
-        onNavigate={onNavigate}
-      />
-      <StatsRow stats={p.stats} />
-      <SectionHeader title="📊 Live Rates" sub="Real-time currency & gold prices — updated every minute" />
-      <LiveRates />
-      <AdBanner {...p.ad} />
-      <SectionHeader title="Browse All Topics" sub="Tap any topic to open the full guide" />
-      <TopicGrid topics={TOPIC_CARDS} onNavigate={onNavigate} />
-      <SectionHeader title="🔥 Most Watched Videos" sub="Top content from our channel" />
-      <FeaturedVideo {...p.featuredVideo} />
-      <VideoList videos={p.videos} />
-      <BuyMeCoffeeCard />
-      <FollowBanner />
-      <SubscribeCTA title="Never Miss an Update 🔔" sub="Subscribe free — new guides & videos every week" />
+      <HomeHub onNavigate={onNavigate} />
     </PageWrapper>
   )
 }
@@ -97,6 +81,31 @@ export function EpassPage({ onNavigate }) {
   const p = PAGES.epass
   return (
     <PageWrapper id="epass">
+      {/* EP 2026 salary policy alert */}
+      <div style={{
+        background:'linear-gradient(135deg,#1a0800,#2a1000)',
+        border:'2px solid #f59e0b',
+        borderRadius:'20px',
+        padding:'18px 22px',
+        marginBottom:'16px',
+        display:'flex',
+        gap:'14px',
+        alignItems:'flex-start'
+      }}>
+        <span style={{fontSize:'32px',flexShrink:0}}>⚠️</span>
+        <div>
+          <div style={{fontSize:'17px',fontWeight:900,color:'#fbbf24',marginBottom:'6px'}}>EP Salary Policy Update — Effective 1 June 2026</div>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(160px,1fr))',gap:'6px',marginBottom:'8px'}}>
+            {[['EP Category I','RM 20,000+'],['EP Category II','RM 10,000+'],['EP Category III','RM 5,000+'],['Mfg Sector III','RM 7,000+']].map(([cat,sal]) => (
+              <div key={cat} style={{background:'rgba(255,255,255,.08)',borderRadius:'8px',padding:'6px 10px'}}>
+                <div style={{fontSize:'10px',color:'rgba(255,255,255,.5)',marginBottom:'2px'}}>{cat}</div>
+                <div style={{fontSize:'14px',fontWeight:900,color:'#fbbf24'}}>{sal}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{fontSize:'12px',color:'rgba(255,255,255,.6)'}}>Applies to all new &amp; renewal applications from June 1, 2026. Category II &amp; III now require succession plan. Category III capped at 5 years.</div>
+        </div>
+      </div>
       <Hero
         hero={{
           ...p.hero,
@@ -377,3 +386,9 @@ export function HospitalGuidePage() { return <PageWrapper id="hospital"><Hospita
 export function MovingChecklistPage(){ return <PageWrapper id="moving"><MovingChecklist /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
 export function DependentPassPage() { return <PageWrapper id="dp"><DependentPass /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
 export function EPFWithdrawalPage() { return <PageWrapper id="epfout"><EPFWithdrawal /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function StudentGuidePage() { return <PageWrapper id="studentguide"><StudentGuide /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function JobSearchPage()    { return <PageWrapper id="jobsearch"><JobSearch /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function FlightHubPage()    { return <PageWrapper id="flighthub"><FlightHub /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function TermsPageFull()   { return <PageWrapper id="terms"><TermsPage /><BuyMeCoffeeCard /></PageWrapper> }
+export function PrivacyPageFull() { return <PageWrapper id="privacy"><PrivacyPage /><BuyMeCoffeeCard /></PageWrapper> }
+export function BudgetSimPage() { return <PageWrapper id="budget"><BudgetSim /><BuyMeCoffeeCard /></PageWrapper> }

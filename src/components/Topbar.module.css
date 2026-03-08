@@ -1,39 +1,182 @@
-.topbar {
-  position:fixed; top:0; left:0; right:0; z-index:300;
-  height:var(--th); background:var(--ink);
-  display:flex; align-items:center; padding:0 18px 0 14px; gap:12px;
-  border-bottom:2.5px solid var(--lime);
+/* ── Top Bar ─────────────────────────────────── */
+.bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: var(--th); background: #fff;
+  border-bottom: 1.5px solid var(--border);
+  display: flex; align-items: center; gap: 0;
+  padding: 0 14px;
+  box-shadow: 0 1px 8px rgba(0,0,0,.06);
 }
-.hamburger {
-  display:none; flex-direction:column; gap:5px;
-  background:none; border:none; cursor:pointer;
-  padding:8px; border-radius:8px; transition:.15s; flex-shrink:0;
+/* Desktop: bar content starts after sidebar */
+@media(min-width: 769px) {
+  .bar {
+    left: var(--sw);
+    padding: 0 20px;
+  }
 }
-.hamburger:hover { background:rgba(255,255,255,.08); }
-.hamburger span { display:block; width:20px; height:2px; background:rgba(255,255,255,.7); border-radius:2px; }
-@media(max-width:768px){ .hamburger{ display:flex; } }
 
-.brand { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
-.brandLogo {
-  width:36px; height:36px; border-radius:10px; flex-shrink:0;
-  background:var(--lime); display:flex; align-items:center; justify-content:center; font-size:18px;
+/* Hamburger — mobile only */
+.burger {
+  display: flex; flex-direction: column; gap: 5px;
+  width: 36px; height: 36px; background: none; border: none;
+  border-radius: 8px; cursor: pointer; justify-content: center; flex-shrink: 0;
+  margin-right: 8px;
 }
-.brandName { font-size:17px; font-weight:900; color:#fff; letter-spacing:-.3px; }
-.brandTag  { font-size:10.5px; color:rgba(255,255,255,.4); font-weight:500; }
+.burger:hover { background: var(--bg); }
+.burger span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
+@media(min-width: 769px) { .burger { display: none; } }
 
-.actions { display:flex; gap:7px; flex-shrink:0; }
-.btn {
-  padding:8px 16px; border-radius:8px;
-  font-size:12.5px; font-weight:700;
-  text-decoration:none; transition:.16s; border:none;
-  font-family:'Plus Jakarta Sans',sans-serif; white-space:nowrap;
+/* Brand — mobile only (sidebar shows logo on desktop) */
+.brand {
+  display: flex; align-items: center; gap: 8px;
+  cursor: pointer; flex-shrink: 0;
+  padding: 0 10px 0 0;
+  border: none; background: none;
 }
-.yt  { background:#FF0000; color:#fff; }
-.yt:hover  { background:#cc0000; transform:translateY(-1px); }
-.ig  { background:linear-gradient(135deg,#f09433,#e6683c,#dc2743); color:#fff; }
-.ig:hover  { filter:brightness(1.1); transform:translateY(-1px); }
-.wa  { background:#25D366; color:#fff; }
-.wa:hover  { background:#1aad55; transform:translateY(-1px); }
+.brand:hover { opacity: .8; }
+.brandFlag { font-size: 22px; }
+.brandName { font-size: 15px; font-weight: 900; color: var(--ink); letter-spacing: -.2px; }
+.brandSub  { font-size: 10px; color: var(--muted); font-weight: 500; margin-top: -1px; }
+/* Hide on desktop — sidebar has the logo */
+@media(min-width: 769px) { .brand { display: none; } }
 
-@media(max-width:600px){ .btn{ padding:7px 11px; font-size:11.5px; } .brandTag{ display:none; } }
-@media(max-width:420px){ .actions .ig{ display:none; } }
+/* ── Desktop dropdown nav ───────────────────── */
+.desktopNav {
+  display: none; align-items: center; gap: 1px; margin-left: 4px;
+}
+@media(min-width: 900px) { .desktopNav { display: flex; } }
+
+.navItem {
+  padding: 7px 11px; border: none; background: none;
+  font-size: 13px; font-weight: 700; color: var(--sub);
+  cursor: pointer; border-radius: 8px;
+  transition: all .15s; white-space: nowrap;
+  display: flex; align-items: center; gap: 4px; height: 36px;
+}
+.navItem:hover, .navHover { background: var(--bg); color: var(--ink); }
+.navActive { color: var(--ink); background: rgba(201,245,59,.2); }
+.chevron { font-size: 9px; opacity: .5; }
+
+/* Dropdown panel */
+.navDropWrap { position: relative; }
+.dropdown {
+  position: absolute; top: calc(100% + 6px); left: 0;
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 6px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.14);
+  min-width: 220px; z-index: 400;
+  animation: fadeDown .15s ease;
+}
+@keyframes fadeDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:none} }
+.dropItem {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 9px 10px; border: none; background: transparent;
+  border-radius: 10px; cursor: pointer; text-align: left;
+  font-family: inherit; transition: background .1s;
+}
+.dropItem:hover { background: #f5fce0; }
+.dIcon  { font-size: 17px; width: 24px; text-align: center; flex-shrink: 0; }
+.dLabel { flex: 1; font-size: 13px; font-weight: 600; color: var(--text); }
+.dBadge {
+  font-size: 8px; font-weight: 900; background: var(--lime); color: var(--ink);
+  padding: 2px 6px; border-radius: 10px; flex-shrink: 0;
+}
+
+/* Right side */
+.rightSide {
+  display: flex; align-items: center; gap: 8px; margin-left: auto;
+}
+
+/* Search button */
+.searchBtn {
+  display: none; align-items: center; gap: 8px;
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 24px; padding: 7px 14px;
+  cursor: pointer; transition: all .15s;
+  flex-shrink: 0;
+}
+.searchBtn:hover { border-color: var(--ink); background: #fff; }
+@media(min-width: 600px) { .searchBtn { display: flex; } }
+.searchBtnText { font-size: 13px; color: var(--muted); }
+.kbd {
+  font-size: 11px; color: var(--muted); background: #fff;
+  border: 1.5px solid var(--border); border-radius: 5px;
+  padding: 1px 7px; font-family: monospace;
+}
+
+.searchBtnMobile {
+  background: none; border: none;
+  font-size: 20px; padding: 6px; border-radius: 8px; cursor: pointer;
+}
+.searchBtnMobile:hover { background: var(--bg); }
+@media(min-width: 600px) { .searchBtnMobile { display: none; } }
+
+/* Chat button */
+.chatBtn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--ink); border: none; border-radius: 24px;
+  padding: 7px 14px; color: var(--lime);
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  transition: opacity .15s; flex-shrink: 0;
+}
+.chatBtn:hover { opacity: .85; }
+.chatBtnMobile {
+  background: var(--ink); border: none; border-radius: 50%;
+  width: 34px; height: 34px; font-size: 17px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── Search Modal ───────────────────────────── */
+.overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(13,13,13,.55); backdrop-filter: blur(6px);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 80px 16px 0;
+  animation: fadeIn .15s ease;
+}
+.modal {
+  background: #fff; border-radius: 20px;
+  width: 100%; max-width: 560px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.25); overflow: hidden;
+  animation: slideDown .18s ease;
+}
+@keyframes slideDown { from{transform:translateY(-16px);opacity:0} to{transform:none;opacity:1} }
+.modalTop {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px; border-bottom: 1.5px solid var(--border);
+  font-size: 18px;
+}
+.modalInput {
+  flex: 1; border: none; outline: none;
+  font-size: 16px; font-family: inherit; color: var(--ink);
+}
+.modalInput::placeholder { color: #bbb; }
+.modalClose {
+  width: 30px; height: 30px; background: var(--bg); border: none;
+  border-radius: 8px; font-size: 14px; color: var(--sub); cursor: pointer;
+}
+.modalHint {
+  font-size: 11px; font-weight: 800; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .6px;
+  padding: 10px 16px 4px;
+}
+.modalList { max-height: 420px; overflow-y: auto; }
+.empty { padding: 24px; text-align: center; color: var(--muted); font-size: 14px; }
+.modalItem {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 12px 16px; border: none; background: transparent;
+  cursor: pointer; text-align: left; font-family: inherit;
+  border-bottom: 1px solid var(--border); transition: background .1s;
+}
+.modalItem:last-child { border-bottom: none; }
+.modalItem:hover { background: #f5fce0; }
+.mIcon  { font-size: 22px; width: 30px; text-align: center; flex-shrink: 0; }
+.mBody  { flex: 1; min-width: 0; }
+.mLabel { display: block; font-size: 14px; font-weight: 700; color: var(--ink); }
+.mCat   { display: block; font-size: 11px; color: var(--muted); }
+.mBadge {
+  font-size: 9px; font-weight: 900; background: var(--lime); color: var(--ink);
+  padding: 2px 7px; border-radius: 20px; flex-shrink: 0;
+}
+.mArrow { font-size: 20px; color: var(--border); transition: color .1s; }
+.modalItem:hover .mArrow { color: var(--lime2); }

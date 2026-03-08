@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { renderPDF } from './pdfExport'
 import styles from './PCBCalc.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
@@ -96,12 +97,39 @@ export default function PCBCalc() {
 
   const pct = (n, total) => ((n / total) * 100).toFixed(1)
 
+
+  const exportPDF = () => {
+    const res = result
+    renderPDF(
+      'PCB Monthly Tax Calculator',
+      `Salary: RM ${Number(salary).toLocaleString()} · ${res.isResident ? 'Tax Resident' : 'Non-Resident'}`,
+      [
+        { type:'summary', title:'Monthly Deductions', items:[
+          { label:'Gross Salary',  value:`RM ${Math.round(res.gross).toLocaleString()}` },
+          { label:'EPF (11%)',     value:`RM ${Math.round(res.epf).toLocaleString()}` },
+          { label:'SOCSO+EIS',     value:`RM ${Math.round(res.socso+res.eis).toLocaleString()}` },
+          { label:'PCB Tax',       value:`RM ${Math.round(res.tax).toLocaleString()}`, highlight:true },
+        ]},
+        { type:'keyvalue', title:'Full Breakdown', items:[
+          { label:'Gross Monthly Salary',  value:`RM ${Math.round(res.gross).toLocaleString()}` },
+          { label:'EPF Deduction (11%)',   value:`− RM ${Math.round(res.epf).toLocaleString()}`,   color:'#dc2626' },
+          { label:'SOCSO (0.5%)',          value:`− RM ${Math.round(res.socso).toLocaleString()}`,  color:'#dc2626' },
+          { label:'EIS (0.2%)',            value:`− RM ${Math.round(res.eis).toLocaleString()}`,    color:'#dc2626' },
+          { label:'PCB Income Tax',        value:`− RM ${Math.round(res.tax).toLocaleString()}`,    color:'#dc2626' },
+          { label:'Net Take-Home Pay',     value:`RM ${Math.round(res.takehome).toLocaleString()}`, color:'#16a34a', bold:true },
+          { label:'Annual Tax (×12)',      value:`RM ${Math.round(res.annualTax).toLocaleString()}` },
+        ]},
+      ],
+      { alert:'PCB is an estimate. Actual deduction depends on reliefs declared with employer (Form TP1).' }
+    )
+  }
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
         <span className={styles.emoji}>📊</span>
         <div>
           <h1 className={styles.title}>PCB Monthly Tax Calculator</h1>
+          <button className={styles.pdfBtn} onClick={exportPDF}>📄 Export PDF</button>
           <p className={styles.sub}>Exact monthly tax deduction (Potongan Cukai Berjadual) — 2026</p>
         </div>
       </div>

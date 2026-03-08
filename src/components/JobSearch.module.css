@@ -1,0 +1,54 @@
+.wrap{animation:fadeUp .35s ease both}
+.header{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#0d0d0d,#0a1a2e);border-radius:20px;padding:24px;margin-bottom:16px}
+.emoji{font-size:40px}.title{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px}.sub{font-size:13px;color:rgba(255,255,255,.5)}
+.epAlert{display:flex;gap:12px;align-items:flex-start;background:rgba(239,68,68,.08);border:2px solid rgba(239,68,68,.35);border-radius:14px;padding:16px;margin-bottom:14px}
+.epAlertIcon{font-size:24px;flex-shrink:0}
+.epAlertTitle{font-size:14px;font-weight:800;color:#991b1b;margin-bottom:4px}
+.epAlertSub{font-size:12px;color:var(--text);line-height:1.5}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.tab{padding:8px 14px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:700;cursor:pointer;color:var(--sub)}
+.tabActive{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.portalsGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.portalCard{background:#fff;border-radius:14px;padding:14px;box-shadow:var(--s1);display:flex;flex-direction:column;gap:8px}
+.portalTop{display:flex;gap:10px;align-items:flex-start}
+.portalIcon{font-size:24px;flex-shrink:0}
+.portalName{font-size:14px;font-weight:800;color:var(--ink)}
+.portalBest{font-size:11px;color:var(--sub)}
+.portalRating{font-size:11px;margin-left:auto;flex-shrink:0}
+.portalTip{font-size:12px;color:var(--sub);line-height:1.55;flex:1}
+.portalLink{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);text-decoration:none;padding:5px 12px;border:1.5px solid var(--blue);border-radius:7px;transition:all .15s;align-self:flex-start}
+.portalLink:hover{background:var(--blue);color:#fff}
+.sectorsList{display:flex;flex-direction:column;gap:10px}
+.sectorCard{background:#fff;border-radius:14px;padding:14px;box-shadow:var(--s1)}
+.sectorTop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:10px;flex-wrap:wrap}
+.sectorName{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:3px}
+.sectorRoles{font-size:11px;color:var(--sub)}
+.sectorDemand{font-size:13px;font-weight:700;text-align:right}
+.sectorSalary{font-size:12px;color:var(--green);font-weight:700;text-align:right}
+.sectorNote{font-size:12px;color:var(--sub);line-height:1.55;background:var(--bg);border-radius:8px;padding:8px 10px}
+.salaryCheck{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:var(--s1)}
+.salaryCheckTitle{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px}
+.salaryRow{display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.salaryRow label{font-size:13px;font-weight:700;color:var(--sub)}
+.inputWrap{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
+.inputWrap input{border:none;padding:9px 8px;font-size:15px;font-weight:700;font-family:inherit;width:140px}
+.prefix{padding:0 10px;font-size:13px;font-weight:700;color:var(--sub);background:var(--bg);border-right:1.5px solid var(--border);align-self:stretch;display:flex;align-items:center}
+.epResult{border:2px solid;border-radius:12px;padding:14px 16px}
+.epTableWrap{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:var(--s1)}
+.epTableTitle{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px}
+.epRow{border-left:4px solid var(--accent);background:var(--bg);border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.epCat{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:5px}
+.epChange{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.epOld{font-size:12px;color:var(--muted);text-decoration:line-through}
+.epArrow{color:var(--sub)}
+.epNew{font-size:15px;font-weight:900;color:var(--accent)}
+.epBadge{background:var(--lime);color:var(--ink);font-size:10px;font-weight:800;padding:2px 7px;border-radius:5px}
+.epMeta{font-size:11px;color:var(--sub)}
+.ep2026Notes{display:flex;flex-direction:column;gap:6px}
+.ep2026Note{font-size:12px;color:var(--text);padding:8px 14px;background:#fff;border-radius:8px;border-left:3px solid var(--lime);box-shadow:var(--s0);line-height:1.5}
+.tipsList{display:flex;flex-direction:column;gap:6px}
+.tip{font-size:12px;color:var(--text);padding:9px 14px;background:#fff;border-radius:8px;border-left:3px solid var(--blue);box-shadow:var(--s0);line-height:1.55}
+.interviewList{display:flex;flex-direction:column;gap:10px}
+.interviewCard{background:#fff;border-radius:14px;padding:14px;box-shadow:var(--s1)}
+.intT{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.intD{font-size:13px;color:var(--sub);line-height:1.6}

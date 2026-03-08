@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import Topbar from './components/Topbar'
 import Sidebar from './components/Sidebar'
-import Ticker from './components/Ticker'
+import BottomNav from './components/BottomNav'
+import NikiBot from './components/NikiBot'
+import SiteFooter from './components/SiteFooter'
 import {
   HomePage, VisaPage, EpassPage, TouristPage, TouristInfoPage, StudentPage,
   HousingPage, BankPage, TransportPage, FoodPage, HealthPage,
@@ -12,13 +14,15 @@ import {
   EPEligPage, ProbationPage, SchoolFeesPage,
   EPLifeGuidePage,
   CarLoanPage, PCBCalcPage, MedicalCardPage, PRRoadmapPage, ExpenseTrackerPage,
-  BuyCarGuidePage, HospitalGuidePage, MovingChecklistPage, DependentPassPage, EPFWithdrawalPage
+  BuyCarGuidePage, HospitalGuidePage, MovingChecklistPage, DependentPassPage, EPFWithdrawalPage,
+  StudentGuidePage, JobSearchPage, FlightHubPage,
+  TermsPageFull, PrivacyPageFull,
+  BudgetSimPage
 } from './components/Pages'
 import BuyMeCoffee from './components/BuyMeCoffee'
 import { FollowToast } from './components/FollowBanner'
 import styles from './App.module.css'
 
-// ── Route map: URL slug <-> page id ──────────────────────────
 const ROUTES = {
   '':               'home',
   'home':           'home',
@@ -62,6 +66,12 @@ const ROUTES = {
   'moving':         'moving',
   'dependent-pass': 'dp',
   'epf-withdrawal': 'epfout',
+  'student-guide':  'studentguide',
+  'job-search':     'jobsearch',
+  'flight-hub':     'flighthub',
+  'budget':         'budget',
+  'terms':          'terms',
+  'privacy':        'privacy',
 }
 
 const PAGE_TO_SLUG = Object.fromEntries(
@@ -71,21 +81,21 @@ const PAGE_TO_SLUG = Object.fromEntries(
 )
 
 const PAGE_MAP = {
-  home:       HomePage,
-  visa:       VisaPage,
-  epass:      EpassPage,
-  tourist:      TouristPage,
-  touristinfo:  TouristInfoPage,
-  student:    StudentPage,
-  housing:    HousingPage,
-  bank:       BankPage,
-  transport:  TransportPage,
-  food:       FoodPage,
-  health:     HealthPage,
-  sim:        SimPage,
-  money:      MoneyPage,
-  videos:     VideosPage,
-  about:      AboutPage,
+  home:        HomePage,
+  visa:        VisaPage,
+  epass:       EpassPage,
+  tourist:     TouristPage,
+  touristinfo: TouristInfoPage,
+  student:     StudentPage,
+  housing:     HousingPage,
+  bank:        BankPage,
+  transport:   TransportPage,
+  food:        FoodPage,
+  health:      HealthPage,
+  sim:         SimPage,
+  money:       MoneyPage,
+  videos:      VideosPage,
+  about:       AboutPage,
   livingcost:  LivingCostPage,
   taxcalc:     TaxCalcPage,
   taxrefund:   TaxRefundPage,
@@ -109,7 +119,13 @@ const PAGE_MAP = {
   moving:      MovingChecklistPage,
   dp:          DependentPassPage,
   epfout:      EPFWithdrawalPage,
+  studentguide: StudentGuidePage,
+  jobsearch:   JobSearchPage,
+  flighthub:   FlightHubPage,
   probation:   ProbationPage,
+  budget:      BudgetSimPage,
+  terms:       TermsPageFull,
+  privacy:     PrivacyPageFull,
   schoolfees:  SchoolFeesPage,
 }
 
@@ -117,7 +133,6 @@ function getPageFromHash() {
   const hash = window.location.hash.replace('#/', '').replace('#', '').split('?')[0].trim()
   return ROUTES[hash] || 'home'
 }
-
 function setHashUrl(pageId) {
   const slug = PAGE_TO_SLUG[pageId] || 'home'
   window.history.replaceState(null, '', '#/' + slug)
@@ -126,6 +141,7 @@ function setHashUrl(pageId) {
 export default function App() {
   const [activePage,  setActivePage]  = useState(getPageFromHash)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [chatOpen,    setChatOpen]    = useState(false)
   const [showToast,   setShowToast]   = useState(false)
 
   const navigate = (id) => {
@@ -136,29 +152,23 @@ export default function App() {
   }
 
   useEffect(() => {
-    const onHashChange = () => {
-      const page = getPageFromHash()
-      setActivePage(page)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
+    const fn = () => { const p = getPageFromHash(); setActivePage(p); window.scrollTo({top:0,behavior:'smooth'}) }
+    window.addEventListener('hashchange', fn)
+    return () => window.removeEventListener('hashchange', fn)
   }, [])
 
   useEffect(() => {
-    const page = getPageFromHash()
-    setActivePage(page)
-    setHashUrl(page)
+    const p = getPageFromHash(); setActivePage(p); setHashUrl(p)
   }, [])
 
   useEffect(() => {
-    const handler = () => { if (window.innerWidth >= 769) setSidebarOpen(false) }
-    window.addEventListener('resize', handler)
-    return () => window.removeEventListener('resize', handler)
+    const fn = () => { if (window.innerWidth >= 769) setSidebarOpen(false) }
+    window.addEventListener('resize', fn)
+    return () => window.removeEventListener('resize', fn)
   }, [])
 
   useEffect(() => {
-    const t = setTimeout(() => setShowToast(true), 30000)
+    const t = setTimeout(() => setShowToast(true), 40000)
     return () => clearTimeout(t)
   }, [])
 
@@ -166,15 +176,37 @@ export default function App() {
 
   return (
     <div className={styles.app}>
-      <Topbar onMenuClick={() => setSidebarOpen(o => !o)} />
+      <Topbar
+        onMenuClick={() => setSidebarOpen(o => !o)}
+        onNavigate={navigate}
+        activePage={activePage}
+        onChatOpen={() => setChatOpen(true)}
+      />
       {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
       <Sidebar activePage={activePage} onNavigate={navigate} isOpen={sidebarOpen} />
+
       <main className={styles.main}>
-        <Ticker />
         <div className={styles.wrap}>
           <ActivePage onNavigate={navigate} />
+          <SiteFooter onNavigate={navigate} />
         </div>
       </main>
+
+      <BottomNav activePage={activePage} onNavigate={navigate} />
+
+      {/* Floating chat button — mobile only */}
+      {!chatOpen && (
+        <button className={styles.fab} onClick={() => setChatOpen(true)}>
+          🤖
+        </button>
+      )}
+
+      <NikiBot
+        isOpen={chatOpen}
+        onClose={() => setChatOpen(false)}
+        onNavigate={(id) => { navigate(id); setChatOpen(false) }}
+      />
+
       <BuyMeCoffee />
       {showToast && <FollowToast />}
     </div>

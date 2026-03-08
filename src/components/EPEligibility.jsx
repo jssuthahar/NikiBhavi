@@ -5,9 +5,10 @@ import PrivacyNotice from './PrivacyNotice'
 const PASS_TYPES = [
   {
     id:'ep', name:'Employment Pass (EP)', icon:'💼', minSal:5000,
-    desc:'For knowledge workers, managers, executives. Most common for Indian IT/finance professionals.',
-    requirements:['Minimum RM 5,000/month salary','Relevant degree or diploma','Employer must be registered with SSM','Job must be in approved category','Employer applies — not employee'],
-    duration:'1–3 years (renewable)',
+    desc:'For knowledge workers, managers, executives. NEW: Salary thresholds significantly increased effective 1 June 2026.',
+    ep2026: true,
+    requirements:['⚠️ JUNE 2026 UPDATE: EP III min RM 5,000 (was RM 3,000) | EP II min RM 10,000 (was RM 5,000) | EP I min RM 20,000 (was RM 10,000)','Relevant degree or diploma','Employer must be registered with ESD/SSM','Job must be in approved category','Employer applies — not employee'],
+    duration:'EP I & II: up to 10 years | EP III: up to 5 years (new caps)',
     color:'#2563eb',
   },
   {

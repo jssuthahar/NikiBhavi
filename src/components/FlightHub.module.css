@@ -1,0 +1,109 @@
+.wrap{animation:fadeUp .35s ease both}
+.header{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#0d0d0d,#0a1420);border-radius:20px;padding:24px;margin-bottom:16px}
+.emoji{font-size:40px}.title{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px}.sub{font-size:13px;color:rgba(255,255,255,.5)}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.tab{padding:8px 13px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:700;cursor:pointer;color:var(--sub);transition:all .15s}
+.tabActive{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+/* Search bar */
+.searchBar{display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:10px 14px;margin-bottom:14px;border:2px solid var(--border);box-shadow:var(--s1);position:sticky;top:68px;z-index:10}
+.searchIcon{font-size:18px;flex-shrink:0}
+.searchInput{flex:1;border:none;font-size:14px;font-family:inherit;outline:none;color:var(--ink)}
+.clearBtn{background:none;border:none;font-size:16px;color:var(--muted);cursor:pointer}
+.sectionHead{font-size:14px;font-weight:800;color:var(--ink);margin:16px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+/* FAQ cards */
+.faqCard{background:#fff;border-radius:12px;padding:14px;margin-bottom:8px;box-shadow:var(--s0)}
+.faqQ{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.faqA{font-size:13px;color:var(--sub);line-height:1.6}
+.faqSection{margin-bottom:16px}
+/* Item rows (search view) */
+.itemRow{padding:10px 14px;border-radius:10px;margin-bottom:6px;display:flex;flex-wrap:wrap;gap:4px;align-items:baseline}
+.itemOk{background:rgba(22,163,74,.06);border:1.5px solid rgba(22,163,74,.2)}
+.itemWarn{background:rgba(245,158,11,.06);border:1.5px solid rgba(245,158,11,.3)}
+.itemName{font-size:13px;font-weight:800;color:var(--ink);min-width:140px}
+.itemWhere{font-size:11px;font-weight:700;color:var(--blue);margin:0 10px}
+.itemNote{font-size:12px;color:var(--sub);line-height:1.4}
+/* Baggage cards */
+.itemCard{border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1.5px solid}
+.itemCardOk{background:rgba(22,163,74,.04);border-color:rgba(22,163,74,.25)}
+.itemCardWarn{background:rgba(245,158,11,.04);border-color:rgba(245,158,11,.3)}
+.itemCardTop{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.itemCardAllowed{font-size:18px}
+.itemCardName{font-size:14px;font-weight:800;color:var(--ink);flex:1}
+.itemCardWhere{font-size:11px;font-weight:700;color:var(--blue);background:rgba(37,99,235,.08);padding:3px 8px;border-radius:5px;white-space:nowrap}
+.itemCardNote{font-size:12px;color:var(--sub);line-height:1.55}
+.noResult{background:#fff;border-radius:12px;padding:24px;text-align:center;color:var(--muted);font-size:14px}
+/* Airlines */
+.airlineTabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.airlineTab{padding:7px 13px;border-radius:9px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;color:var(--sub)}
+.airlineTabActive{color:#fff!important;border-color:transparent!important}
+.airlineCard{background:#fff;border-radius:16px;padding:18px;box-shadow:var(--s1);border-top:4px solid var(--accent)}
+.airlineHeader{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.airlineName{font-size:18px;font-weight:900;color:var(--ink)}
+.airlineType{font-size:12px;color:var(--sub);margin-top:2px}
+.airlineRoutes{display:flex;flex-wrap:wrap;gap:5px}
+.routeTag{font-size:10px;font-weight:700;background:var(--bg);border:1.5px solid var(--border);padding:3px 8px;border-radius:6px;color:var(--sub)}
+.airlineGrid{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.airlineRow{display:flex;justify-content:space-between;padding:8px 10px;background:var(--bg);border-radius:8px;font-size:13px;gap:10px}
+.airlineRow span{color:var(--sub)}.airlineRow strong{color:var(--ink);text-align:right;max-width:60%}
+.airlineRestricted{background:rgba(239,68,68,.05);border:1.5px solid rgba(239,68,68,.15);border-radius:10px;padding:12px;margin-bottom:12px}
+.restrictedTitle{font-size:13px;font-weight:800;color:#991b1b;margin-bottom:6px}
+.restrictedItem{font-size:12px;color:var(--text);padding:3px 0;border-bottom:1px solid rgba(239,68,68,.1)}
+.restrictedItem:last-child{border-bottom:none}
+.airlineTips{display:flex;flex-direction:column;gap:5px}
+.airlineTip{font-size:12px;color:var(--sub);background:var(--bg);padding:7px 10px;border-radius:7px}
+/* Courier */
+.courierIntro{font-size:13px;color:var(--sub);background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:12px;line-height:1.55;box-shadow:var(--s0)}
+.courierCard{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:var(--s1)}
+.courierTop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;flex-wrap:wrap;gap:6px}
+.courierName{font-size:14px;font-weight:800;color:var(--ink)}.courierType{font-size:11px;color:var(--sub)}
+.courierRate{font-size:14px;font-weight:800;color:var(--green)}
+.courierMeta{font-size:12px;color:var(--sub);margin-bottom:5px}
+.courierNote{font-size:12px;color:var(--text);background:var(--bg);border-radius:7px;padding:6px 10px}
+.courierTips{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.courierTip{font-size:12px;color:var(--text);padding:8px 14px;background:#fff;border-radius:8px;border-left:3px solid var(--lime);box-shadow:var(--s0)}
+/* Airport */
+.airportCard{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:var(--s1)}
+.airportQ{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:10px}
+.airportGrid{display:flex;flex-direction:column;gap:6px}
+.airportRow{display:flex;justify-content:space-between;padding:7px 10px;background:var(--bg);border-radius:8px;font-size:12px;gap:10px;flex-wrap:wrap}
+.airportRow span{color:var(--sub);text-transform:capitalize}.airportRow strong{color:var(--ink)}
+.airportTip{font-size:12px;color:var(--text);padding:6px 10px;background:rgba(201,245,59,.1);border-radius:7px;border-left:3px solid var(--lime)}
+.airportA{font-size:13px;color:var(--sub);line-height:1.6}
+.airportExtra{background:#fff;border-radius:14px;padding:16px;margin-top:12px;box-shadow:var(--s1)}
+.timeRow{display:flex;gap:14px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.timeRow:last-child{border-bottom:none}
+.timeTag{min-width:65px;font-size:11px;font-weight:800;color:var(--lime2);background:var(--ink);padding:2px 8px;border-radius:5px;flex-shrink:0;text-align:center}
+/* Lounge */
+.loungeIntro{font-size:13px;color:var(--sub);background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:12px;box-shadow:var(--s0)}
+.loungeCard{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:var(--s1)}
+.loungeName{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:12px}
+.loungeSection{margin-bottom:12px}
+.loungeSectionTitle{font-size:12px;font-weight:800;color:var(--sub);margin-bottom:6px}
+.loungeItem{font-size:12px;color:var(--text);padding:4px 0;border-bottom:1px solid var(--border)}
+.loungeItem:last-child{border-bottom:none}
+.loungeGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.loungeDetail{background:var(--bg);border-radius:8px;padding:8px;text-align:center}
+.loungeDetail span{display:block;font-size:11px;color:var(--muted);margin-bottom:3px}
+.loungeDetail strong{font-size:12px;color:var(--ink)}
+.loungeTip{font-size:12px;color:var(--text);background:rgba(201,245,59,.08);border-radius:8px;padding:8px 12px;border-left:3px solid var(--lime)}
+.creditCards{background:#fff;border-radius:14px;padding:16px;margin-top:12px;box-shadow:var(--s1)}
+.cardItem{font-size:13px;color:var(--text);padding:7px 0;border-bottom:1px solid var(--border)}
+.cardItem:last-child{border-bottom:none}
+/* Cheap flights */
+.cheapIntro{font-size:13px;color:var(--sub);background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:12px;box-shadow:var(--s0)}
+.cheapGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px}
+.cheapCard{background:#fff;border-radius:14px;padding:14px;box-shadow:var(--s1);display:flex;flex-direction:column;gap:6px}
+.cheapIcon{font-size:28px}
+.cheapTool{font-size:14px;font-weight:800;color:var(--ink)}
+.cheapTip{font-size:12px;color:var(--sub);line-height:1.5;flex:1}
+.cheapLink{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);text-decoration:none;padding:5px 12px;border:1.5px solid var(--blue);border-radius:7px;transition:all .15s;align-self:flex-start}
+.cheapLink:hover{background:var(--blue);color:#fff}
+.priceTable,.routePrices{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:var(--s1)}
+.priceRow{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;flex-wrap:wrap;gap:4px}
+.priceRow:last-child{border-bottom:none}
+.priceRow span{color:var(--sub)}.priceRow strong{color:var(--ink);text-align:right}
+.routeRow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.routeRow:last-child{border-bottom:none}
+.routeName{font-size:13px;font-weight:700;color:var(--ink);flex:1;min-width:150px}
+.routePrice{font-size:13px;font-weight:800;color:var(--green)}
+.routeAirlines{font-size:11px;color:var(--muted)}

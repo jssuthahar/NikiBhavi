@@ -63,6 +63,8 @@ export const NAV_GROUPS = [
     label: 'Life & Visa Tools',
     items: [
       { id: 'eplifeguide', icon: '🏡', label: 'EP Holder Life Guide',      badge: '🔥' },
+      { id: 'jobsearch',   icon: '💼', label: 'Job Search + EP 2026',      badge: '🔥' },
+      { id: 'flighthub',   icon: '✈️', label: 'Flight Travel Hub',          badge: 'NEW' },
       { id: 'medcard',     icon: '🏥', label: 'Medical Card Advisor',       badge: 'NEW' },
       { id: 'prroad',      icon: '🛂', label: 'PR / Citizenship Roadmap',   badge: 'NEW' },
       { id: 'dp',          icon: '🧳', label: 'Dependent Pass Guide',       badge: 'NEW' },
@@ -95,6 +97,7 @@ export const TICKER_ITEMS = [
   { label: '🆕 New:', text: 'Employee Pass Documents 2024 Guide' },
   { label: '🏠 Hot:', text: 'How to Rent a Flat in KL' },
   { label: '🎉 BREAKING:', text: 'Indians are VISA-FREE for Malaysia until Dec 31, 2026! Submit MDAC 3 days before arrival — free at imigresen-online.imi.gov.my/mdac/main' },
+  { label: '⚠️ EP UPDATE:', text: 'New EP salary thresholds from June 1, 2026: Category I → RM 20,000 | Category II → RM 10,000 | Category III → RM 5,000' },
   { label: '✈️ Updated:', text: 'Tourist Visa Guide — Visa-Free 2026 + MDAC mandatory' },
   { label: '💰 Tips:', text: 'Best Ways to Send Money to India' },
 ]
@@ -146,11 +149,12 @@ export const PAGES = {
   },
 
   epass: {
-    hero: { variant: 'lime', emoji: '💼', badge: 'Employee Pass', title: 'Employee Pass —\nComplete Guide', desc: 'From documents to approval — every step explained so you arrive fully prepared.' },
+    hero: { variant: 'lime', emoji: '💼', badge: '⚠️ Updated June 2026', title: 'Employee Pass —\nComplete Guide', desc: 'IMPORTANT: New EP salary minimums from June 1, 2026. Category I: RM 20,000 | Category II: RM 10,000 | Category III: RM 5,000. From documents to approval — every step explained.' },
+    ep2026Alert: { cat1:'RM 20,000+', cat2:'RM 10,000–19,999', cat3:'RM 5,000–9,999', cat3mfg:'RM 7,000+ (manufacturing)', effective:'1 June 2026' },
     steps: [
-      { title: 'Get Your Job Offer Letter',      desc: 'Receive a written offer with salary, designation, and joining date clearly stated.' },
-      { title: 'Company Applies via ESD Portal', desc: 'Your employer submits the application through the Expatriate Services Division (ESD) portal.' },
-      { title: 'Submit Your Documents',          desc: 'Passport, educational certificates, resume, and experience letters — certified copies required.' },
+      { title: 'Get Your Job Offer Letter',      desc: 'Receive a written offer with salary, designation, and joining date. Ensure salary meets new EP thresholds from June 2026: EP III minimum RM 5,000 (RM 7,000 for manufacturing).' },
+      { title: 'Company Applies via ESD Portal', desc: 'Your employer submits the application through the Expatriate Services Division (ESD) portal. Company must be ESD-registered.' },
+      { title: 'Submit Your Documents',          desc: 'Passport, educational certificates, resume, and experience letters — certified copies required. For EP II/III: succession plan document now required.' },
       { title: 'Receive Approval Letter (AIP)',  desc: 'Approval In Principle arrives by email in 2–4 weeks. Keep it safe — needed to enter Malaysia.' },
       { title: 'Arrive & Collect Your i-Kad',   desc: 'Enter with approval letter. Employer completes immigration. You receive the i-Kad expat ID card.' },
     ],
@@ -161,7 +165,7 @@ export const PAGES = {
       { icon: '💼', title: 'Experience Letters',      desc: 'All previous employers. On company letterhead with official seal and signature.' },
       { icon: '📸', title: 'Passport Photos',         desc: 'White background, recent. Keep 4–6 copies — needed at multiple steps.' },
     ],
-    tip: { icon: '💡', title: 'Pro Tip', text: 'Scan every document and upload to Google Drive before leaving India. Carry 2–3 photocopies of all originals. You will definitely need them.' },
+    tip: { icon: '⚠️', title: 'June 2026 EP Salary Update', text: 'NEW from June 1, 2026: EP Category I minimum doubles to RM 20,000. Category II rises to RM 10,000. Category III rises to RM 5,000 (manufacturing: RM 7,000). All renewals after June 1 must also meet new thresholds. Plan your salary negotiation accordingly.' },
     videos: ALL_VIDEOS.filter(v => v.tag === 'Employee Pass'),
   },
 

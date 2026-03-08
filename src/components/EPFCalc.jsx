@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { renderPDF } from './pdfExport'
 import styles from './EPFCalc.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
@@ -45,13 +46,65 @@ export default function EPFCalc() {
 
   const fmtRM  = n => `RM ${Math.round(n||0).toLocaleString()}`
 
+
+  // const exportPDF = () => {
+  //   const r = result
+  //   renderPDF(
+  //     'EPF Savings Calculator',
+  //     `Salary: RM ${salary.toLocaleString()} · ${yrs} years`,
+  //     [
+  //       { type:'summary', title:'EPF Projection', items:[
+  //         { label:'Monthly Contribution',  value:`RM ${Math.round(r.totalMth).toLocaleString()}` },
+  //         { label:'Your EPF (11%)',         value:`RM ${Math.round(r.empMth).toLocaleString()}` },
+  //         { label:'Employer EPF (12-13%)',  value:`RM ${Math.round(r.errMth).toLocaleString()}` },
+  //         { label:'Projected Corpus',       value:`RM ${Math.round(r.corpus).toLocaleString()}`, highlight:true },
+  //       ]},
+  //       { type:'keyvalue', title:'Full Projection', items:[
+  //         { label:'Monthly: Your EPF',      value:`RM ${Math.round(r.empMth).toLocaleString()}` },
+  //         { label:'Monthly: Employer EPF',  value:`RM ${Math.round(r.errMth).toLocaleString()}` },
+  //         { label:'Monthly: Total EPF',     value:`RM ${Math.round(r.totalMth).toLocaleString()}` },
+  //         { label:'Annual Contribution',    value:`RM ${Math.round(r.yearly).toLocaleString()}` },
+  //         { label:'Total Contributed ('+r.yrs+' yrs)', value:`RM ${Math.round(r.totalContrib).toLocaleString()}` },
+  //         { label:'Interest Earned',        value:`RM ${Math.round(r.interest).toLocaleString()}`,  color:'#16a34a' },
+  //         { label:'Final EPF Corpus',       value:`RM ${Math.round(r.corpus).toLocaleString()}`,    color:'#16a34a', bold:true },
+  //         { label:'Corpus in INR',          value:`₹ ${Math.round(r.inrCorpus).toLocaleString()}` },
+  //       ]},
+  //     ],
+  //     { alert:'Based on 5.5% dividend rate (FY2024). Actual EPF dividend varies yearly.' }
+  //   )
+  // }
+
+  const exportPDF = () => {
+    const r = result
+    renderPDF(
+      'EPF Savings Calculator',
+      `Salary: RM ${salary.toLocaleString()} · ${r.yrs} years`,
+      [
+        { type:'summary', title:'EPF Overview', items:[
+          { label:'Your Monthly EPF',    value:`RM ${Math.round(r.empMth).toLocaleString()}` },
+          { label:'Employer Monthly EPF',value:`RM ${Math.round(r.errMth).toLocaleString()}` },
+          { label:'Total Monthly',       value:`RM ${Math.round(r.totalMth).toLocaleString()}` },
+          { label:'Projected Corpus',    value:`RM ${Math.round(r.corpus).toLocaleString()}`, highlight:true },
+        ]},
+        { type:'keyvalue', title:'Full Projection', items:[
+          { label:'Annual Contribution',    value:`RM ${Math.round(r.yearly).toLocaleString()}` },
+          { label:'Total Contributed',      value:`RM ${Math.round(r.totalContrib).toLocaleString()}` },
+          { label:'Interest Earned',        value:`RM ${Math.round(r.interest).toLocaleString()}`, color:'#16a34a' },
+          { label:'Final EPF Corpus',       value:`RM ${Math.round(r.corpus).toLocaleString()}`, color:'#16a34a', bold:true },
+          { label:'Corpus in INR',          value:`₹ ${Math.round(r.inrCorpus).toLocaleString()}` },
+        ]},
+      ],
+      { alert:'Based on 5.5% dividend rate (FY2024).' }
+    )
+  }
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
         <span className={styles.headerEmoji}>📈</span>
         <div>
           <h1 className={styles.headerTitle}>EPF Calculator</h1>
-          <p className={styles.headerDesc}>Project your EPF corpus growth with employer + employee contributions & dividends</p>
+          <button className={styles.pdfBtn} onClick={exportPDF}>📄 Export PDF</button>
+        <p className={styles.headerDesc}>Project your EPF corpus growth with employer + employee contributions & dividends</p>
         </div>
       </div>
       <PrivacyNotice />

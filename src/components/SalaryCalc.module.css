@@ -34,3 +34,22 @@
 .convRow { display:flex; justify-content:space-between; padding:7px 0; font-size:13px; color:#5c6278; border-bottom:1px solid #f5f5f5; }
 .divider { height:1.5px; background:#e8eaf0; margin:8px 0; }
 .noteBox { background:#f5fce0; border-radius:10px; padding:12px; font-size:12px; color:#3d5c00; line-height:1.6; margin-top:10px; }
+
+/* PDF Export Button */
+.pdfBtn {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--ink); color: var(--lime);
+  border: none; border-radius: 10px; padding: 9px 16px;
+  font-size: 12px; font-weight: 800; cursor: pointer;
+  transition: opacity .15s; margin-left: auto; flex-shrink: 0;
+}
+.pdfBtn:hover { opacity: .85; }
+.pdfBtnSummary {
+  display: flex; align-items: center; gap: 7px; justify-content: center;
+  width: 100%; background: rgba(201,245,59,.15); color: var(--lime);
+  border: 1.5px solid rgba(201,245,59,.3); border-radius: 10px; padding: 11px;
+  font-size: 13px; font-weight: 800; cursor: pointer; margin-top: 12px;
+  transition: all .15s; font-family: inherit;
+}
+.pdfBtnSummary:hover { background: var(--ink); color: var(--lime); }
+

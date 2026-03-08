@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { renderPDF } from './pdfExport'
 import styles from './RemittanceCalc.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
@@ -30,13 +31,66 @@ export default function RemittanceCalc() {
 
   const best = results[0]
 
+
+  // const exportPDF = () => {
+  //   renderPDF(
+  //     'Remittance Calculator',
+  //     `Sending RM ${Number(amount).toLocaleString()} to India`,
+  //     [
+  //       { type:'summary', title:'Best Providers', items: results.slice(0,4).map((r,i) => ({
+  //           label: r.name, value: `₹ ${Math.round(r.received).toLocaleString()}`,
+  //           sub: `Fee: RM ${r.fee}`, highlight: i === 0
+  //         }))
+  //       },
+  //       { type:'table', title:'Provider Comparison', headers:[
+  //         { label:'Provider', align:'left' },
+  //         { label:'Fee (RM)', align:'right' },
+  //         { label:'Rate (₹/RM)', align:'right' },
+  //         { label:'You Receive (₹)', align:'right', bold:true },
+  //       ],
+  //       rows: results.map(r => [
+  //         r.name,
+  //         `RM ${r.fee}`,
+  //         r.exchRate.toFixed(2),
+  //         { value:`₹ ${Math.round(r.received).toLocaleString()}`, color:'#16a34a' }
+  //       ])},
+  //     ],
+  //     { alert:'Rates are estimates. Always verify live rates on the provider website before transferring.' }
+  //   )
+  // }
+
+  const exportPDF = () => {
+    renderPDF(
+      'Remittance Calculator',
+      `Sending RM ${Number(amount).toLocaleString()} to India`,
+      [
+        { type:'summary', title:'Best Providers', items: results.slice(0,4).map((r,i) => ({
+            label: r.name, value:`₹ ${Math.round(r.received).toLocaleString()}`,
+            sub:`Fee: RM ${r.fee}`, highlight: i === 0
+          }))
+        },
+        { type:'table', title:'All Providers', headers:[
+          { label:'Provider', align:'left' },
+          { label:'Fee (RM)', align:'right' },
+          { label:'Rate (₹/RM)', align:'right' },
+          { label:'You Receive (₹)', align:'right', bold:true },
+        ],
+        rows: results.map(r => [
+          r.name, `RM ${r.fee}`, r.exchRate.toFixed(2),
+          { value:`₹ ${Math.round(r.received).toLocaleString()}`, color:'#16a34a' }
+        ])},
+      ],
+      { alert:'Rates are estimates. Always verify live rates before transferring.' }
+    )
+  }
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
         <span className={styles.headerEmoji}>💸</span>
         <div>
           <h1 className={styles.headerTitle}>Remittance Calculator</h1>
-          <p className={styles.headerDesc}>Compare Wise, Remitly, InstaReM, Banks — send money to India smartly</p>
+          <button className={styles.pdfBtn} onClick={exportPDF}>📄 Export PDF</button>
+        <p className={styles.headerDesc}>Compare Wise, Remitly, InstaReM, Banks — send money to India smartly</p>
         </div>
       </div>
 
