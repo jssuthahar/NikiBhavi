@@ -2,8 +2,8 @@ import { useState, useMemo } from 'react'
 import styles from './SalaryCalc.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
-const INR_TO_MYR = 0.052
-const MYR_TO_INR = 19.2
+const INR_TO_MYR = 0.0513
+const MYR_TO_INR = 19.5
 
 const CITY_COL = {
   'kl':      { name:'Kuala Lumpur', idx:1.0,  rent:2200 },
@@ -17,7 +17,7 @@ const CITY_COL = {
 }
 
 const EPF_RATE   = 0.11
-const SOCSO_RATE = 0.005
+const SOCSO_RATE = 0.005  // max insurable salary RM 6,000 (updated 2022, still current 2026)
 const EIS_RATE   = 0.002
 
 function calcPCB(annual) {
@@ -55,8 +55,8 @@ export default function SalaryCalc() {
 
     const myrAnnual  = myrMonthly * 12
     const epf        = myrMonthly * EPF_RATE
-    const socso      = Math.min(myrMonthly * SOCSO_RATE, 29.75)
-    const eis        = Math.min(myrMonthly * EIS_RATE, 11.90)
+    const socso      = Math.min(myrMonthly * SOCSO_RATE, 30.00)  // SOCSO cap at RM 6,000 salary
+    const eis        = Math.min(myrMonthly * EIS_RATE, 12.00)   // EIS cap at RM 6,000 salary
     const pcbAnnual  = calcPCB(myrAnnual - epf*12 - 9000)
     const pcbMonthly = pcbAnnual / 12
     const takeHome   = myrMonthly - epf - socso - eis - pcbMonthly

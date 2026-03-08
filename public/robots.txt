@@ -1,0 +1,12 @@
+# NikiBhavi — Malaysia Life Guide for Indians
+# https://nikibhavi.msdevbuild.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nikibhavi.msdevbuild.com/sitemap.xml
+
+# Block build artifacts
+Disallow: /src/
+Disallow: /node_modules/

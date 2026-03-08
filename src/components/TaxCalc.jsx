@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import styles from './TaxCalc.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
-// ── Malaysia 2024/2025 progressive tax brackets (YA 2024 onwards) ──
+// ── Malaysia 2024–2026 progressive tax brackets (unchanged per Budget 2025) ──
 // Source: LHDN hasil.gov.my & PWC Tax Summaries
 const TAX_BRACKETS = [
   { min: 0,       max: 5000,    rate: 0,    base: 0      },
@@ -171,7 +171,7 @@ export default function TaxCalc() {
       <div className={styles.disclaimer} style={{background:'#eff6ff',borderColor:'#93c5fd',color:'#1e40af'}}>
         <span className={styles.discIcon}>📅</span>
         <div>
-          Tax brackets shown are based on <strong>YA 2024 onwards</strong> as published by LHDN (last reviewed: <strong>7 March 2026</strong>).
+          Tax brackets shown are based on <strong>YA 2024 onwards</strong> as published by LHDN (last reviewed: <strong>8 March 2026</strong>).
           Rates and brackets <strong>change with each national budget</strong> — always verify at the official government website:{' '}
           <a href="https://www.hasil.gov.my" target="_blank" rel="noreferrer" style={{color:'#1d4ed8',fontWeight:700}}>www.hasil.gov.my</a>
         </div>

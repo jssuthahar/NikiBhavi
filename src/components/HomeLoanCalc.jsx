@@ -2,9 +2,10 @@ import { useState, useMemo } from 'react'
 import styles from './HomeLoanCalc.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
+// Rates as of early 2026 (OPR 3.00%, BLR 6.85%)
 const BANKS = [
-  { name:'Maybank', rate:4.35 }, { name:'CIMB', rate:4.40 }, { name:'Public Bank', rate:4.30 },
-  { name:'RHB',     rate:4.45 }, { name:'HLB',  rate:4.38 }, { name:'AmBank',      rate:4.50 },
+  { name:'Maybank',      rate:4.30 }, { name:'CIMB',        rate:4.35 }, { name:'Public Bank', rate:4.25 },
+  { name:'RHB',          rate:4.40 }, { name:'HLB',         rate:4.33 }, { name:'AmBank',      rate:4.45 },
 ]
 
 function calcMonthly(p, annualRate, months) {

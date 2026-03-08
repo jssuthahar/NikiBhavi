@@ -25,9 +25,9 @@ const PASS_TYPES = [
     color:'#10b981',
   },
   {
-    id:'mm2h', name:'MM2H Visa', icon:'🏡', minSal:0,
-    desc:'Malaysia My Second Home — 10-year multiple-entry visa. For retirees and long-term residents.',
-    requirements:['Monthly income RM 40,000+ OR RM 1.5M liquid assets','Purchase property worth RM 1.5M+','Fixed deposit RM 1M in Malaysian bank','No criminal record','Medical insurance coverage'],
+    id:'mm2h', name:'MM2H Visa (2024 revised)', icon:'🏡', minSal:0,
+    desc:'Malaysia My Second Home — 10-year visa. Requirements revised in 2024. Tier-based system now.',
+    requirements:['Tier 1 (Sarawak): RM 10,000/mo income, RM 150,000 FD','Tier 2: RM 40,000/mo income, RM 500,000 FD','Tier 3 (Premium): RM 75,000/mo income, RM 1M FD','Must purchase property RM 600K–1.5M+ (tier dependent)','No criminal record, medical insurance required'],
     duration:'10 years, renewable',
     color:'#f59e0b',
   },

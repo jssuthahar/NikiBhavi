@@ -27,3 +27,13 @@
 .oppPH  { font-size:13px; font-weight:700; color:#fff; margin-bottom:7px; }
 .oppOpt { display:flex; align-items:center; gap:10px; padding:6px 10px; background:rgba(255,255,255,.05); border-radius:8px; font-size:12.5px; color:rgba(255,255,255,.6); margin-bottom:5px; }
 .oppDays { flex-shrink:0; background:#C9F53B; color:#0d0d0d; font-size:10px; font-weight:800; padding:3px 9px; border-radius:5px; }
+
+.phDay     { font-size:11px; font-weight:600; color:#9299ab; min-width:64px; }
+.noOpps    { font-size:13px; color:rgba(255,255,255,.4); padding:10px 0; }
+.oppDay    { font-size:10px; font-weight:800; background:rgba(201,245,59,.15); color:#C9F53B; padding:2px 8px; border-radius:5px; margin-right:8px; }
+.oppInsuff { opacity:.5; }
+.oppWarn   { font-size:10px; color:#ef4444; font-weight:700; background:rgba(239,68,68,.1); padding:2px 8px; border-radius:5px; flex-shrink:0; }
+.tipBox    { background:#fff; border-radius:16px; padding:18px; margin-top:16px; box-shadow:0 1px 3px rgba(0,0,0,.06); border:1.5px solid #e8eaf0; }
+.tipTitle  { font-size:14px; font-weight:800; color:#0d0d0d; margin-bottom:10px; }
+.tip       { font-size:13px; color:#5c6278; padding:7px 0; border-bottom:1px solid #f2f4f8; line-height:1.55; }
+.tip:last-child { border-bottom:none; }

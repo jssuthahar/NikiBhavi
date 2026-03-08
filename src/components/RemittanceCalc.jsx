@@ -11,7 +11,7 @@ const PROVIDERS = [
   { id: 'western',  name: 'Western Union', icon: '🟡', color: '#FFD700', fee: 0.022,  minFee: 5,   time: '10 mins',    url: 'https://westernunion.com', tag: 'Global' },
 ]
 
-const BASE_RATE = 19.2 // 1 MYR = ~19.2 INR (approximate, show disclaimer)
+const BASE_RATE = 19.5 // 1 MYR ≈ ₹19.5 INR (approximate mid-2026, verify before transfer)
 
 export default function RemittanceCalc() {
   const [amount, setAmount]       = useState('1000')

@@ -6,14 +6,14 @@ const EMP_RATE  = 0.11
 const EMP_RATE2 = 0.09 // optional reduced
 const ER_RATE1  = 0.13 // salary <= 5000
 const ER_RATE2  = 0.12 // salary > 5000
-const DIVIDEND  = 0.057 // ~5.7% historical average EPF dividend
+const DIVIDEND  = 0.055 // 5.50% — EPF Conventional declared for 2024 (announced Jan 2025)
 
 export default function EPFCalc() {
   const [salary,    setSalary]    = useState('')
   const [years,     setYears]     = useState('30')
   const [existing,  setExisting]  = useState('')
   const [rate9,     setRate9]     = useState(false)
-  const [divRate,   setDivRate]   = useState(DIVIDEND * 100)
+  const [divRate,   setDivRate]   = useState(5.50)
 
   const result = useMemo(() => {
     const sal    = parseFloat(salary) || 0
@@ -38,7 +38,7 @@ export default function EPFCalc() {
 
     const totalContrib = totalMth * 12 * yrs + exist
     const interest     = corpus - totalContrib
-    const inrCorpus    = corpus * 19.2
+    const inrCorpus    = corpus * 19.5
 
     return { empMth, errMth, totalMth, corpus, yearly, totalContrib, interest, inrCorpus, yrs }
   }, [salary, years, existing, rate9, divRate])
@@ -131,7 +131,7 @@ export default function EPFCalc() {
           <div className={styles.insight}><span>💰</span><div><strong>Total contributed:</strong> {fmtRM(result.totalContrib)}</div></div>
           <div className={styles.insight}><span>📈</span><div><strong>Dividend earned:</strong> {fmtRM(result.interest)}</div></div>
           <div className={styles.insight}><span>🇮🇳</span><div><strong>In INR at retirement:</strong> ≈ ₹{Math.round(result.inrCorpus/100000)}L (at today's rate)</div></div>
-          <div className={styles.insight}><span>💡</span><div><strong>Tip:</strong> You can withdraw EPF when you leave Malaysia permanently. Keep Account 1 (70%) untouched — it grows with dividends.</div></div>
+          <div className={styles.insight}><span>💡</span><div><strong>Tip:</strong> You can withdraw EPF when you leave Malaysia permanently. Keep Account 1 (Akaun Persaraan, 75%) untouched — it grows with dividends. EPF Conventional declared 5.50% for 2024 (Syariah: 5.40%).</div></div>
         </div>
       </>)}
     </div>

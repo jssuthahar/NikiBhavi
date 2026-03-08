@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styles from './CostCompare.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
-const MYR_INR = 19.2
+const MYR_INR = 19.5 // approx 2026 rate
 
 const CITIES = {
   'kl':        { name:'Kuala Lumpur', flag:'🇲🇾', cur:'RM',  mul:1 },
@@ -120,7 +120,7 @@ export default function CostCompare() {
         </div>
       ))}
 
-      <div className={styles.note}>⚠️ <strong>Note:</strong> Prices are approximate averages for mid-2025. Actual costs vary by neighborhood, lifestyle, and market conditions. Use as a guide for planning only.</div>
+      <div className={styles.note}>⚠️ <strong>Note:</strong> Prices are approximate averages for 2026. Actual costs vary by neighborhood, lifestyle, and market conditions. Use as a guide for planning only.</div>
     </div>
   )
 }

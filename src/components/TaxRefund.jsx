@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import styles from './TaxRefund.module.css'
 import PrivacyNotice from './PrivacyNotice'
 
-// ── YA 2024/2025 Progressive Tax Brackets ────────────────────
+// ── YA 2024–2026 Progressive Tax Brackets (unchanged per Budget 2025) ────────────────────
 const TAX_BRACKETS = [
   { min: 0,       max: 5000,    rate: 0,     base: 0      },
   { min: 5001,    max: 20000,   rate: 0.01,  base: 0      },
@@ -37,7 +37,7 @@ function getTaxBracketInfo(chargeable) {
   return { rate: 0.28, label: '28%' }
 }
 
-// ── ALL YA 2024/2025 Tax Reliefs (Source: LHDN hasil.gov.my) ──
+// ── ALL YA 2024/2025/2026 Tax Reliefs (Source: LHDN hasil.gov.my) ──
 const RELIEF_SECTIONS = [
   {
     id: 'personal',
@@ -61,7 +61,7 @@ const RELIEF_SECTIONS = [
     icon: '🛡️',
     color: '#0ea5e9',
     reliefs: [
-      { id: 'epf',            label: 'EPF Contributions',              max: 4000,  fixed: false, desc: 'Your own EPF contributions (11% employee share)', hint: 'RM 4,000 max (shared with life insurance up to RM 7,000)' },
+      { id: 'epf',            label: 'EPF Contributions',              max: 4000,  fixed: false, desc: 'Your own EPF contributions (11% employee share)', hint: 'RM 4,000 max (shared with life insurance — combined cap RM 7,000 from YA 2023+)' },
       { id: 'life_ins',       label: 'Life Insurance Premium',         max: 3000,  fixed: false, desc: 'Life insurance for self, spouse, or child', hint: 'RM 3,000 max (shared with EPF cap RM 7,000 total)' },
       { id: 'edu_medical_ins',label: 'Education & Medical Insurance',  max: 4000,  fixed: false, desc: 'Premiums for education or medical insurance policies', hint: 'RM 4,000 max (YA 2025 increased from RM 3,000)' },
       { id: 'prs',            label: 'Private Retirement Scheme (PRS)',max: 3000,  fixed: false, desc: 'Contributions to approved PRS funds', hint: 'RM 3,000 max' },
@@ -90,6 +90,7 @@ const RELIEF_SECTIONS = [
       { id: 'edu_self',       label: 'Education Fees (self)',         max: 7000,  fixed: false, desc: 'Diploma, degree, masters or PhD at approved institution', hint: 'RM 7,000 max' },
       { id: 'upskill',        label: 'Upskilling / Skills Training',  max: 2000,  fixed: false, desc: 'Approved upskilling/technical courses (extended to YA 2026)', hint: 'RM 2,000 max' },
       { id: 'childcare',      label: 'Childcare Fees',                max: 3000,  fixed: false, desc: 'Fees at registered childcare centre for child under 6', hint: 'RM 3,000 max' },
+      { id: 'sspn',           label: 'SSPN-i / SSPN-i Plus (education savings)', max: 8000, fixed: false, desc: 'Net deposit into SSPN-i or SSPN-i Plus education savings account', hint: 'RM 8,000 max (YA 2026 extended)' },
     ],
   },
   {
@@ -102,7 +103,7 @@ const RELIEF_SECTIONS = [
       { id: 'sports',         label: 'Sports Equipment / Facility',   max: 1000,  fixed: false, desc: 'Sports equipment, gym fees, sports facilities (within lifestyle)', hint: 'RM 1,000 max (within lifestyle)' },
       { id: 'breastfeeding',  label: 'Breastfeeding Equipment',       max: 1000,  fixed: false, desc: 'Breast pump, accessories for child under 2 years old', hint: 'RM 1,000 max (once every 2 years)' },
       { id: 'ev',             label: 'EV Charging Equipment',         max: 2500,  fixed: false, desc: 'Costs of EV charging facilities for personal vehicle', hint: 'RM 2,500 max' },
-      { id: 'domestic_travel',label: 'Domestic Tourism & Hotel',      max: 1000,  fixed: false, desc: 'Hotel, resort, or domestic holiday packages in Malaysia', hint: 'RM 1,000 max' },
+      { id: 'domestic_travel',label: 'Domestic Tourism & Hotel',      max: 1000,  fixed: false, desc: 'Hotel, resort, or domestic holiday packages in Malaysia (extended to YA 2026)', hint: 'RM 1,000 max (YA 2026 extended)' },
     ],
   },
 ]
@@ -194,7 +195,7 @@ function ReliefSection({ section, values, onChange }) {
 export default function TaxRefund() {
   const [annualIncome,  setAnnualIncome]  = useState('')
   const [taxPaid,       setTaxPaid]       = useState('')
-  const [taxYear,       setTaxYear]       = useState(2024)
+  const [taxYear,       setTaxYear]       = useState(2025)
   const [values,        setValues]        = useState({ self: 9000 })
 
   const setVal = (id, val) => setValues(prev => ({ ...prev, [id]: val }))
@@ -270,7 +271,7 @@ export default function TaxRefund() {
       <div className={styles.dataNotice}>
         <span>📅</span>
         <span>
-          Relief limits shown are based on <strong>YA 2024 / YA 2025</strong> as published by LHDN (last reviewed: <strong>7 March 2026</strong>).
+          Relief limits shown are based on <strong>YA 2024 / YA 2025 / YA 2026</strong> as published by LHDN (last reviewed: <strong>8 March 2026</strong>).
           Tax laws and relief amounts <strong>change every year</strong> with the national budget.
           Always verify the latest figures on the official government website:{' '}
           <a href="https://www.hasil.gov.my" target="_blank" rel="noreferrer">www.hasil.gov.my</a>
@@ -286,6 +287,7 @@ export default function TaxRefund() {
             <select value={taxYear} onChange={e => setTaxYear(Number(e.target.value))}>
               <option value={2024}>YA 2024</option>
               <option value={2025}>YA 2025</option>
+              <option value={2026}>YA 2026</option>
             </select>
           </div>
 
@@ -504,7 +506,7 @@ export default function TaxRefund() {
         <p>This calculator is provided by <strong>NikiBhavi</strong> for <strong>educational and informational purposes only</strong>. It does not constitute professional tax, legal, or financial advice.</p>
         <ul>
           <li>Only applicable to <strong>tax residents</strong> of Malaysia (individuals who have stayed ≥182 days in the calendar year).</li>
-          <li>Tax relief limits shown are based on YA 2024/2025 as announced in Malaysia's national budget and published by LHDN. Limits may change in future years.</li>
+          <li>Tax relief limits shown are based on YA 2024/2025/2026 as announced in Malaysia's national budget (Budget 2025 & 2026) and published by LHDN. Always verify at hasil.gov.my before filing.</li>
           <li>EPF and life insurance reliefs share a combined cap of RM 7,000. The separate caps shown (RM 4,000 EPF + RM 3,000 life insurance) cannot exceed RM 7,000 total.</li>
           <li>Certain reliefs require receipts and documentation. LHDN may audit claims — keep all receipts for 7 years.</li>
           <li>This tool does not account for tax rebates (zakat, tax paid in error), business income, rental income, or non-salary income.</li>
