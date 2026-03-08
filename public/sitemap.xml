@@ -27,6 +27,10 @@
   <url><loc>https://nikibhavi.msdevbuild.com/#/sim-card</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://nikibhavi.msdevbuild.com/#/money-transfer</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
+  <!-- Tourist Tools -->
+  <url><loc>https://nikibhavi.msdevbuild.com/#/tourist-hub</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.98</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/tourist-visa</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+
   <!-- Financial tools (highest search value) -->
   <url><loc>https://nikibhavi.msdevbuild.com/#/living-cost</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
   <url><loc>https://nikibhavi.msdevbuild.com/#/tax-residency</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>

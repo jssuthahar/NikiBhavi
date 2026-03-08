@@ -19,6 +19,7 @@ import CostCompare     from './CostCompare'
 import EPEligibility   from './EPEligibility'
 import ProbationCalc   from './ProbationCalc'
 import SchoolFees      from './SchoolFees'
+import TouristHub     from './TouristHub'
 import { BuyMeCoffeeCard } from './BuyMeCoffee'
 import { FollowBanner } from './FollowBanner'
 import ShareUrl from './ShareUrl'
@@ -105,18 +106,6 @@ export function EpassPage({ onNavigate }) {
 }
 
 // ══════════════════════════ TOURIST VISA ══════════════════════
-export function TouristPage({ onNavigate }) {
-  const p = PAGES.tourist
-  return (
-    <PageWrapper id="tourist">
-      <Hero hero={p.hero} onNavigate={onNavigate} />
-      <SectionHeader title="Step-by-Step Process" />
-      <StepsList steps={p.steps} />
-      <CardsGrid>{p.cards.map((c, i) => <InfoCard key={i} {...c} />)}</CardsGrid>
-      <TipBox {...p.tip} />
-    </PageWrapper>
-  )
-}
 
 // ══════════════════════════ STUDENT PASS ══════════════════════
 export function StudentPage({ onNavigate }) {
@@ -313,3 +302,5 @@ export function CostComparePage() { return <PageWrapper id="costcompare"><CostCo
 export function EPEligPage()      { return <PageWrapper id="epelig"><EPEligibility /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
 export function ProbationPage()   { return <PageWrapper id="probation"><ProbationCalc /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
 export function SchoolFeesPage()  { return <PageWrapper id="schoolfees"><SchoolFees /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+
+export function TouristPage()     { return <PageWrapper id="tourist-hub"><TouristHub /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }

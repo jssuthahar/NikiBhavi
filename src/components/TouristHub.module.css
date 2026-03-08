@@ -1,0 +1,377 @@
+/* ── Tourist Hub ─────────────────────────────────────────────── */
+.hub { width:100%; }
+
+.heroBar {
+  background: linear-gradient(135deg, #0d0d0d 0%, #0f2010 50%, #0d0d0d 100%);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1.5px solid rgba(201,245,59,.2);
+}
+.heroInner { padding: 28px 28px 24px; text-align:center; }
+.heroFlags  { font-size: 36px; margin-bottom: 8px; }
+.heroTitle  { font-size: clamp(20px,4vw,28px); font-weight:900; color:#fff; margin:0 0 6px; }
+.heroSub    { font-size: 14px; color: rgba(201,245,59,.7); margin:0; }
+
+/* Tool Nav */
+.toolNav {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 20px;
+}
+.toolBtn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 30px;
+  border: 1.5px solid #e8eaf0; background: #fff;
+  cursor: pointer; font-size: 13px; font-weight: 600; color: #5c6278;
+  transition: all .18s;
+}
+.toolBtn:hover { border-color: #C9F53B; color: #0d0d0d; background:#f5fce0; }
+.toolBtnActive { background: #0d0d0d; color:#C9F53B; border-color:#0d0d0d; }
+.toolBtnIcon { font-size:16px; }
+.toolBtnLabel { white-space:nowrap; }
+
+.toolArea { min-height: 400px; }
+
+/* ── Shared Tool Styles ─────────────────────────────────────── */
+.toolWrap { display:flex; flex-direction:column; gap:16px; }
+.toolHeader {
+  display:flex; align-items:center; gap:14px;
+  background: linear-gradient(135deg,#0d0d0d,#1a2a0a);
+  border-radius:16px; padding:20px 22px;
+  border:1.5px solid rgba(201,245,59,.25);
+}
+.thIcon  { font-size:36px; flex-shrink:0; }
+.thTitle { font-size:20px; font-weight:900; color:#fff; margin:0 0 4px; }
+.thSub   { font-size:13px; color:rgba(201,245,59,.7); margin:0; }
+
+/* Shared selects/inputs */
+.sel { padding:8px 12px; border:1.5px solid #e8eaf0; border-radius:10px; font-size:13px; background:#fff; width:100%; }
+.numInput { padding:8px 12px; border:1.5px solid #e8eaf0; border-radius:10px; font-size:14px; font-weight:700; width:100%; }
+.txtInput { padding:8px 12px; border:1.5px solid #e8eaf0; border-radius:10px; font-size:13px; flex:1; }
+.slider { width:100%; accent-color:#C9F53B; }
+
+.cityTabs { display:flex; flex-wrap:wrap; gap:6px; }
+.cityTab  { padding:6px 14px; border-radius:20px; border:1.5px solid #e8eaf0; background:#fff; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; color:#5c6278; }
+.cityTab:hover { border-color:#C9F53B; }
+.cityTabOn { background:#0d0d0d; color:#C9F53B; border-color:#0d0d0d; }
+
+.typeTabs { display:flex; flex-wrap:wrap; gap:6px; }
+.typeTab  { padding:5px 12px; border-radius:20px; border:1.5px solid #e8eaf0; background:#fff; font-size:12px; font-weight:600; cursor:pointer; color:#5c6278; transition:all .15s; }
+.typeTab:hover { border-color:#b8e020; }
+.typeTabOn { background:#C9F53B; color:#0d0d0d; border-color:#C9F53B; }
+
+/* ── 1. Trip Planner ────────────────────────────────────────── */
+.planInputs { background:#fff; border-radius:16px; padding:20px; border:1.5px solid #e8eaf0; }
+.planRow    { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-bottom:14px; }
+.planField  { display:flex; flex-direction:column; gap:6px; font-size:13px; font-weight:700; color:#1c1e27; }
+.rangeWrap  { display:flex; align-items:center; gap:10px; }
+.rangeVal   { font-size:18px; font-weight:900; color:#C9F53B; background:#0d0d0d; padding:4px 12px; border-radius:8px; white-space:nowrap; }
+.destPicker label { font-size:13px; font-weight:700; color:#1c1e27; margin-bottom:8px; display:block; }
+.destGrid   { display:flex; flex-wrap:wrap; gap:8px; }
+.destBtn    { padding:8px 16px; border-radius:20px; border:2px solid #e8eaf0; background:#f8f9fc; font-size:13px; font-weight:700; cursor:pointer; transition:all .15s; }
+.destBtn:hover { border-color:#C9F53B; }
+.destBtnOn  { background:#C9F53B; border-color:#C9F53B; color:#0d0d0d; }
+
+.planBudgetBar {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px;
+}
+.pbb { background:#fff; border-radius:12px; padding:12px 14px; border:1.5px solid #e8eaf0; display:flex; flex-direction:column; gap:4px; font-size:12px; color:#5c6278; }
+.pbb strong { font-size:16px; font-weight:900; color:#1c1e27; }
+.pbbTotal { border-color:#0d0d0d; background:#0d0d0d; color:#fff; }
+.pbbTotal strong { color:#C9F53B; font-size:18px; }
+.pbbGood  { border-color:#16a34a; background:#f0fdf4; }
+.pbbGood strong { color:#16a34a; }
+.pbbBad   { border-color:#ef4444; background:#fef2f2; }
+.pbbBad strong  { color:#ef4444; }
+
+.itinerary { display:flex; flex-direction:column; gap:12px; }
+.itDay { background:#fff; border-radius:16px; border:1.5px solid #e8eaf0; overflow:hidden; }
+.itDayHead { display:flex; align-items:center; gap:10px; padding:12px 16px; background:#f8f9fc; border-bottom:1px solid #e8eaf0; }
+.itDayNum  { font-size:13px; font-weight:900; background:#0d0d0d; color:#C9F53B; padding:3px 10px; border-radius:20px; }
+.itDayCity { font-size:14px; font-weight:700; color:#1c1e27; flex:1; }
+.itDayCost { font-size:13px; font-weight:800; color:#5c6278; }
+.itSlots   { padding:14px 16px; display:flex; flex-direction:column; gap:10px; }
+.itSlot    { display:flex; gap:12px; align-items:flex-start; }
+.itSlotTime { font-size:11px; font-weight:800; min-width:90px; color:#9299ab; padding-top:2px; }
+.itSlotInfo { flex:1; }
+.itSlotInfo strong { font-size:14px; font-weight:800; color:#1c1e27; display:block; }
+.itSlotEntry { font-size:12px; color:#5c6278; display:block; margin-top:2px; }
+.itSlotTip  { font-size:12px; color:#9299ab; display:block; margin-top:3px; font-style:italic; }
+
+/* ── 2. Budget Simulator ────────────────────────────────────── */
+.presetRow { display:flex; flex-wrap:wrap; gap:8px; }
+.presetBtn { display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:20px; border:1.5px solid #e8eaf0; background:#fff; font-size:13px; font-weight:700; cursor:pointer; transition:all .15s; color:#5c6278; }
+.presetBtn:hover { border-color:#C9F53B; }
+.presetBtnOn { background:#0d0d0d; color:#C9F53B; border-color:#0d0d0d; }
+
+.simControls { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; background:#fff; border-radius:16px; padding:18px; border:1.5px solid #e8eaf0; }
+.simField    { display:flex; flex-direction:column; gap:6px; font-size:13px; font-weight:700; color:#1c1e27; }
+.simCounter  { display:flex; align-items:center; gap:0; border:1.5px solid #e8eaf0; border-radius:10px; overflow:hidden; }
+.simCounter button { padding:8px 14px; background:#f8f9fc; border:none; cursor:pointer; font-size:18px; font-weight:700; color:#5c6278; }
+.simCounter button:hover { background:#C9F53B; color:#0d0d0d; }
+.simCounter span { flex:1; text-align:center; font-size:16px; font-weight:900; color:#1c1e27; }
+
+.simTotal { background:linear-gradient(135deg,#0d0d0d,#1a2a0a); border-radius:16px; padding:24px; text-align:center; border:1.5px solid rgba(201,245,59,.3); }
+.simTotalMain { font-size:clamp(32px,6vw,48px); font-weight:900; color:#C9F53B; }
+.simTotalInr  { font-size:20px; font-weight:700; color:rgba(255,255,255,.7); margin:4px 0; }
+.simTotalSub  { font-size:13px; color:rgba(255,255,255,.4); }
+
+.budgetBars { display:flex; flex-direction:column; gap:10px; background:#fff; border-radius:16px; padding:18px; border:1.5px solid #e8eaf0; }
+.budBar     { display:flex; flex-direction:column; gap:4px; }
+.budBarLabel { display:flex; justify-content:space-between; font-size:13px; font-weight:600; color:#1c1e27; }
+.budBarLabel em { color:#9299ab; font-style:normal; font-size:12px; }
+.budBarTrack { height:8px; background:#f0f2f5; border-radius:4px; overflow:hidden; }
+.budBarFill  { height:100%; background:linear-gradient(90deg,#C9F53B,#b8e020); border-radius:4px; transition:width .5s ease; }
+
+.simTips { display:flex; flex-direction:column; gap:8px; }
+.simTip  { background:#fffbeb; border:1.5px solid #fde68a; border-radius:12px; padding:12px 14px; font-size:13px; color:#92400e; line-height:1.55; }
+
+/* ── 3. Cost Tracker ────────────────────────────────────────── */
+.trackerBudget { display:flex; justify-content:space-between; align-items:center; background:#fff; border-radius:16px; padding:18px 22px; border:1.5px solid #e8eaf0; }
+.tbLeft,.tbRight { display:flex; flex-direction:column; gap:4px; }
+.tbRight { text-align:right; }
+.tbSpent { font-size:30px; font-weight:900; color:#0d0d0d; }
+.tbRemain{ font-size:24px; font-weight:900; color:#16a34a; }
+.tbSub   { font-size:12px; color:#9299ab; }
+.tbBudgetInput { width:90px; border:none; border-bottom:2px solid #C9F53B; font-size:14px; font-weight:700; text-align:center; outline:none; background:transparent; }
+
+.trackerBar  { height:10px; background:#f0f2f5; border-radius:6px; overflow:hidden; }
+.trackerFill { height:100%; border-radius:6px; transition:width .4s ease; }
+.trackerPct  { font-size:12px; color:#9299ab; text-align:right; }
+
+.addEntry { display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#fff; border-radius:14px; padding:14px; border:1.5px solid #e8eaf0; }
+.addBtn   { padding:8px 18px; background:#0d0d0d; color:#C9F53B; border:none; border-radius:10px; font-size:13px; font-weight:800; cursor:pointer; white-space:nowrap; }
+.addBtn:hover { background:#1a1a1a; }
+
+.entryList  { display:flex; flex-direction:column; gap:6px; max-height:280px; overflow-y:auto; }
+.entryRow   { display:flex; align-items:center; gap:10px; padding:10px 14px; background:#fff; border-radius:10px; border:1px solid #e8eaf0; font-size:13px; }
+.entryDay   { font-size:11px; font-weight:800; background:#f0f2f5; padding:2px 8px; border-radius:6px; color:#5c6278; white-space:nowrap; }
+.entryCat   { font-size:12px; color:#9299ab; white-space:nowrap; }
+.entryDesc  { flex:1; font-weight:600; color:#1c1e27; }
+.entryAmt   { font-size:14px; font-weight:900; color:#0d0d0d; white-space:nowrap; }
+.entryDel   { width:24px; height:24px; background:#fef2f2; color:#ef4444; border:none; border-radius:6px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+.catBreakdown { background:#fff; border-radius:14px; padding:16px; border:1.5px solid #e8eaf0; }
+.cbTitle { font-size:13px; font-weight:800; color:#1c1e27; margin-bottom:10px; }
+.cbRow   { display:flex; align-items:center; gap:10px; margin-bottom:8px; font-size:13px; }
+.cbRow span:first-child { width:120px; flex-shrink:0; }
+.cbRow span:nth-child(2){ width:60px; font-weight:700; color:#0d0d0d; flex-shrink:0; }
+.cbBar   { flex:1; height:8px; background:#f0f2f5; border-radius:4px; overflow:hidden; }
+.cbFill  { height:100%; background:#C9F53B; border-radius:4px; transition:width .4s; }
+
+/* ── 4. SIM Comparison ──────────────────────────────────────── */
+.simDaysRow { display:flex; align-items:center; gap:14px; background:#fff; border-radius:14px; padding:14px 18px; border:1.5px solid #e8eaf0; font-size:14px; font-weight:700; }
+
+.verdictBox { background:linear-gradient(135deg,#0f2010,#0d0d0d); border-radius:16px; padding:20px 22px; border:1.5px solid rgba(201,245,59,.3); }
+.vbTitle    { font-size:13px; font-weight:700; color:rgba(201,245,59,.7); margin-bottom:6px; }
+.vbSaving   { font-size:24px; font-weight:900; color:#C9F53B; margin-bottom:8px; }
+.vbSub      { font-size:13px; color:rgba(255,255,255,.6); line-height:1.55; }
+
+.simCols    { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:600px){ .simCols { grid-template-columns:1fr; } }
+.simColHead { font-size:14px; font-weight:900; color:#1c1e27; margin-bottom:10px; }
+.simCard    { background:#fff; border-radius:14px; padding:14px; border:2px solid #e8eaf0; margin-bottom:10px; }
+.simCardBad { border-color:#fee2e2; background:#fef9f9; }
+.simCardGood{ border-color:#dcfce7; background:#f0fdf4; }
+.simCardName{ font-size:14px; font-weight:800; color:#0d0d0d; margin-bottom:8px; }
+.simCardStats{ display:flex; gap:10px; font-size:12px; color:#9299ab; margin-bottom:8px; }
+.simCardCost{ display:flex; flex-direction:column; margin-bottom:8px; }
+.simCardCost strong { font-size:20px; font-weight:900; color:#0d0d0d; }
+.simCardCost span   { font-size:11px; color:#9299ab; }
+.simCardPros { font-size:12px; color:#16a34a; margin-bottom:4px; }
+.simCardCons { font-size:12px; color:#ef4444; }
+.simBuyTip   { background:#fffbeb; border:1.5px solid #fde68a; border-radius:12px; padding:14px 16px; font-size:13px; color:#92400e; line-height:1.55; }
+
+/* ── 5. What to Buy ─────────────────────────────────────────── */
+.buyGrid    { display:flex; flex-direction:column; gap:10px; }
+.buySection { background:#fff; border-radius:14px; border:1.5px solid #e8eaf0; overflow:hidden; }
+.buySectionHead { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; font-size:14px; font-weight:800; cursor:pointer; color:#1c1e27; }
+.buySectionHead:hover { background:#f8f9fc; }
+.buyChevron { color:#9299ab; font-size:12px; }
+.buyItems   { padding:14px 18px; display:flex; flex-direction:column; gap:10px; border-top:1px solid #f0f2f5; }
+.buyItem    { padding:12px 14px; background:#f8f9fc; border-radius:10px; }
+.buyItemName{ font-size:14px; font-weight:800; color:#0d0d0d; margin-bottom:6px; }
+.buyItemMeta{ display:flex; gap:12px; margin-bottom:6px; }
+.buyPrice   { font-size:12px; font-weight:700; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; }
+.buySaving  { font-size:12px; font-weight:700; background:#dcfce7; color:#166534; padding:3px 8px; border-radius:6px; }
+.buyItemTip { font-size:12px; color:#5c6278; font-style:italic; }
+
+/* ── 6. Places to Visit ─────────────────────────────────────── */
+.placeGrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+.placeCard { background:#fff; border-radius:14px; padding:16px; border:1.5px solid #e8eaf0; }
+.placeCardTop  { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
+.placeCardName { font-size:15px; font-weight:800; color:#0d0d0d; }
+.placeCardRating{ font-size:14px; font-weight:700; color:#f59e0b; white-space:nowrap; }
+.placeCardMeta { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+.placeTag  { font-size:11px; background:#f0f2f5; padding:3px 8px; border-radius:6px; color:#5c6278; font-weight:700; }
+.placeTime { font-size:11px; color:#9299ab; }
+.placeBest { font-size:11px; color:#9299ab; }
+.placeEntry{ font-size:12px; color:#5c6278; margin-bottom:6px; }
+.placeTip  { font-size:12px; color:#5c6278; font-style:italic; line-height:1.5; margin-bottom:8px; }
+.placeIndian{ display:inline-block; font-size:11px; background:#fff3cd; color:#856404; padding:2px 8px; border-radius:6px; font-weight:700; }
+
+/* ── 7. Indian Food Finder ──────────────────────────────────── */
+.foodFilters { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.vegBtn    { padding:6px 14px; border-radius:20px; border:2px solid #e8eaf0; background:#fff; font-size:13px; font-weight:700; cursor:pointer; color:#5c6278; }
+.vegBtnOn  { background:#dcfce7; border-color:#16a34a; color:#166534; }
+.foodGrid  { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+.foodCard  { background:#fff; border-radius:14px; padding:16px; border:1.5px solid #e8eaf0; }
+.foodCardTop { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
+.foodName  { font-size:14px; font-weight:800; color:#0d0d0d; }
+.foodArea  { font-size:12px; color:#9299ab; margin-top:3px; }
+.foodRating{ font-size:14px; font-weight:700; color:#f59e0b; white-space:nowrap; }
+.foodMeta  { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+.foodType  { font-size:11px; background:#f0f2f5; padding:3px 8px; border-radius:6px; color:#5c6278; font-weight:700; }
+.foodPrice { font-size:11px; background:#e0f2fe; padding:3px 8px; border-radius:6px; color:#0369a1; font-weight:700; }
+.halalBadge   { font-size:11px; background:#dcfce7; color:#166534; padding:3px 8px; border-radius:6px; font-weight:700; }
+.nonHalalBadge{ font-size:11px; background:#fef2f2; color:#991b1b; padding:3px 8px; border-radius:6px; font-weight:700; }
+.foodSpecial{ font-size:12px; color:#5c6278; font-style:italic; }
+.foodNote  { background:#fff3cd; border:1.5px solid #fde68a; border-radius:12px; padding:14px; font-size:13px; color:#92400e; line-height:1.55; }
+
+/* ── 8. Visa Guide ──────────────────────────────────────────── */
+.visaAlert { background:#fef2f2; border:2px solid #fca5a5; border-radius:12px; padding:14px 16px; font-size:13px; color:#991b1b; line-height:1.55; }
+.visaSteps { display:flex; flex-direction:column; gap:8px; }
+.visaStep  { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; background:#fff; border-radius:14px; border:2px solid #e8eaf0; cursor:pointer; transition:all .15s; }
+.visaStep:hover{ border-color:#C9F53B; }
+.visaStepOn { border-color:#C9F53B; background:#f5fce0; }
+.vsNum  { width:26px; height:26px; background:#0d0d0d; color:#C9F53B; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; flex-shrink:0; }
+.vsIcon { font-size:22px; flex-shrink:0; }
+.vsTitle{ font-size:14px; font-weight:800; color:#1c1e27; flex:1; }
+.vsDesc { font-size:13px; color:#5c6278; margin-top:8px; line-height:1.55; width:100%; }
+
+.docsGrid  { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media(max-width:560px){ .docsGrid { grid-template-columns:1fr; } }
+.docsCard  { background:#fff; border-radius:14px; padding:16px; border:1.5px solid #e8eaf0; }
+.docsTitle { font-size:14px; font-weight:800; color:#1c1e27; margin-bottom:10px; }
+.docItem   { font-size:13px; color:#5c6278; padding:6px 0; border-bottom:1px solid #f0f2f5; line-height:1.5; }
+.docItem:last-child { border-bottom:none; }
+
+.visaExtend { background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:14px; font-size:13px; color:#166534; line-height:1.55; }
+.visaApplyBtn { display:inline-block; background:#C9F53B; color:#0d0d0d; font-size:15px; font-weight:900; padding:14px 28px; border-radius:30px; text-decoration:none; text-align:center; transition:transform .15s, box-shadow .15s; }
+.visaApplyBtn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,245,59,.4); }
+
+/* ── 9. Shopping Guide ──────────────────────────────────────── */
+.shopGrid    { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+.shopCard    { background:#fff; border-radius:14px; padding:16px; border:1.5px solid #e8eaf0; }
+.shopTop     { margin-bottom:8px; }
+.shopName    { font-size:15px; font-weight:800; color:#0d0d0d; }
+.shopCity    { font-size:12px; color:#9299ab; margin-top:3px; }
+.shopBest    { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+.shopBestTag { font-size:11px; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; font-weight:700; }
+.shopPrice   { font-size:12px; color:#5c6278; margin-bottom:6px; }
+.shopTip     { font-size:12px; color:#5c6278; font-style:italic; margin-bottom:6px; line-height:1.5; }
+.shopHours   { font-size:12px; color:#9299ab; }
+.shopBargain { background:#f5fce0; border:1.5px solid #C9F53B; border-radius:12px; padding:14px; font-size:13px; color:#1c1e27; line-height:1.55; }
+
+/* ── 10. Cultural Tips ──────────────────────────────────────── */
+.cultureSection { background:#fff; border-radius:14px; border:1.5px solid #e8eaf0; overflow:hidden; }
+.cultureSectionHead { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; font-size:14px; font-weight:800; cursor:pointer; color:#1c1e27; }
+.cultureSectionHead:hover { background:#f8f9fc; }
+.cultureTips { padding:14px 18px; display:flex; flex-direction:column; gap:0; border-top:1px solid #f0f2f5; }
+.cultureTip  { display:flex; gap:10px; padding:9px 0; border-bottom:1px solid #f8f9fc; font-size:13px; color:#5c6278; line-height:1.55; }
+.cultureTip:last-child { border-bottom:none; }
+.ctDot { color:#C9F53B; font-size:8px; margin-top:5px; flex-shrink:0; }
+
+/* ── 11. Hidden Places ──────────────────────────────────────── */
+.hiddenGrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; }
+.hiddenCard { background:linear-gradient(135deg,#0f2010,#0d0d0d); border-radius:14px; padding:18px; border:1.5px solid rgba(201,245,59,.2); position:relative; overflow:hidden; }
+.hiddenBadge{ font-size:11px; font-weight:800; background:rgba(201,245,59,.15); color:#C9F53B; padding:3px 10px; border-radius:20px; display:inline-block; margin-bottom:8px; }
+.hiddenName { font-size:16px; font-weight:900; color:#fff; margin-bottom:4px; }
+.hiddenCity { font-size:12px; color:rgba(255,255,255,.5); margin-bottom:6px; }
+.hiddenEntry{ font-size:12px; color:rgba(201,245,59,.7); margin-bottom:4px; }
+.hiddenTime { font-size:12px; color:rgba(255,255,255,.5); margin-bottom:10px; }
+.hiddenTip  { font-size:13px; color:rgba(255,255,255,.75); font-style:italic; line-height:1.5; margin-bottom:10px; border-left:3px solid #C9F53B; padding-left:10px; }
+.hiddenRating{ font-size:12px; color:#f59e0b; }
+
+/* ── 12. Local Experiences ──────────────────────────────────── */
+.expGrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.expCard { background:#fff; border-radius:14px; padding:16px; border:1.5px solid #e8eaf0; position:relative; }
+.expCardMust { border-color:#C9F53B; background:#f5fce0; }
+.expMustBadge{ position:absolute; top:12px; right:12px; font-size:11px; font-weight:800; background:#0d0d0d; color:#C9F53B; padding:3px 8px; border-radius:20px; }
+.expIcon  { font-size:28px; margin-bottom:8px; }
+.expName  { font-size:15px; font-weight:800; color:#0d0d0d; margin-bottom:4px; }
+.expWhere { font-size:12px; color:#9299ab; margin-bottom:4px; }
+.expCost  { font-size:12px; font-weight:700; color:#0369a1; margin-bottom:8px; }
+.expWhy   { font-size:13px; color:#5c6278; line-height:1.5; margin-bottom:8px; }
+.expRating{ font-size:12px; color:#f59e0b; font-weight:700; }
+
+/* ── 13. How Much Money ─────────────────────────────────────── */
+.moneyControls { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; background:#fff; border-radius:16px; padding:18px; border:1.5px solid #e8eaf0; }
+.moneyControl  { display:flex; flex-direction:column; gap:6px; font-size:13px; font-weight:700; color:#1c1e27; }
+
+.moneyResult { background:linear-gradient(135deg,#0d0d0d,#1a2a0a); border-radius:16px; padding:24px; text-align:center; border:1.5px solid rgba(201,245,59,.3); }
+.mrLabel  { font-size:12px; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; }
+.mrRM     { font-size:clamp(36px,6vw,52px); font-weight:900; color:#C9F53B; }
+.mrINR    { font-size:20px; font-weight:700; color:rgba(255,255,255,.6); margin:4px 0; }
+.mrPer    { font-size:12px; color:rgba(255,255,255,.4); }
+
+.moneyBreakdown { background:#fff; border-radius:16px; border:1.5px solid #e8eaf0; overflow:hidden; }
+.mbRow   { display:grid; grid-template-columns:1fr auto auto auto; gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #f0f2f5; font-size:13px; }
+.mbRow:last-child { border-bottom:none; }
+.mbTotal { background:#0d0d0d; }
+.mbTotal .mbLabel { color:#C9F53B; font-weight:900; }
+.mbTotal .mbRM    { color:#C9F53B; font-weight:900; font-size:16px; }
+.mbTotal .mbINR   { color:rgba(255,255,255,.5); }
+.mbLabel { font-weight:700; color:#1c1e27; }
+.mbNote  { font-size:11px; color:#9299ab; }
+.mbRM    { font-weight:800; color:#0d0d0d; white-space:nowrap; }
+.mbINR   { font-size:11px; color:#9299ab; white-space:nowrap; }
+
+/* ── 14. Avoid Traps ────────────────────────────────────────── */
+.trapsGrid { display:flex; flex-direction:column; gap:10px; }
+.trapCard  { background:#fff; border-radius:14px; border:2px solid #fca5a5; padding:16px; cursor:pointer; transition:all .15s; }
+.trapCard:hover,.trapCardOpen { border-color:#ef4444; background:#fef9f9; }
+.trapTop   { display:flex; align-items:flex-start; gap:12px; }
+.trapIcon  { font-size:24px; flex-shrink:0; }
+.trapName  { font-size:14px; font-weight:800; color:#0d0d0d; margin-bottom:4px; }
+.trapSaving{ font-size:12px; color:#5c6278; }
+.trapArrow { margin-left:auto; font-size:12px; color:#9299ab; flex-shrink:0; }
+.trapSolution{ margin-top:12px; padding:12px 14px; background:#f0fdf4; border-radius:10px; font-size:13px; color:#166534; line-height:1.55; border:1px solid #86efac; }
+.trapSolTitle{ font-size:13px; font-weight:800; margin-bottom:6px; }
+.trapsSummary{ background:#fffbeb; border:1.5px solid #fde68a; border-radius:12px; padding:14px; font-size:13px; color:#92400e; line-height:1.55; }
+
+/* ── 15. Local Deals ────────────────────────────────────────── */
+.dealsGrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; }
+.dealCard  { display:flex; gap:14px; background:#fff; border-radius:14px; padding:16px; border:1.5px solid #e8eaf0; }
+.dealIcon  { font-size:30px; flex-shrink:0; }
+.dealInfo  { flex:1; }
+.dealName  { font-size:14px; font-weight:800; color:#0d0d0d; margin-bottom:4px; }
+.dealDiscount { font-size:13px; font-weight:700; color:#16a34a; margin-bottom:4px; }
+.dealValid { font-size:12px; color:#9299ab; margin-bottom:4px; }
+.dealCode  { font-size:12px; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; display:inline-block; }
+
+.dealsApps { background:#fff; border-radius:16px; padding:18px; border:1.5px solid #e8eaf0; }
+.daTitle   { font-size:14px; font-weight:800; color:#1c1e27; margin-bottom:12px; }
+.appRow    { display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid #f0f2f5; }
+.appRow:last-child { border-bottom:none; }
+.appIcon   { font-size:22px; flex-shrink:0; width:28px; }
+.appName   { font-size:13px; font-weight:800; color:#0d0d0d; width:100px; flex-shrink:0; }
+.appUse    { font-size:12px; color:#5c6278; flex:1; }
+
+/* ── 16. Travel Map ─────────────────────────────────────────── */
+.mapEmbed { border-radius:14px; overflow:hidden; border:1.5px solid #e8eaf0; }
+.mapFilters { display:flex; flex-wrap:wrap; gap:6px; }
+.mapList { display:flex; flex-direction:column; gap:8px; }
+.mapPlace{ display:flex; align-items:center; gap:10px; background:#fff; border-radius:12px; padding:12px 14px; border:1.5px solid #e8eaf0; }
+.mpDot   { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+.mpInfo  { flex:1; min-width:0; }
+.mpName  { font-size:13px; font-weight:800; color:#0d0d0d; }
+.mpMeta  { font-size:11px; color:#9299ab; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mpHidden,.mpIndian { font-size:16px; flex-shrink:0; }
+.mpRating{ font-size:12px; font-weight:700; color:#f59e0b; white-space:nowrap; flex-shrink:0; }
+.mpMapBtn{ font-size:12px; font-weight:700; background:#0d0d0d; color:#C9F53B; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; flex-shrink:0; }
+.mpMapBtn:hover { background:#1a1a1a; }
+.mapLegend { display:flex; flex-wrap:wrap; gap:10px; }
+.legendItem{ display:flex; align-items:center; gap:6px; font-size:12px; color:#5c6278; }
+.legendDot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media(max-width:640px){
+  .planRow { grid-template-columns:1fr; }
+  .planBudgetBar { grid-template-columns:repeat(2,1fr); }
+  .mbRow { grid-template-columns:1fr auto auto; }
+  .mbNote { display:none; }
+  .moneyControls { grid-template-columns:1fr 1fr; }
+  .simControls { grid-template-columns:1fr 1fr; }
+  .toolBtn { font-size:12px; padding:6px 10px; }
+}

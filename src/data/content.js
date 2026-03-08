@@ -66,6 +66,12 @@ export const NAV_GROUPS = [
     ],
   },
   {
+    label: '✈️ Tourist Tools',
+    items: [
+      { id: 'tourist', icon: '🗺️', label: 'Tourist Hub', badge: 'NEW', highlight: true },
+    ],
+  },
+  {
     label: 'Channel',
     items: [
       { id: 'videos', icon: '🎬', label: 'All Videos' },

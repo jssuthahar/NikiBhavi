@@ -22,6 +22,7 @@ const ROUTES = {
   'visa':           'visa',
   'employee-pass':  'epass',
   'tourist-visa':   'tourist',
+  'tourist-hub':    'tourist',
   'student-visa':   'student',
   'housing':        'housing',
   'banking':        'bank',
