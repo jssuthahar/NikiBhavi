@@ -1,0 +1,46 @@
+.wrap{animation:fadeUp .35s ease both}
+.header{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#0d0d0d,#0a1a2e);border-radius:20px;padding:24px;margin-bottom:16px}
+.emoji{font-size:40px}.title{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px}.sub{font-size:13px;color:rgba(255,255,255,.5)}
+.checkCard{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:var(--s1)}
+.checkTitle{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px}
+.checkRow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--sub);margin-bottom:5px}
+.inputWrap{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
+.inputWrap input{border:none;flex:1;padding:10px 8px;font-size:14px;font-family:inherit}
+.prefix{padding:0 10px;font-size:13px;font-weight:700;color:var(--sub);background:var(--bg);align-self:stretch;display:flex;align-items:center;border-right:1.5px solid var(--border)}
+.suffix{padding:0 10px;font-size:12px;color:var(--sub)}
+.eligGrid{display:flex;flex-direction:column;gap:7px}
+.eligItem{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:10px;font-size:13px;flex-wrap:wrap;gap:6px}
+.eligItem span:first-child{font-weight:700;color:var(--ink)}
+.eligItem span:last-child{font-size:12px;font-weight:600}
+.eligOk{background:rgba(22,163,74,.08);border:1.5px solid rgba(22,163,74,.25)}
+.eligOk span:last-child{color:#16a34a}
+.eligNot{background:rgba(239,68,68,.05);border:1.5px solid rgba(239,68,68,.15)}
+.eligNot span:last-child{color:#ef4444}
+.timelineCard{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:var(--s1)}
+.timelineTitle{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:14px}
+.timeline{display:flex;flex-direction:column}
+.timelineItem{display:flex;gap:14px}
+.timelineLeft{display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0}
+.timelineDot{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.timelineLine{flex:1;width:2px;background:var(--border);margin:4px 0}
+.timelineBody{padding-bottom:16px;flex:1}
+.timelineMonth{font-size:11px;font-weight:800;color:var(--lime2);background:var(--ink);display:inline-block;padding:2px 8px;border-radius:5px;margin-bottom:4px}
+.timelineHead{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:2px}
+.timelineDesc{font-size:12px;color:var(--sub);line-height:1.5}
+.pathTabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.pathTab{padding:9px 16px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:700;cursor:pointer;color:var(--sub);transition:all .15s}
+.pathTabActive{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pathCard{background:#fff;border-radius:16px;padding:18px;box-shadow:var(--s1);border-top:4px solid var(--accent)}
+.pathSteps{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
+.pathStep{display:flex;gap:14px;align-items:flex-start}
+.pathYear{min-width:90px;font-size:11px;font-weight:800;color:#fff;background:var(--accent,var(--ink));padding:4px 10px;border-radius:7px;text-align:center;flex-shrink:0}
+.pathStepTitle{font-size:14px;color:var(--ink);display:block;margin-bottom:3px}
+.pathStepDesc{font-size:12px;color:var(--sub);line-height:1.55}
+.docsSection{margin-bottom:14px}
+.docsTitle{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.docsList{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.docItem{font-size:12px;color:var(--text);background:var(--bg);padding:6px 10px;border-radius:7px}
+.pathTips{display:flex;flex-direction:column;gap:5px}
+.tip{font-size:12px;color:var(--text);padding:8px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--lime);line-height:1.5}
+@media(max-width:600px){.checkRow,.docsList{grid-template-columns:1fr}}

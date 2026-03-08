@@ -1,0 +1,42 @@
+.wrap{animation:fadeUp .35s ease both}
+.header{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#0d0d0d,#1a1400);border-radius:20px;padding:24px;margin-bottom:16px}
+.emoji{font-size:40px}.title{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px}.sub{font-size:13px;color:rgba(255,255,255,.5)}
+.profiles{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.profilesLabel{font-size:12px;font-weight:700;color:var(--sub)}
+.profileBtn{padding:7px 14px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:700;cursor:pointer;color:var(--sub);transition:all .15s}
+.profileActive{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.salaryCard{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:var(--s1)}
+.salaryCard label{display:block;font-size:12px;font-weight:700;color:var(--sub);margin-bottom:8px}
+.inputWrap{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;max-width:280px}
+.inputWrap input{border:none;flex:1;padding:10px 8px;font-size:16px;font-weight:700;font-family:inherit}
+.prefix{padding:0 12px;font-size:14px;font-weight:700;color:var(--sub);background:var(--bg);align-self:stretch;display:flex;align-items:center;border-right:1.5px solid var(--border)}
+.salaryMeta{margin-top:10px;font-size:13px;color:var(--sub);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.salaryMeta strong{color:var(--ink);font-size:15px}
+.salaryMeta span{font-size:12px;color:var(--muted);background:var(--bg);padding:3px 8px;border-radius:6px}
+.expGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-bottom:14px}
+.expCard{background:#fff;border-radius:14px;padding:12px;border:2px solid var(--border);transition:border-color .15s;box-shadow:var(--s0)}
+.expCard:hover{border-color:var(--accent)}
+.expOver{border-color:var(--red)!important;background:rgba(255,59,59,.03)}
+.expHeader{display:flex;align-items:center;gap:5px;margin-bottom:7px;flex-wrap:wrap}
+.expIcon{font-size:18px}
+.expLabel{font-size:12px;font-weight:800;color:var(--ink);flex:1}
+.expBudget{font-size:10px;color:var(--muted)}
+.expInput{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:5px}
+.expInput input{border:none;flex:1;padding:7px 6px;font-size:14px;font-weight:700;font-family:inherit;width:0}
+.expPrefix{padding:0 7px;font-size:11px;font-weight:700;color:var(--sub);background:var(--bg);border-right:1.5px solid var(--border);align-self:stretch;display:flex;align-items:center}
+.expBar{height:4px;background:var(--border);border-radius:2px;margin-bottom:4px;overflow:hidden}
+.expBarFill{height:100%;border-radius:2px;transition:width .3s}
+.expInr{font-size:10px;color:var(--muted)}
+.summary{border-radius:20px;padding:20px;margin-bottom:14px}
+.summaryGreen{background:linear-gradient(135deg,#0d2010,#0a1a08)}
+.summaryRed{background:linear-gradient(135deg,#1a0808,#200d0d)}
+.summaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.summaryItem{background:rgba(255,255,255,.06);border-radius:12px;padding:12px;text-align:center}
+.summaryLabel{font-size:11px;color:rgba(255,255,255,.45);margin-bottom:5px;font-weight:700}
+.summaryVal{font-size:20px;font-weight:900}
+.summaryBalance{font-size:14px;font-weight:700;color:rgba(255,255,255,.8);text-align:center;margin-bottom:12px;line-height:1.5}
+.deductRow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.deductItem{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border-radius:10px;padding:8px 14px}
+.deductItem span{font-size:10px;color:rgba(255,255,255,.4);margin-bottom:3px}
+.deductItem strong{font-size:13px;color:rgba(255,255,255,.8)}
+@media(max-width:480px){.summaryGrid{grid-template-columns:1fr 1fr}}

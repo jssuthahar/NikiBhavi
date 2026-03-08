@@ -21,6 +21,16 @@ import ProbationCalc   from './ProbationCalc'
 import SchoolFees      from './SchoolFees'
 import TouristHub     from './TouristHub'
 import EPLifeGuide    from './EPLifeGuide'
+import CarLoanCalc    from './CarLoanCalc'
+import PCBCalc        from './PCBCalc'
+import MedicalCard    from './MedicalCard'
+import PRRoadmap      from './PRRoadmap'
+import ExpenseTracker from './ExpenseTracker'
+import BuyCarGuide    from './BuyCarGuide'
+import HospitalGuide  from './HospitalGuide'
+import MovingChecklist from './MovingChecklist'
+import DependentPass  from './DependentPass'
+import EPFWithdrawal  from './EPFWithdrawal'
 import { BuyMeCoffeeCard } from './BuyMeCoffee'
 import { FollowBanner } from './FollowBanner'
 import ShareUrl from './ShareUrl'
@@ -107,8 +117,59 @@ export function EpassPage({ onNavigate }) {
 }
 
 // ══════════════════════════ TOURIST VISA ══════════════════════
+export function TouristInfoPage({ onNavigate }) {
+  const p = PAGES.tourist
+  return (
+    <PageWrapper id="tourist">
+      {/* Visa-free breaking news banner */}
+      <div style={{
+        background:'linear-gradient(135deg,#0d2b00,#1a4a00)',
+        border:'2px solid #C9F53B',
+        borderRadius:'20px',
+        padding:'20px 22px',
+        marginBottom:'16px',
+        display:'flex',
+        gap:'14px',
+        alignItems:'center'
+      }}>
+        <span style={{fontSize:'42px',flexShrink:0}}>🎉</span>
+        <div>
+          <div style={{fontSize:'20px',fontWeight:900,color:'#C9F53B',marginBottom:'5px'}}>Indians are VISA-FREE for Malaysia!</div>
+          <div style={{fontSize:'13px',color:'rgba(255,255,255,.75)',lineHeight:'1.55',marginBottom:'10px'}}>
+            No eVisa. No fee. Just submit the free MDAC online 3 days before arrival. Valid until <strong style={{color:'#fff'}}>December 31, 2026</strong> — Visit Malaysia 2026 campaign.
+          </div>
+          <a
+            href="https://imigresen-online.imi.gov.my/mdac/main"
+            target="_blank"
+            rel="noreferrer"
+            style={{display:'inline-block',background:'#C9F53B',color:'#0d0d0d',fontWeight:900,fontSize:'13px',padding:'9px 20px',borderRadius:'20px',textDecoration:'none'}}
+          >
+            📱 Submit MDAC (Free) →
+          </a>
+        </div>
+      </div>
 
-// ══════════════════════════ STUDENT PASS ══════════════════════
+      {/* MDAC mandatory warning */}
+      <div style={{
+        background:'#fef2f2',border:'2px solid #fca5a5',borderRadius:'14px',
+        padding:'14px 18px',marginBottom:'16px',fontSize:'13px',color:'#991b1b',lineHeight:'1.6'
+      }}>
+        <strong>⚠️ MDAC is MANDATORY even with visa-free entry.</strong> Malaysia Digital Arrival Card must be submitted online at least 3 days before arrival at{' '}
+        <a href="https://imigresen-online.imi.gov.my/mdac/main" target="_blank" rel="noreferrer" style={{color:'#991b1b',fontWeight:700}}>
+          imigresen-online.imi.gov.my/mdac/main
+        </a>. Airlines may deny boarding without MDAC confirmation. It is FREE.
+      </div>
+
+      <Hero hero={p.hero} onNavigate={onNavigate} />
+      <SectionHeader title="How to Visit Malaysia in 2026 (Visa-Free)" sub="5 simple steps — no fee, no eVisa needed" />
+      <StepsList steps={p.steps} />
+      <CardsGrid>{p.cards.map((c, i) => <InfoCard key={i} {...c} />)}</CardsGrid>
+      <TipBox {...p.tip} />
+    </PageWrapper>
+  )
+}
+
+
 export function StudentPage({ onNavigate }) {
   const p = PAGES.student
   return (
@@ -306,3 +367,13 @@ export function SchoolFeesPage()  { return <PageWrapper id="schoolfees"><SchoolF
 
 export function TouristPage()     { return <PageWrapper id="tourist-hub"><TouristHub /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
 export function EPLifeGuidePage() { return <PageWrapper id="eplifeguide"><EPLifeGuide /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function CarLoanPage()       { return <PageWrapper id="carloan"><CarLoanCalc /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function PCBCalcPage()       { return <PageWrapper id="pcb"><PCBCalc /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function MedicalCardPage()   { return <PageWrapper id="medcard"><MedicalCard /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function PRRoadmapPage()     { return <PageWrapper id="prroad"><PRRoadmap /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function ExpenseTrackerPage(){ return <PageWrapper id="expense"><ExpenseTracker /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function BuyCarGuidePage()   { return <PageWrapper id="buycar"><BuyCarGuide /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function HospitalGuidePage() { return <PageWrapper id="hospital"><HospitalGuide /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function MovingChecklistPage(){ return <PageWrapper id="moving"><MovingChecklist /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function DependentPassPage() { return <PageWrapper id="dp"><DependentPass /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }
+export function EPFWithdrawalPage() { return <PageWrapper id="epfout"><EPFWithdrawal /><FollowBanner /><BuyMeCoffeeCard /></PageWrapper> }

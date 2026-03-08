@@ -1,0 +1,48 @@
+.wrap{animation:fadeUp .35s ease both}
+.header{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#0d0d0d,#1a0520);border-radius:20px;padding:24px;margin-bottom:16px}
+.emoji{font-size:40px}.title{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px}.sub{font-size:13px;color:rgba(255,255,255,.5)}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:9px 16px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;color:var(--sub)}
+.tabActive{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.inputCard{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:var(--s1)}
+.inputRow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--sub);margin-bottom:5px}
+.field select,.field input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit}
+.inputWrap{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
+.inputWrap input{border:none;flex:1;padding:10px 8px;font-size:14px;font-family:inherit}
+.suffix{padding:0 10px;font-size:12px;color:var(--sub)}
+.companyNote{margin-top:12px;background:rgba(22,163,74,.08);border:1.5px solid rgba(22,163,74,.3);border-radius:10px;padding:12px;font-size:13px;color:var(--text);line-height:1.55}
+.plansGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:14px}
+.planCard{border:2px solid var(--accent);border-radius:16px;padding:16px;background:#fff}
+.planTop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.planName{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:3px}
+.planType{font-size:10px;font-weight:700;color:var(--accent);background:rgba(0,0,0,.05);padding:2px 8px;border-radius:5px;display:inline-block}
+.planPrice{text-align:right;font-size:13px;color:var(--sub)}
+.planPrice span{font-size:22px;font-weight:900;color:var(--accent);display:block}
+.bestTag{font-size:10px;background:var(--lime);color:var(--ink);padding:2px 7px;border-radius:5px;font-weight:800;margin-top:4px}
+.planRows{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.planRow{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--border)}
+.planRow span{color:var(--sub)}.planRow strong{color:var(--text);font-size:11px;text-align:right;max-width:60%}
+.planRating{font-size:12px}
+.tipsBox{background:#fff;border-radius:16px;padding:16px;box-shadow:var(--s1)}
+.tipsTitle{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:10px}
+.tip{font-size:12px;color:var(--text);padding:8px 12px;background:var(--bg);border-radius:8px;margin-bottom:5px;border-left:3px solid var(--lime);line-height:1.55}
+.clinicGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:16px}
+.clinicCard{background:#fff;border-radius:14px;padding:14px;box-shadow:var(--s1);border:1.5px solid var(--border)}
+.clinicType{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:5px}
+.clinicCost{font-size:14px;font-weight:800;color:var(--green);margin-bottom:5px}
+.clinicCoverage{font-size:12px;color:var(--sub);margin-bottom:8px;line-height:1.5}
+.clinicTip{font-size:11px;color:var(--text);background:var(--bg);border-radius:6px;padding:7px 10px}
+.sectionHead{font-size:15px;font-weight:800;color:var(--ink);margin:16px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.hospRow{background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:8px;box-shadow:var(--s0);border:1.5px solid var(--border)}
+.hospRow strong{font-size:14px;color:var(--ink)}
+.hospArea{font-size:12px;color:var(--sub)}
+.hospType{font-size:11px;font-weight:700;color:var(--blue);margin:3px 0}
+.hospCost{font-size:12px;color:var(--green);font-weight:700;margin-bottom:3px}
+.hospNote{font-size:11px;color:var(--muted)}
+.govtNote{background:rgba(37,99,235,.08);border:1.5px solid rgba(37,99,235,.25);border-radius:12px;padding:14px;font-size:13px;color:var(--text);margin-bottom:14px;line-height:1.6}
+.govtCard{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:var(--s1)}
+.govtName{font-size:15px;font-weight:900;color:var(--ink);margin-bottom:4px}
+.govtArea,.govtSpec,.govtCost,.govtNote{font-size:12px;color:var(--sub);margin-bottom:3px;line-height:1.4}
+.govtCost{color:var(--green);font-weight:700}
+@media(max-width:600px){.inputRow{grid-template-columns:1fr}.plansGrid{grid-template-columns:1fr}}

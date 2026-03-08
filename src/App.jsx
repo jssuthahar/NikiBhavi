@@ -3,14 +3,16 @@ import Topbar from './components/Topbar'
 import Sidebar from './components/Sidebar'
 import Ticker from './components/Ticker'
 import {
-  HomePage, VisaPage, EpassPage, TouristPage, StudentPage,
+  HomePage, VisaPage, EpassPage, TouristPage, TouristInfoPage, StudentPage,
   HousingPage, BankPage, TransportPage, FoodPage, HealthPage,
   SimPage, MoneyPage, VideosPage, AboutPage,
   LivingCostPage, TaxCalcPage, TaxRefundPage,
   RemittancePage, SalaryPage, VisaTrackerPage, EPFPage,
   RentPage, HomeLoanPage, LeavePage, CostComparePage,
   EPEligPage, ProbationPage, SchoolFeesPage,
-  EPLifeGuidePage
+  EPLifeGuidePage,
+  CarLoanPage, PCBCalcPage, MedicalCardPage, PRRoadmapPage, ExpenseTrackerPage,
+  BuyCarGuidePage, HospitalGuidePage, MovingChecklistPage, DependentPassPage, EPFWithdrawalPage
 } from './components/Pages'
 import BuyMeCoffee from './components/BuyMeCoffee'
 import { FollowToast } from './components/FollowBanner'
@@ -22,8 +24,9 @@ const ROUTES = {
   'home':           'home',
   'visa':           'visa',
   'employee-pass':  'epass',
-  'tourist-visa':   'tourist',
+  'tourist-visa':   'touristinfo',
   'tourist-hub':    'tourist',
+  'tourist-info':   'touristinfo',
   'student-visa':   'student',
   'housing':        'housing',
   'banking':        'bank',
@@ -48,6 +51,17 @@ const ROUTES = {
   'ep-eligibility': 'epelig',
   'probation':      'probation',
   'school-fees':    'schoolfees',
+  'ep-life-guide':  'eplifeguide',
+  'car-loan':       'carloan',
+  'pcb':            'pcb',
+  'medical-card':   'medcard',
+  'pr-roadmap':     'prroad',
+  'expense':        'expense',
+  'buy-car':        'buycar',
+  'hospital':       'hospital',
+  'moving':         'moving',
+  'dependent-pass': 'dp',
+  'epf-withdrawal': 'epfout',
 }
 
 const PAGE_TO_SLUG = Object.fromEntries(
@@ -60,7 +74,8 @@ const PAGE_MAP = {
   home:       HomePage,
   visa:       VisaPage,
   epass:      EpassPage,
-  tourist:    TouristPage,
+  tourist:      TouristPage,
+  touristinfo:  TouristInfoPage,
   student:    StudentPage,
   housing:    HousingPage,
   bank:       BankPage,
@@ -84,6 +99,16 @@ const PAGE_MAP = {
   costcompare: CostComparePage,
   epelig:      EPEligPage,
   eplifeguide: EPLifeGuidePage,
+  carloan:     CarLoanPage,
+  pcb:         PCBCalcPage,
+  medcard:     MedicalCardPage,
+  prroad:      PRRoadmapPage,
+  expense:     ExpenseTrackerPage,
+  buycar:      BuyCarGuidePage,
+  hospital:    HospitalGuidePage,
+  moving:      MovingChecklistPage,
+  dp:          DependentPassPage,
+  epfout:      EPFWithdrawalPage,
   probation:   ProbationPage,
   schoolfees:  SchoolFeesPage,
 }

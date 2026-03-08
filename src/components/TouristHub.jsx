@@ -585,52 +585,164 @@ function IndianFoodFinder() {
 // 8. VISA GUIDE
 // ═══════════════════════════════════════════════════════════════
 function VisaGuide() {
-  const [step, setStep] = useState(0)
-  const steps = [
-    { title:'Apply Online', icon:'💻', desc:'Go to evisa.imi.gov.my. Fill in personal details, travel dates, accommodation info. Upload documents.' },
-    { title:'Pay Fee', icon:'💳', desc:`Pay RM 150 (~₹2,900) via credit/debit card. Keep payment receipt.` },
-    { title:'Wait 3–5 Days', icon:'⏳', desc:'Processing takes 3–5 working days. You\'ll get email confirmation. Apply minimum 2 weeks before travel.' },
-    { title:'Print & Travel', icon:'✈️', desc:'Print your eVisa approval. At Malaysia immigration, your visa gets stamped in passport. Keep printout safe.' },
-    { title:'Arrive & Enjoy', icon:'🇲🇾', desc:'You get 30 days. Need more? Visit any Immigration office for 30-day extension (RM 100).' },
+  const [tab, setTab] = useState('free')
+  const vf = VISA_INFO.visaFree2026
+
+  const mdacSteps = [
+    { icon:'🌐', title:'Go to MDAC portal',    desc:'Visit imigresen-online.imi.gov.my/mdac/main on your phone or computer. It\'s free — no payment needed.' },
+    { icon:'📝', title:'Fill your details',     desc:'Enter passport number, travel dates, flight number, accommodation address in Malaysia. Takes about 10 minutes.' },
+    { icon:'📤', title:'Submit & save receipt', desc:'Submit the form and screenshot/save the confirmation reference number. Show this at check-in and immigration.' },
+    { icon:'✈️', title:'Board your flight',     desc:'Airlines may check MDAC confirmation at check-in. Without MDAC, you may be denied boarding.' },
+    { icon:'🇲🇾', title:'Arrive in Malaysia',   desc:'At immigration, officer scans passport. No visa stamp needed — MDAC is digital. Welcome to Malaysia! 🎉' },
   ]
 
   return (
     <div className={styles.toolWrap}>
-      <ToolHeader icon="📄" title="Visa & Entry Guide" sub="eVisa for Indians — step by step" />
+      <ToolHeader icon="📄" title="Visa & Entry Guide" sub="Indians are NOW visa-free for Malaysia in 2026!" />
 
-      <div className={styles.visaAlert}>
-        ⚠️ <strong>Important:</strong> Indians are NOT visa-free for Malaysia. You must apply for eVisa before travelling. Visa on Arrival is NOT available for Indian passport holders.
+      {/* Big breaking news banner */}
+      <div className={styles.visaFreeAlert}>
+        <div className={styles.vfAlertIcon}>🎉</div>
+        <div>
+          <div className={styles.vfAlertTitle}>Indians are VISA-FREE for Malaysia!</div>
+          <div className={styles.vfAlertSub}>No visa fee • No eVisa needed • Valid until December 31, 2026 • Visit Malaysia 2026 campaign</div>
+        </div>
       </div>
 
-      <div className={styles.visaSteps}>
-        {steps.map((s, i) => (
-          <div key={i} onClick={()=>setStep(i)} className={`${styles.visaStep} ${step===i?styles.visaStepOn:''}`}>
-            <div className={styles.vsNum}>{i+1}</div>
-            <div className={styles.vsIcon}>{s.icon}</div>
-            <div className={styles.vsTitle}>{s.title}</div>
-            {step===i && <div className={styles.vsDesc}>{s.desc}</div>}
-          </div>
+      {/* Tab switcher */}
+      <div className={styles.visaTabs}>
+        {[['free','🎉 Visa-Free 2026'],['mdac','📱 MDAC Guide'],['evisa','📄 eVisa (other purposes)'],['extend','🔄 Extension']].map(([id,label]) => (
+          <button key={id} className={`${styles.visaTab} ${tab===id?styles.visaTabOn:''}`} onClick={()=>setTab(id)}>{label}</button>
         ))}
       </div>
 
-      <div className={styles.docsGrid}>
-        <div className={styles.docsCard}>
-          <div className={styles.docsTitle}>📋 Required Documents</div>
-          {VISA_INFO.eVisa.docs.map(d => <div key={d} className={styles.docItem}>✅ {d}</div>)}
-        </div>
-        <div className={styles.docsCard}>
-          <div className={styles.docsTitle}>💡 Pro Tips</div>
-          {VISA_INFO.eVisa.tips.map(t => <div key={t} className={styles.docItem}>💡 {t}</div>)}
-        </div>
-      </div>
+      {tab === 'free' && (
+        <div className={styles.vfSection}>
+          {/* Key facts grid */}
+          <div className={styles.vfGrid}>
+            {[
+              { icon:'⏱️', label:'Duration',       val:'Up to 30 days per visit' },
+              { icon:'💰', label:'Cost',            val:'FREE — no visa fee' },
+              { icon:'📅', label:'Valid until',     val:'December 31, 2026' },
+              { icon:'🎯', label:'Purpose',         val:'Tourism, social, business meetings' },
+              { icon:'📱', label:'MDAC',            val:'Mandatory — submit 3 days before' },
+              { icon:'🚫', label:'Not for',         val:'Employment or long-term study' },
+            ].map((item,i) => (
+              <div key={i} className={styles.vfFactCard}>
+                <div className={styles.vfFactIcon}>{item.icon}</div>
+                <div className={styles.vfFactLabel}>{item.label}</div>
+                <div className={styles.vfFactVal}>{item.val}</div>
+              </div>
+            ))}
+          </div>
 
-      <div className={styles.visaExtend}>
-        <strong>🔄 Need more than 30 days?</strong> Visit Immigration Dept in Putrajaya or any state capital with passport + current visa + onward ticket + RM 100 fee. Extension approved same day usually.
-      </div>
+          {/* Conditions */}
+          <div className={styles.vfDocs}>
+            <div className={styles.docsTitle}>📋 What You Need at Immigration</div>
+            {vf.conditions.map((c,i) => <div key={i} className={styles.docItem}>✅ {c}</div>)}
+          </div>
 
-      <a href="https://evisa.imi.gov.my" target="_blank" rel="noreferrer" className={styles.visaApplyBtn}>
-        🚀 Apply eVisa at evisa.imi.gov.my →
-      </a>
+          {/* Tips */}
+          <div className={styles.vfTips}>
+            {vf.tips.map((t,i) => <div key={i} className={styles.vfTip}>{t}</div>)}
+          </div>
+
+          <div className={styles.visaExtend}>
+            <strong>⚠️ After Dec 31 2026:</strong> Visa-free exemption may or may not be renewed. Check Malaysia Immigration website before booking if travelling after December 2026.
+          </div>
+        </div>
+      )}
+
+      {tab === 'mdac' && (
+        <div>
+          <div className={styles.mdacBanner}>
+            <div className={styles.mdacTitle}>🔴 MDAC is MANDATORY</div>
+            <div className={styles.mdacSub}>Malaysia Digital Arrival Card must be submitted at least 3 days before arrival. Airlines may deny boarding without it.</div>
+            <a href="https://imigresen-online.imi.gov.my/mdac/main" target="_blank" rel="noreferrer" className={styles.mdacBtn}>
+              📱 Submit MDAC Now — Free →
+            </a>
+          </div>
+
+          <div className={styles.visaSteps}>
+            {mdacSteps.map((s,i) => (
+              <div key={i} className={styles.mdacStep}>
+                <div className={styles.mdacStepIcon}>{s.icon}</div>
+                <div>
+                  <div className={styles.mdacStepTitle}>{s.title}</div>
+                  <div className={styles.mdacStepDesc}>{s.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.docsGrid}>
+            <div className={styles.docsCard}>
+              <div className={styles.docsTitle}>📋 Info needed for MDAC</div>
+              {['Passport number & expiry date','Travel dates (arrival & departure)','Flight number','Hotel name & address in Malaysia','Contact number in Malaysia (hotel/friend)','Purpose of visit'].map(d => <div key={d} className={styles.docItem}>📌 {d}</div>)}
+            </div>
+            <div className={styles.docsCard}>
+              <div className={styles.docsTitle}>⚠️ MDAC Important Notes</div>
+              {['Submit minimum 3 days before arrival — earlier is better','One MDAC per passport — each family member submits separately','It\'s FREE — no payment required for MDAC','Save confirmation screenshot on phone','MDAC is for entry only — separate from visa-free exemption','Applicable to both KLIA / KLIA2 and land/sea entry'].map(t => <div key={t} className={styles.docItem}>💡 {t}</div>)}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {tab === 'evisa' && (
+        <div>
+          <div className={styles.evisaNote}>
+            ℹ️ <strong>eVisa is for:</strong> Travel after December 31, 2026 (if exemption not renewed) OR for purposes not covered by visa-free (employment, long-term study).
+          </div>
+          <div className={styles.visaSteps}>
+            {[
+              { icon:'💻', title:'Apply Online',   desc:'Go to evisa.imi.gov.my. Fill personal details, travel dates, accommodation info. Upload required documents.' },
+              { icon:'💳', title:'Pay Fee',        desc:'Pay RM 150 (~₹2,900) via credit/debit card. Keep payment receipt. Processing starts after payment.' },
+              { icon:'⏳', title:'Wait 3–5 Days', desc:'Processing takes 3–5 working days. Email confirmation sent. Apply minimum 2 weeks before travel.' },
+              { icon:'✈️', title:'Print & Travel', desc:'Print eVisa approval. At Malaysia immigration, visa is stamped in passport. Keep printout safe.' },
+              { icon:'🇲🇾', title:'Arrive',        desc:'You get 30 days. Need more? Visit Immigration office for 30-day extension (RM 100).' },
+            ].map((s,i) => (
+              <div key={i} className={styles.mdacStep}>
+                <div className={styles.mdacStepIcon}>{s.icon}</div>
+                <div><div className={styles.mdacStepTitle}>{s.title}</div><div className={styles.mdacStepDesc}>{s.desc}</div></div>
+              </div>
+            ))}
+          </div>
+          <div className={styles.docsGrid}>
+            <div className={styles.docsCard}>
+              <div className={styles.docsTitle}>📋 Documents for eVisa</div>
+              {VISA_INFO.eVisa.docs.map(d => <div key={d} className={styles.docItem}>✅ {d}</div>)}
+            </div>
+            <div className={styles.docsCard}>
+              <div className={styles.docsTitle}>💡 eVisa Tips</div>
+              {VISA_INFO.eVisa.tips.map(t => <div key={t} className={styles.docItem}>💡 {t}</div>)}
+            </div>
+          </div>
+          <a href="https://evisa.imi.gov.my" target="_blank" rel="noreferrer" className={styles.visaApplyBtn}>
+            🚀 Apply eVisa at evisa.imi.gov.my →
+          </a>
+        </div>
+      )}
+
+      {tab === 'extend' && (
+        <div>
+          <div className={styles.visaExtend}>
+            <strong>🔄 Want to stay more than 30 days?</strong> You can extend your social visit pass at any Immigration Department office.
+          </div>
+          <div className={styles.docsGrid}>
+            <div className={styles.docsCard}>
+              <div className={styles.docsTitle}>📋 Extension Details</div>
+              {['Fee: RM 100 per extension','Duration: Up to 30 additional days','Where: Immigration Dept, Putrajaya or any state capital','Timing: Apply before current pass expires — not after','Approval: Usually same day if documents complete'].map(d => <div key={d} className={styles.docItem}>📌 {d}</div>)}
+            </div>
+            <div className={styles.docsCard}>
+              <div className={styles.docsTitle}>📄 Bring These Documents</div>
+              {['Passport (original)', 'Current entry stamp / pass', 'Onward flight ticket (showing departure)', 'Hotel booking for extended stay', 'Sufficient funds proof (optional but helpful)'].map(d => <div key={d} className={styles.docItem}>✅ {d}</div>)}
+            </div>
+          </div>
+          <div className={styles.vfTips}>
+            {['⏰ Go early — Immigration offices open 7:30am, queues can be long','🏢 Putrajaya Immigration is the main office — most efficient','📍 State offices in KL, Penang, JB, Ipoh also handle extensions','❌ Overstaying without extension = fine + potential ban — never overstay'].map((t,i) => <div key={i} className={styles.vfTip}>{t}</div>)}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -230,7 +230,7 @@
 
 /* ── 8. Visa Guide ──────────────────────────────────────────── */
 .visaAlert { background:#fef2f2; border:2px solid #fca5a5; border-radius:12px; padding:14px 16px; font-size:13px; color:#991b1b; line-height:1.55; }
-.visaSteps { display:flex; flex-direction:column; gap:8px; }
+.visaSteps { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
 .visaStep  { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; background:#fff; border-radius:14px; border:2px solid #e8eaf0; cursor:pointer; transition:all .15s; }
 .visaStep:hover{ border-color:#C9F53B; }
 .visaStepOn { border-color:#C9F53B; background:#f5fce0; }
@@ -239,16 +239,45 @@
 .vsTitle{ font-size:14px; font-weight:800; color:#1c1e27; flex:1; }
 .vsDesc { font-size:13px; color:#5c6278; margin-top:8px; line-height:1.55; width:100%; }
 
-.docsGrid  { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.docsGrid  { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
 @media(max-width:560px){ .docsGrid { grid-template-columns:1fr; } }
 .docsCard  { background:#fff; border-radius:14px; padding:16px; border:1.5px solid #e8eaf0; }
 .docsTitle { font-size:14px; font-weight:800; color:#1c1e27; margin-bottom:10px; }
 .docItem   { font-size:13px; color:#5c6278; padding:6px 0; border-bottom:1px solid #f0f2f5; line-height:1.5; }
 .docItem:last-child { border-bottom:none; }
 
-.visaExtend { background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:14px; font-size:13px; color:#166534; line-height:1.55; }
+.visaExtend { background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:14px; font-size:13px; color:#166534; line-height:1.55; margin-bottom:12px; }
 .visaApplyBtn { display:inline-block; background:#C9F53B; color:#0d0d0d; font-size:15px; font-weight:900; padding:14px 28px; border-radius:30px; text-decoration:none; text-align:center; transition:transform .15s, box-shadow .15s; }
 .visaApplyBtn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,245,59,.4); }
+
+/* Visa-Free 2026 */
+.visaFreeAlert { display:flex; gap:14px; align-items:center; background:linear-gradient(135deg,#0d2b00,#1a4a00); border-radius:16px; padding:18px 20px; margin-bottom:14px; border:2px solid #C9F53B; }
+.vfAlertIcon   { font-size:36px; flex-shrink:0; }
+.vfAlertTitle  { font-size:18px; font-weight:900; color:#C9F53B; margin-bottom:4px; }
+.vfAlertSub    { font-size:12px; color:rgba(255,255,255,.7); line-height:1.5; }
+.visaTabs      { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+.visaTab       { padding:8px 14px; border-radius:10px; border:1.5px solid #e8eaf0; background:#fff; font-size:12px; font-weight:700; cursor:pointer; color:#5c6278; transition:all .15s; }
+.visaTabOn     { background:#0d0d0d; color:#C9F53B; border-color:#0d0d0d; }
+.vfSection     { display:flex; flex-direction:column; gap:12px; }
+.vfGrid        { display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:10px; }
+.vfFactCard    { background:#fff; border-radius:12px; padding:12px; border:1.5px solid #e8eaf0; text-align:center; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.vfFactIcon    { font-size:22px; margin-bottom:5px; }
+.vfFactLabel   { font-size:10px; font-weight:700; color:#9299ab; text-transform:uppercase; letter-spacing:.4px; margin-bottom:4px; }
+.vfFactVal     { font-size:12px; font-weight:700; color:#1c1e27; line-height:1.4; }
+.vfDocs        { background:#fff; border-radius:14px; padding:14px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+.vfTips        { display:flex; flex-direction:column; gap:6px; }
+.vfTip         { font-size:12px; color:#1c1e27; padding:8px 14px; background:#fff; border-radius:8px; border-left:3px solid #C9F53B; box-shadow:0 1px 4px rgba(0,0,0,.06); line-height:1.55; }
+/* MDAC styles */
+.mdacBanner    { background:linear-gradient(135deg,#1a0000,#2a0808); border-radius:16px; padding:18px; margin-bottom:14px; text-align:center; border:2px solid #ef4444; }
+.mdacTitle     { font-size:20px; font-weight:900; color:#f87171; margin-bottom:6px; }
+.mdacSub       { font-size:13px; color:rgba(255,255,255,.7); margin-bottom:14px; line-height:1.5; }
+.mdacBtn       { display:inline-block; background:#ef4444; color:#fff; font-size:14px; font-weight:900; padding:12px 24px; border-radius:24px; text-decoration:none; transition:transform .15s; }
+.mdacBtn:hover { transform:translateY(-2px); }
+.mdacStep      { display:flex; gap:12px; align-items:flex-start; padding:12px 14px; background:#fff; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.mdacStepIcon  { font-size:22px; width:36px; flex-shrink:0; text-align:center; }
+.mdacStepTitle { font-size:14px; font-weight:800; color:#1c1e27; margin-bottom:3px; }
+.mdacStepDesc  { font-size:12px; color:#5c6278; line-height:1.55; }
+.evisaNote     { background:rgba(37,99,235,.08); border:1.5px solid rgba(37,99,235,.25); border-radius:12px; padding:14px; font-size:13px; color:#1c1e27; margin-bottom:14px; line-height:1.6; }
 
 /* ── 9. Shopping Guide ──────────────────────────────────────── */
 .shopGrid    { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }

@@ -160,8 +160,41 @@ export const BUDGET_ITEMS = [
 ]
 
 export const VISA_INFO = {
+  visaFree2026: {
+    name: '🎉 Visa-FREE for Indians (2026)',
+    eligible: true,
+    fee: 'FREE — No visa required',
+    validity: 'Up to 30 days per visit',
+    validUntil: 'December 31, 2026',
+    campaign: 'Visit Malaysia 2026',
+    purposes: ['Tourism', 'Social visits', 'Business meetings'],
+    notAllowed: ['Employment', 'Long-term study'],
+    mdac: {
+      name: 'Malaysia Digital Arrival Card (MDAC)',
+      mandatory: true,
+      when: 'Submit online at least 3 days before arrival',
+      url: 'https://imigresen-online.imi.gov.my/mdac/main',
+      free: true,
+      note: 'MDAC is mandatory — without it you may be denied boarding or entry',
+    },
+    conditions: [
+      'Valid passport (6+ months validity)',
+      'Return flight ticket',
+      'Proof of accommodation (hotel booking)',
+      'Sufficient funds for stay',
+      'Complete MDAC online 3 days before arrival',
+    ],
+    tips: [
+      '🎉 No visa fee — saves RM 150 (₹2,900) vs old eVisa',
+      '📱 Submit MDAC at imigresen-online.imi.gov.my — free, takes 10 minutes',
+      '⏰ MDAC must be submitted minimum 3 days before arrival — do it early',
+      '🔄 Extension possible: visit Immigration Dept for 30 more days (RM 100)',
+      '✈️ Valid until Dec 31 2026 — extended for Visit Malaysia 2026 campaign',
+      '💼 For work or long study — still need eVisa / Employment Pass',
+    ],
+  },
   eVisa: {
-    name: 'eVisa (Most Indians)',
+    name: 'eVisa (for other purposes / after 2026)',
     eligible: true,
     fee: 'RM 150 (~₹2,900)',
     validity: '30 days (single entry)',
@@ -169,16 +202,12 @@ export const VISA_INFO = {
     apply: 'https://evisa.imi.gov.my',
     docs: ['Valid passport (6+ months)', 'Recent photo', 'Return flight ticket', 'Hotel booking', 'Bank statement (last 3 months)', 'Employment letter or salary slips'],
     tips: ['Apply minimum 2 weeks before travel', 'eVisa is stamped on arrival — keep printout', 'Extension possible (30 more days) at Immigration office'],
+    note: 'Use eVisa for employment purposes or if visa-free exemption has ended (after Dec 31 2026)',
   },
   voa: {
     name: 'Visa on Arrival',
     eligible: false,
     note: 'Not available for Indian passport holders',
-  },
-  free: {
-    name: 'Visa-Free',
-    eligible: false,
-    note: 'Indian passport holders are NOT visa-free for Malaysia',
   },
   extension: {
     name: 'Visa Extension',

@@ -25,7 +25,7 @@ export const NAV_GROUPS = [
     items: [
       { id: 'visa',    icon: '🛂', label: 'Visa Overview',   count: 4  },
       { id: 'epass',   icon: '💼', label: 'Employee Pass',    count: 12 },
-      { id: 'tourist', icon: '✈️', label: 'Tourist Visa',     count: 8  },
+      { id: 'touristinfo', icon: '✈️', label: 'Tourist Visa 🎉', count: 8  },
       { id: 'student', icon: '🎓', label: 'Student Pass',     count: 5  },
     ],
   },
@@ -39,6 +39,9 @@ export const NAV_GROUPS = [
       { id: 'health',    icon: '🏥', label: 'Health & Insurance',   count: 4 },
       { id: 'sim',       icon: '📱', label: 'SIM & Internet',       count: 3 },
       { id: 'money',     icon: '💸', label: 'Money & Remittance',   count: 4 },
+      { id: 'buycar',    icon: '🚗', label: 'Buying a Car',            badge: 'NEW' },
+      { id: 'hospital',  icon: '💊', label: 'Hospitals & Clinics',     badge: 'NEW' },
+      { id: 'moving',    icon: '📦', label: 'Moving to Malaysia',      badge: 'NEW' },
     ],
   },
   {
@@ -51,11 +54,19 @@ export const NAV_GROUPS = [
       { id: 'salary',      icon: '📊', label: 'Salary Comparison',         badge: 'NEW' },
       { id: 'epf',         icon: '📈', label: 'EPF Calculator',            badge: 'NEW' },
       { id: 'homeloan',    icon: '🏡', label: 'Home Loan Eligibility',     badge: 'NEW' },
+      { id: 'carloan',     icon: '🚗', label: 'Car Loan Calculator',        badge: 'NEW' },
+      { id: 'pcb',         icon: '📊', label: 'PCB Tax Calculator',         badge: 'NEW' },
+      { id: 'expense',     icon: '🧾', label: 'Expense Tracker',            badge: 'NEW' },
     ],
   },
   {
     label: 'Life & Visa Tools',
     items: [
+      { id: 'eplifeguide', icon: '🏡', label: 'EP Holder Life Guide',      badge: '🔥' },
+      { id: 'medcard',     icon: '🏥', label: 'Medical Card Advisor',       badge: 'NEW' },
+      { id: 'prroad',      icon: '🛂', label: 'PR / Citizenship Roadmap',   badge: 'NEW' },
+      { id: 'dp',          icon: '🧳', label: 'Dependent Pass Guide',       badge: 'NEW' },
+      { id: 'epfout',      icon: '💰', label: 'EPF Withdrawal Guide',       badge: 'NEW' },
       { id: 'visatrack',   icon: '🛂', label: 'Visa Expiry Tracker',       badge: 'NEW' },
       { id: 'epelig',      icon: '💼', label: 'EP Eligibility Checker',    badge: 'NEW' },
       { id: 'rent',        icon: '🏠', label: 'Rent Affordability',        badge: 'NEW' },
@@ -83,7 +94,8 @@ export const NAV_GROUPS = [
 export const TICKER_ITEMS = [
   { label: '🆕 New:', text: 'Employee Pass Documents 2024 Guide' },
   { label: '🏠 Hot:', text: 'How to Rent a Flat in KL' },
-  { label: '✈️ Updated:', text: 'Tourist eVisa Process 2024' },
+  { label: '🎉 BREAKING:', text: 'Indians are VISA-FREE for Malaysia until Dec 31, 2026! Submit MDAC 3 days before arrival — free at imigresen-online.imi.gov.my/mdac/main' },
+  { label: '✈️ Updated:', text: 'Tourist Visa Guide — Visa-Free 2026 + MDAC mandatory' },
   { label: '💰 Tips:', text: 'Best Ways to Send Money to India' },
 ]
 
@@ -154,20 +166,22 @@ export const PAGES = {
   },
 
   tourist: {
-    hero: { variant: 'dark', emoji: '✈️', badge: 'Tourist Visa', title: 'Malaysia Tourist eVisa —\nFull Guide', desc: 'Apply online from home. Coming to Malaysia from India has never been easier.' },
+    hero: { variant: 'dark', emoji: '✈️', badge: '🎉 Visa-FREE 2026', title: 'Indians are VISA-FREE\\nfor Malaysia in 2026!', desc: 'No eVisa needed. No fee. Just submit MDAC online 3 days before arrival. Valid until December 31, 2026.' },
+    visaFreeAlert: true,
     steps: [
-      { title: 'Visit the Official eVisa Website', desc: 'Go to evisa.imi.gov.my — Malaysia Immigration\'s official portal. Create a free account.' },
-      { title: 'Fill in Your Details',             desc: 'Personal info, passport details, travel dates, and accommodation address in Malaysia.' },
-      { title: 'Upload Documents',                 desc: 'Passport photo page, personal photo, 3-month bank statement, and return flight booking.' },
-      { title: 'Pay the Fee',                      desc: 'Pay online by card. Approximately RM 50–80 (around ₹900–1,500).' },
-      { title: 'Download Your eVisa',              desc: 'eVisa arrives by email in 3–5 working days. Print it and carry it when travelling.' },
+      { title: '📱 Submit MDAC Online (Free)', desc: 'Go to imigresen-online.imi.gov.my/mdac/main — fill in passport, travel dates, flight number, hotel address. Takes 10 minutes. Must be done at least 3 days before arrival. IT\'S FREE.' },
+      { title: '✈️ Book Return Flight',        desc: 'You need a confirmed return flight. Immigration officers may ask to see it at entry. Book before submitting MDAC.' },
+      { title: '🏨 Book Accommodation',        desc: 'Hotel booking confirmation required. Even AirBnB booking printout works. Show at immigration if asked.' },
+      { title: '🛫 Check-in at Airport',        desc: 'Airlines may verify your MDAC confirmation at check-in. Carry screenshot / printout of your MDAC reference number.' },
+      { title: '🇲🇾 Arrive & Enjoy 30 Days',  desc: 'At Malaysia immigration, officer scans passport. No visa stamp needed — it\'s all digital. Welcome to Malaysia! 🎉' },
     ],
     cards: [
-      { icon: '⏰', title: 'Stay Duration', desc: 'Single entry: 30 days. Multiple entry: 90 days total. Extension possible at Immigration.' },
-      { icon: '💰', title: 'Cost',          desc: 'Approx RM 50–80. Return flight + hotel confirmation required as proof.' },
-      { icon: '✅', title: 'Validity',      desc: 'Must be used within 3 months of issue. 30-day stay begins from arrival date.' },
+      { icon: '🎉', title: 'VISA-FREE for Indians', desc: 'No application, no fee, no wait. Indians can visit Malaysia visa-free until December 31, 2026.' },
+      { icon: '⏰', title: 'Stay Up to 30 Days',    desc: 'Each visit: up to 30 days. Extension possible at Immigration Dept (RM 100 for 30 more days).' },
+      { icon: '📱', title: 'MDAC is Mandatory',     desc: 'Malaysia Digital Arrival Card must be submitted FREE online at least 3 days before arrival. No MDAC = no entry.' },
     ],
-    tip: { icon: '💡', title: 'Bank Statement Tip', text: 'Show at least 3 months of statements with minimum balance RM 3,000 (approx ₹55,000). This greatly improves approval chances.' },
+    tip: { icon: '⚠️', title: 'MDAC is NOT Optional', text: 'The Malaysia Digital Arrival Card (MDAC) is mandatory even with visa-free entry. Submit at imigresen-online.imi.gov.my/mdac/main — free, 10 minutes, minimum 3 days before arrival. Airlines may deny boarding without MDAC confirmation.' },
+    mdacUrl: 'https://imigresen-online.imi.gov.my/mdac/main',
   },
 
   student: {
