@@ -1,0 +1,36 @@
+# .github/workflows/deploy.yml
+name: Deploy React Vite App to GH-Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Vite app
+        run: npm run build
+
+      - name: Add CNAME and .nojekyll
+        run: |
+          echo nikibhavi.msdevbuild.com > dist/CNAME
+          touch dist/.nojekyll
+
+      - name: Deploy to GH-Pages
+        uses: peaceiris/actions-gh-pages@v7
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
