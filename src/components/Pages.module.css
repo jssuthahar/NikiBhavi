@@ -1,0 +1,24 @@
+.page { animation:fadeUp .28s ease both; }
+.aboutCard {
+  background:linear-gradient(135deg,var(--ink) 0%,#1a2a0a 100%);
+  border-radius:20px; padding:26px; margin-bottom:20px;
+  display:flex; gap:20px; align-items:flex-start;
+  border:1.5px solid rgba(201,245,59,.15); position:relative; overflow:hidden;
+}
+.aboutCard::before {
+  content:''; position:absolute; top:-40px; right:-40px;
+  width:150px; height:150px; border-radius:50%;
+  background:radial-gradient(circle,rgba(201,245,59,.08),transparent 70%);
+}
+.aboutAvatar {
+  width:52px; height:52px; border-radius:14px; flex-shrink:0;
+  background:var(--lime); display:flex; align-items:center; justify-content:center; font-size:24px;
+}
+.aboutInfo { flex:1; position:relative; z-index:1; }
+.aboutInfo h2 { font-size:17px; font-weight:800; color:#fff; margin-bottom:7px; }
+.aboutInfo p  { font-size:13px; color:rgba(255,255,255,.6); line-height:1.7; }
+.aboutBtns { display:flex; gap:9px; flex-wrap:wrap; margin-top:13px; }
+.ytBtn { padding:9px 20px; border-radius:9px; font-size:13px; font-weight:800; text-decoration:none; background:#FF0000; color:#fff; transition:.15s; }
+.ytBtn:hover { background:#cc0000; transform:translateY(-2px); }
+.igBtn { padding:9px 20px; border-radius:9px; font-size:13px; font-weight:800; text-decoration:none; background:rgba(255,255,255,.1); color:#fff; border:1.5px solid rgba(255,255,255,.2); transition:.15s; }
+.igBtn:hover { background:rgba(255,255,255,.2); transform:translateY(-2px); }

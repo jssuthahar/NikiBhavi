@@ -1,0 +1,58 @@
+.widget { background:#fff; border:1.5px solid #e8eaf0; border-radius:20px; overflow:hidden; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.07); }
+
+.header { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:#0d0d0d; }
+.headerLeft  { display:flex; flex-direction:column; gap:2px; }
+.headerTitle { font-size:14px; font-weight:800; color:#fff; display:flex; align-items:center; gap:7px; }
+.headerSub   { font-size:11px; color:rgba(255,255,255,.4); }
+.headerRight { display:flex; align-items:center; gap:8px; }
+.liveDot { width:8px; height:8px; background:#22c55e; border-radius:50%; animation:pulse 2s infinite; }
+.updated { font-size:10px; color:rgba(255,255,255,.3); }
+.refreshBtn {
+  padding:6px 13px; border-radius:8px; font-size:11.5px; font-weight:700;
+  border:1.5px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08); color:rgba(255,255,255,.7);
+  cursor:pointer; transition:.15s; font-family:'Plus Jakarta Sans',sans-serif;
+}
+.refreshBtn:hover { border-color:#C9F53B; color:#C9F53B; }
+.spinning { animation:spin .6s linear; }
+
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0; }
+.rateCard { padding:16px 18px; border-right:1px solid #e8eaf0; border-bottom:1px solid #e8eaf0; transition:.18s; cursor:default; }
+.rateCard:hover { background:#f5fce0; }
+.cardHeader { display:flex; align-items:center; gap:7px; margin-bottom:8px; }
+.cardIcon  { font-size:18px; }
+.cardTitle { font-size:11px; font-weight:700; color:#9299ab; text-transform:uppercase; letter-spacing:.4px; }
+.cardSub   { font-size:10px; color:#9299ab; }
+.cardValue { font-size:10px; color:#9299ab; margin-top:2px; }
+.amount    { font-size:22px; font-weight:900; color:#0d0d0d; letter-spacing:-.5px; line-height:1; }
+.highlight { color:#C9F53B; }
+.unit { font-size:11px; color:#9299ab; margin-top:3px; }
+.up   { color:#16a34a; font-size:10.5px; font-weight:700; }
+.down { color:#ef4444; font-size:10.5px; font-weight:700; }
+
+.converter { padding:16px 18px; border-top:1.5px solid #e8eaf0; background:#f8f9fc; }
+.convTitle { font-size:12px; font-weight:700; color:#5c6278; margin-bottom:12px; text-transform:uppercase; letter-spacing:.4px; }
+.convRow   { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.convField { display:flex; align-items:center; flex:1; min-width:130px; background:#fff; border:2px solid #e8eaf0; border-radius:10px; overflow:hidden; transition:.15s; }
+.convField:focus-within { border-color:#C9F53B; }
+.convPrefix { padding:0 10px; font-size:12px; font-weight:700; color:#9299ab; border-right:1.5px solid #e8eaf0; height:40px; display:flex; align-items:center; background:#eef0f4; flex-shrink:0; }
+.convInput  { flex:1; background:none; border:none; outline:none; font-size:14px; font-weight:700; color:#0d0d0d; padding:0 10px; height:40px; font-family:'Plus Jakarta Sans',sans-serif; }
+.arrow     { font-size:18px; color:#9299ab; flex-shrink:0; }
+.convOutput{ flex:1; min-width:130px; background:#f5fce0; border:1.5px solid rgba(201,245,59,.4); border-radius:10px; padding:10px 13px; }
+.convEq    { font-size:16px; font-weight:800; color:#3d5c00; }
+.convHint  { font-size:10px; color:#9299ab; margin-top:2px; }
+
+/* Skeleton */
+.skeleton { padding:16px 18px; }
+.skLine   { height:14px; background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; border-radius:7px; margin-bottom:10px; }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.loadingDot { background:#fbbf24 !important; box-shadow:0 0 6px #fbbf24 !important; }
+
+/* Error */
+.errorBox { padding:16px 18px; display:flex; align-items:flex-start; gap:10px; }
+.errorMsg strong { display:block; font-size:13px; color:#0d0d0d; margin-bottom:2px; }
+.errorMsg p { font-size:11.5px; color:#9299ab; margin:0; }
+.retryBtn { margin-top:8px; padding:7px 16px; background:#C9F53B; color:#0d0d0d; border:none; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; }
+
+/* Misc */
+.refreshingTag { color:#C9F53B; font-weight:700; }
+.sourceNote    { font-size:10px; color:#9299ab; text-align:right; padding:8px 18px; border-top:1px solid #e8eaf0; }

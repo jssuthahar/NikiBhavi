@@ -1,0 +1,19 @@
+.app { min-height:100vh; background:#f0f2f5; }
+
+/* Dim overlay for mobile sidebar */
+.overlay {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.55); z-index:270;
+}
+
+/* Main shifts right on desktop to make room for sidebar */
+.main {
+  margin-top:62px; /* must equal --th */
+  min-height:calc(100vh - 62px);
+  background:#f0f2f5;
+}
+@media(min-width:769px){ .main{ margin-left:260px; /* must equal --sw */ } }
+
+/* Content wrapper */
+.wrap { max-width:900px; margin:0 auto; padding:24px 20px 80px; }
+@media(max-width:480px){ .wrap{ padding:16px 14px 80px; } }

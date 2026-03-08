@@ -1,0 +1,22 @@
+.wrap { animation:fadeUp .28s ease both; }
+.header { display:flex; align-items:flex-start; gap:14px; background:linear-gradient(135deg,#0d0d0d,#1a0d0d); border-radius:20px; padding:26px; margin-bottom:18px; border:1.5px solid rgba(201,245,59,.15); }
+.headerEmoji { font-size:36px; flex-shrink:0; }
+.headerTitle { font-size:20px; font-weight:900; color:#fff; margin-bottom:4px; }
+.headerDesc  { font-size:13px; color:rgba(255,255,255,.5); }
+.cityPicker { display:flex; align-items:center; gap:14px; background:#fff; border-radius:16px; padding:18px 20px; margin-bottom:18px; box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.07); border:1.5px solid #e8eaf0; }
+.cityCol { flex:1; }
+.cityLabel { font-size:11px; font-weight:700; color:#9299ab; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+.cityCol select { width:100%; padding:0 12px; height:44px; background:#f6f7f9; border:2px solid #e8eaf0; border-radius:11px; font-size:14px; font-weight:700; color:#0d0d0d; font-family:'Plus Jakarta Sans',sans-serif; outline:none; transition:.15s; cursor:pointer; }
+.cityCol select:focus { border-color:#C9F53B; }
+.vsCircle { width:40px; height:40px; border-radius:50%; background:#0d0d0d; color:#C9F53B; font-size:12px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.catSection { margin-bottom:16px; }
+.catTitle { font-size:14px; font-weight:800; color:#0d0d0d; margin-bottom:10px; }
+.tableWrap { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.06); border:1.5px solid #e8eaf0; overflow-x:auto; }
+.table { width:100%; border-collapse:collapse; min-width:400px; }
+.table th { font-size:11px; font-weight:700; color:#9299ab; text-transform:uppercase; letter-spacing:.4px; padding:10px 14px; background:#f8f9fc; border-bottom:1.5px solid #e8eaf0; text-align:left; }
+.table td { padding:10px 14px; border-bottom:1px solid #f2f4f8; font-size:13px; color:#1c1e27; font-weight:600; }
+.table tr:last-child td { border-bottom:none; }
+.itemName { color:#5c6278 !important; font-weight:500 !important; }
+.unit { font-size:10px; color:#9299ab; margin-left:3px; }
+.cheaper { color:#16a34a !important; font-weight:800 !important; background:#f0fdf4; }
+.note { background:#fffbeb; border:1.5px solid #fbbf24; border-radius:13px; padding:14px 16px; font-size:12.5px; color:#78350f; line-height:1.65; }

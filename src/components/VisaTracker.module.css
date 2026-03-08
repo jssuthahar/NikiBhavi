@@ -1,0 +1,49 @@
+.wrap { animation:fadeUp .28s ease both; }
+.header { display:flex; align-items:flex-start; gap:14px; background:linear-gradient(135deg,#0d0d0d,#0d1a2a); border-radius:20px; padding:26px; margin-bottom:18px; border:1.5px solid rgba(201,245,59,.15); }
+.headerEmoji { font-size:36px; flex-shrink:0; }
+.headerTitle { font-size:20px; font-weight:900; color:#fff; margin-bottom:4px; }
+.headerDesc  { font-size:13px; color:rgba(255,255,255,.5); }
+.visaGrid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:8px; }
+@media(max-width:500px){ .visaGrid{ grid-template-columns:repeat(2,1fr); } }
+.visaBtn { display:flex; align-items:center; gap:7px; padding:10px 12px; border-radius:11px; border:2px solid #e8eaf0; background:#fff; font-size:12.5px; font-weight:700; color:#5c6278; cursor:pointer; transition:.15s; font-family:'Plus Jakarta Sans',sans-serif; }
+.visaBtn:hover { border-color:#C9F53B; background:#f5fce0; color:#0d0d0d; }
+.visaBtn.visaActive { border-color:#C9F53B; background:#f5fce0; color:#0d0d0d; }
+.visaDesc { font-size:12px; color:#9299ab; margin-bottom:16px; padding-left:4px; }
+.inputCard { background:#fff; border-radius:16px; padding:20px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.07); border:1.5px solid #e8eaf0; }
+.field label { display:block; font-size:13px; font-weight:700; color:#1c1e27; margin-bottom:8px; }
+.field input[type=date] { width:100%; padding:0 14px; height:44px; background:#f6f7f9; border:2px solid #e8eaf0; border-radius:11px; font-size:14px; font-weight:600; color:#0d0d0d; font-family:'Plus Jakarta Sans',sans-serif; outline:none; transition:.15s; }
+.field input[type=date]:focus { border-color:#C9F53B; }
+.statusCard { border-radius:16px; padding:20px; margin-bottom:16px; }
+.status_ok      { background:linear-gradient(135deg,#0d2618,#16a34a); border:1.5px solid rgba(22,163,74,.3); }
+.status_warning { background:linear-gradient(135deg,#1a1200,#d97706); border:1.5px solid rgba(217,119,6,.3); }
+.status_urgent  { background:linear-gradient(135deg,#1a0d0d,#dc2626); border:1.5px solid rgba(220,38,38,.3); }
+.status_expired { background:linear-gradient(135deg,#1a0000,#7f1d1d); border:1.5px solid rgba(127,29,29,.4); }
+.statusTop { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+.statusLabel { font-size:13px; font-weight:700; color:rgba(255,255,255,.7); margin-bottom:4px; }
+.statusDays  { font-size:26px; font-weight:900; color:#fff; }
+.expDate     { text-align:right; }
+.expLabel    { font-size:11px; color:rgba(255,255,255,.5); margin-bottom:2px; }
+.expVal      { font-size:14px; font-weight:700; color:#fff; }
+.progressBar { height:8px; background:rgba(255,255,255,.15); border-radius:4px; overflow:hidden; margin-bottom:12px; }
+.progressFill { height:100%; border-radius:4px; transition:width .4s ease; }
+.urgentNote { font-size:12px; color:rgba(255,255,255,.75); margin-top:4px; }
+.urgentNote a { color:#fbbf24; }
+.residencyCard { background:#fff; border-radius:16px; padding:18px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.07); border:1.5px solid #e8eaf0; }
+.resHeader { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:13.5px; font-weight:700; color:#0d0d0d; flex-wrap:wrap; gap:8px; }
+.resBadgeGreen  { font-size:11px; font-weight:800; padding:4px 12px; background:#f5fce0; color:#16a34a; border-radius:8px; border:1.5px solid rgba(22,163,74,.2); }
+.resBadgeOrange { font-size:11px; font-weight:800; padding:4px 12px; background:#fffbeb; color:#d97706; border-radius:8px; border:1.5px solid rgba(217,119,6,.2); }
+.resBar { height:10px; background:#f1f5f9; border-radius:5px; overflow:hidden; margin-bottom:8px; }
+.resBarFill { height:100%; background:linear-gradient(90deg,#C9F53B,#16a34a); border-radius:5px; transition:width .4s; }
+.resMeta { display:flex; justify-content:space-between; font-size:12px; color:#9299ab; font-weight:600; }
+.travelCard { background:#fff; border-radius:16px; padding:18px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.07); border:1.5px solid #e8eaf0; }
+.travelTitle { font-size:14px; font-weight:800; color:#0d0d0d; margin-bottom:13px; }
+.addRow { display:flex; gap:8px; flex-wrap:wrap; }
+.addRow input[type=date], .addRow select { padding:0 11px; height:40px; background:#f6f7f9; border:1.5px solid #e8eaf0; border-radius:9px; font-size:13px; font-weight:600; color:#0d0d0d; font-family:'Plus Jakarta Sans',sans-serif; outline:none; flex:1; min-width:120px; }
+.addBtn { padding:0 18px; height:40px; background:#C9F53B; color:#0d0d0d; border:none; border-radius:9px; font-size:13px; font-weight:800; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:.15s; white-space:nowrap; }
+.addBtn:hover { background:#0d0d0d; color:#C9F53B; }
+.entryList { margin-top:12px; display:flex; flex-direction:column; gap:5px; }
+.entry { display:flex; align-items:center; gap:10px; padding:8px 12px; background:#f8f9fc; border-radius:9px; font-size:13px; }
+.outTag { font-size:11px; font-weight:700; padding:2px 9px; background:#fee2e2; color:#dc2626; border-radius:5px; flex-shrink:0; }
+.inTag  { font-size:11px; font-weight:700; padding:2px 9px; background:#dcfce7; color:#16a34a; border-radius:5px; flex-shrink:0; }
+.delBtn { margin-left:auto; background:none; border:none; color:#9299ab; cursor:pointer; font-size:16px; padding:0 4px; transition:.15s; }
+.delBtn:hover { color:#ef4444; }

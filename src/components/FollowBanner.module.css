@@ -1,0 +1,55 @@
+/* FollowBanner — dark card with platforms */
+.banner {
+  background:linear-gradient(135deg,#0d0d0d 0%,#1a2a0a 100%);
+  border-radius:20px; padding:24px; margin-bottom:22px;
+  border:1.5px solid rgba(201,245,59,.15); position:relative; overflow:hidden;
+}
+.banner::before {
+  content:''; position:absolute; top:-40px; right:-40px;
+  width:160px; height:160px; border-radius:50%;
+  background:radial-gradient(circle,rgba(201,245,59,.08),transparent 70%);
+}
+.bannerTop   { display:flex; align-items:flex-start; gap:12px; margin-bottom:18px; }
+.heart       { font-size:26px; flex-shrink:0; animation:float 2s ease-in-out infinite; }
+.bannerTitle { font-size:17px; font-weight:900; color:#fff; margin-bottom:5px; }
+.bannerSub   { font-size:13px; color:rgba(255,255,255,.5); line-height:1.5; }
+
+.platforms { display:flex; flex-direction:column; gap:9px; }
+.platform  {
+  display:flex; align-items:center; gap:12px;
+  background:rgba(255,255,255,.05); border-radius:13px; padding:13px 15px;
+  text-decoration:none; transition:.18s; border:1px solid rgba(255,255,255,.07);
+}
+.platform:hover { background:rgba(255,255,255,.1); transform:translateX(4px); border-color:rgba(201,245,59,.25); }
+.platformIcon   { font-size:22px; flex-shrink:0; }
+.platformText   { flex:1; display:flex; flex-direction:column; gap:1px; }
+.platformLabel  { font-size:13.5px; font-weight:800; color:#fff; }
+.platformSub    { font-size:11px; color:rgba(255,255,255,.4); }
+.platformAction { flex-shrink:0; font-size:11.5px; font-weight:800; padding:7px 14px; border-radius:8px; color:#0d0d0d; background:#C9F53B; transition:.15s; }
+.platform:hover .platformAction { background:#fff; }
+
+/* Sidebar pills variant */
+.pillsWrap  { padding:8px 10px 6px; border-top:1px solid rgba(255,255,255,.06); }
+.pillsLabel { font-size:9.5px; font-weight:700; color:rgba(255,255,255,.3); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+.pills { display:flex; flex-direction:column; gap:3px; }
+.pill  { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:9px; font-size:12.5px; font-weight:600; color:rgba(255,255,255,.5); text-decoration:none; transition:.15s; }
+.pill:hover { background:rgba(255,255,255,.07); color:rgba(255,255,255,.9); transform:translateX(3px); }
+
+/* Toast popup */
+.toast {
+  position:fixed; bottom:85px; right:18px; z-index:600;
+  background:#1a1a1a; border:1px solid rgba(255,255,255,.1); border-radius:16px;
+  padding:16px; width:268px;
+  box-shadow:0 16px 48px rgba(0,0,0,.4);
+  animation:slideUp .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes slideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.toastClose { position:absolute; top:10px; right:12px; background:none; border:none; color:rgba(255,255,255,.4); cursor:pointer; font-size:16px; line-height:1; }
+.toastClose:hover { color:#fff; }
+.toastEmoji { font-size:24px; margin-bottom:7px; display:block; }
+.toastText  { margin-bottom:12px; }
+.toastText strong { display:block; font-size:13.5px; font-weight:800; color:#fff; margin-bottom:2px; }
+.toastText span   { font-size:12px; color:rgba(255,255,255,.5); line-height:1.4; display:block; }
+.toastBtns { display:flex; gap:7px; }
+.toastBtn  { flex:1; text-align:center; padding:9px 4px; border-radius:9px; font-size:12px; font-weight:800; color:#0d0d0d; background:#C9F53B; text-decoration:none; transition:.15s; }
+.toastBtn:hover { background:#fff; transform:translateY(-1px); }

@@ -1,0 +1,38 @@
+.wrap { animation:fadeUp .28s ease both; }
+.header { display:flex; align-items:flex-start; gap:14px; background:linear-gradient(135deg,#0d0d0d,#0d2010); border-radius:20px; padding:26px; margin-bottom:18px; border:1.5px solid rgba(201,245,59,.15); }
+.headerEmoji { font-size:36px; flex-shrink:0; }
+.headerTitle { font-size:20px; font-weight:900; color:#fff; margin-bottom:4px; }
+.headerDesc  { font-size:13px; color:rgba(255,255,255,.5); }
+.inputCard { background:#fff; border-radius:16px; padding:20px; margin-bottom:18px; box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.07); border:1.5px solid #e8eaf0; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+@media(max-width:600px){ .grid{ grid-template-columns:1fr; } }
+.field label { display:block; font-size:13px; font-weight:700; color:#1c1e27; margin-bottom:7px; }
+.inputWrap { display:flex; align-items:center; background:#f6f7f9; border:2px solid #e8eaf0; border-radius:11px; overflow:hidden; transition:.15s; }
+.inputWrap:focus-within { border-color:#C9F53B; }
+.prefix { padding:0 11px; font-size:13px; font-weight:700; color:#9299ab; border-right:1.5px solid #e8eaf0; height:44px; display:flex; align-items:center; background:#eef0f4; flex-shrink:0; }
+.suffix { padding:0 11px; font-size:13px; font-weight:700; color:#9299ab; border-left:1.5px solid #e8eaf0; height:44px; display:flex; align-items:center; background:#eef0f4; flex-shrink:0; }
+.inputWrap input { flex:1; background:none; border:none; outline:none; font-size:15px; font-weight:700; color:#0d0d0d; padding:0; height:44px; font-family:'Plus Jakarta Sans',sans-serif; }
+.toggle { display:flex; align-items:center; gap:8px; font-size:13px; color:#5c6278; cursor:pointer; }
+.toggle input { accent-color:#C9F53B; width:16px; height:16px; }
+.summaryGrid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:18px; }
+@media(max-width:700px){ .summaryGrid{ grid-template-columns:repeat(2,1fr); } }
+.sumCard { background:#fff; border-radius:14px; padding:16px 13px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.07); border:1.5px solid #e8eaf0; }
+.sum_lime  { border-color:rgba(201,245,59,.4); background:#f9ffe0; }
+.sum_blue  { border-color:rgba(37,99,235,.2); background:#f0f7ff; }
+.sum_green { border-color:rgba(22,163,74,.2); background:#f0fdf4; }
+.sumVal   { font-size:18px; font-weight:900; color:#0d0d0d; letter-spacing:-.3px; }
+.sumLabel { font-size:11px; color:#5c6278; margin-top:3px; font-weight:600; }
+.sumSub   { font-size:10px; color:#9299ab; margin-top:2px; }
+.chartCard { background:#0d0d0d; border-radius:16px; padding:20px; margin-bottom:18px; }
+.chartTitle { font-size:14px; font-weight:800; color:#C9F53B; margin-bottom:16px; }
+.bars { display:flex; gap:8px; align-items:flex-end; height:140px; }
+.barCol { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; }
+.barWrap { flex:1; width:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; position:relative; }
+.barFill { width:100%; background:linear-gradient(180deg,#C9F53B,#8db520); border-radius:5px 5px 0 0; transition:height .4s; min-height:4px; position:relative; }
+.barLabel2 { position:absolute; top:-18px; font-size:8.5px; font-weight:700; color:rgba(255,255,255,.5); white-space:nowrap; }
+.barYear { font-size:9px; color:rgba(255,255,255,.4); font-weight:600; }
+.insightGrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media(max-width:600px){ .insightGrid{ grid-template-columns:1fr; } }
+.insight { background:#fff; border-radius:13px; padding:14px; display:flex; gap:10px; border:1.5px solid #e8eaf0; font-size:13px; color:#5c6278; line-height:1.55; }
+.insight span { font-size:18px; flex-shrink:0; }
+.insight strong { color:#0d0d0d; }
