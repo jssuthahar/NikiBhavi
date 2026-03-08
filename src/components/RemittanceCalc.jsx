@@ -32,33 +32,6 @@ export default function RemittanceCalc() {
   const best = results[0]
 
 
-  // const exportPDF = () => {
-  //   renderPDF(
-  //     'Remittance Calculator',
-  //     `Sending RM ${Number(amount).toLocaleString()} to India`,
-  //     [
-  //       { type:'summary', title:'Best Providers', items: results.slice(0,4).map((r,i) => ({
-  //           label: r.name, value: `₹ ${Math.round(r.received).toLocaleString()}`,
-  //           sub: `Fee: RM ${r.fee}`, highlight: i === 0
-  //         }))
-  //       },
-  //       { type:'table', title:'Provider Comparison', headers:[
-  //         { label:'Provider', align:'left' },
-  //         { label:'Fee (RM)', align:'right' },
-  //         { label:'Rate (₹/RM)', align:'right' },
-  //         { label:'You Receive (₹)', align:'right', bold:true },
-  //       ],
-  //       rows: results.map(r => [
-  //         r.name,
-  //         `RM ${r.fee}`,
-  //         r.exchRate.toFixed(2),
-  //         { value:`₹ ${Math.round(r.received).toLocaleString()}`, color:'#16a34a' }
-  //       ])},
-  //     ],
-  //     { alert:'Rates are estimates. Always verify live rates on the provider website before transferring.' }
-  //   )
-  // }
-
   const exportPDF = () => {
     renderPDF(
       'Remittance Calculator',

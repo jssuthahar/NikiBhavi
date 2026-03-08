@@ -47,33 +47,6 @@ export default function EPFCalc() {
   const fmtRM  = n => `RM ${Math.round(n||0).toLocaleString()}`
 
 
-  // const exportPDF = () => {
-  //   const r = result
-  //   renderPDF(
-  //     'EPF Savings Calculator',
-  //     `Salary: RM ${salary.toLocaleString()} · ${yrs} years`,
-  //     [
-  //       { type:'summary', title:'EPF Projection', items:[
-  //         { label:'Monthly Contribution',  value:`RM ${Math.round(r.totalMth).toLocaleString()}` },
-  //         { label:'Your EPF (11%)',         value:`RM ${Math.round(r.empMth).toLocaleString()}` },
-  //         { label:'Employer EPF (12-13%)',  value:`RM ${Math.round(r.errMth).toLocaleString()}` },
-  //         { label:'Projected Corpus',       value:`RM ${Math.round(r.corpus).toLocaleString()}`, highlight:true },
-  //       ]},
-  //       { type:'keyvalue', title:'Full Projection', items:[
-  //         { label:'Monthly: Your EPF',      value:`RM ${Math.round(r.empMth).toLocaleString()}` },
-  //         { label:'Monthly: Employer EPF',  value:`RM ${Math.round(r.errMth).toLocaleString()}` },
-  //         { label:'Monthly: Total EPF',     value:`RM ${Math.round(r.totalMth).toLocaleString()}` },
-  //         { label:'Annual Contribution',    value:`RM ${Math.round(r.yearly).toLocaleString()}` },
-  //         { label:'Total Contributed ('+r.yrs+' yrs)', value:`RM ${Math.round(r.totalContrib).toLocaleString()}` },
-  //         { label:'Interest Earned',        value:`RM ${Math.round(r.interest).toLocaleString()}`,  color:'#16a34a' },
-  //         { label:'Final EPF Corpus',       value:`RM ${Math.round(r.corpus).toLocaleString()}`,    color:'#16a34a', bold:true },
-  //         { label:'Corpus in INR',          value:`₹ ${Math.round(r.inrCorpus).toLocaleString()}` },
-  //       ]},
-  //     ],
-  //     { alert:'Based on 5.5% dividend rate (FY2024). Actual EPF dividend varies yearly.' }
-  //   )
-  // }
-
   const exportPDF = () => {
     const r = result
     renderPDF(

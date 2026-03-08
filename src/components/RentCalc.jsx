@@ -46,22 +46,6 @@ export default function RentCalc() {
   const roomLabels = { studio:'Studio', room1:'1-Bed', room2:'2-Bed', room3:'3-Bed' }
 
 
-  // const exportPDF = () => {
-  //   renderPDF(
-  //     'Rent Affordability Calculator',
-  //     `Salary: RM ${Number(salary).toLocaleString()} · Budget: RM ${Number(rent).toLocaleString()}/month`,
-  //     [
-  //       { type:'summary', title:'Rent Overview', items:[
-  //         { label:'Monthly Salary',   value:`RM ${Number(salary).toLocaleString()}` },
-  //         { label:'Rent Budget',      value:`RM ${Number(rent).toLocaleString()}` },
-  //         { label:'Rent-to-Income',   value:`${((rent/salary)*100).toFixed(1)}%`, highlight:true },
-  //         { label:'After Rent',       value:`RM ${Math.round(salary-rent).toLocaleString()}` },
-  //       ]},
-  //     ],
-  //     { alert:'Recommended: rent should be 25-30% of take-home pay. Above 35% may be financially stressful.' }
-  //   )
-  // }
-
   const exportPDF = () => {
     renderPDF(
       'Rent Affordability Calculator',

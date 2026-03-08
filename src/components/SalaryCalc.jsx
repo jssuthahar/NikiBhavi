@@ -83,32 +83,6 @@ export default function SalaryCalc() {
   const fmtINR = n => `₹${Math.round(n||0).toLocaleString('en-IN')}`
 
 
-  // const exportPDF = () => {
-  //   const r = result
-  //   renderPDF(
-  //     'Salary Comparison Calculator',
-  //     `India vs Malaysia — MYR ${(parseFloat(myrSalary)||0).toLocaleString()}/month`,
-  //     [
-  //       { type:'summary', title:'Salary Overview', items:[
-  //         { label:'Malaysia Salary',  value:`RM ${Math.round(r.myrGross||0).toLocaleString()}` },
-  //         { label:'Malaysia Take-Home', value:`RM ${Math.round(r.myrNet||0).toLocaleString()}` },
-  //         { label:'India Equivalent', value:`₹ ${Math.round(r.inrEquivalent||0).toLocaleString()}` },
-  //         { label:'Purchasing Power',  value: r.ppRatio ? `${r.ppRatio.toFixed(1)}x` : 'N/A', highlight:true },
-  //       ]},
-  //       { type:'keyvalue', title:'Detailed Comparison', items:[
-  //         { label:'Malaysia Gross',        value:`RM ${Math.round(r.myrGross||0).toLocaleString()}` },
-  //         { label:'Malaysia EPF (11%)',    value:`− RM ${Math.round(r.myrEpf||0).toLocaleString()}`, color:'#dc2626' },
-  //         { label:'Malaysia PCB',          value:`− RM ${Math.round(r.myrPcb||0).toLocaleString()}`, color:'#dc2626' },
-  //         { label:'Malaysia Net',          value:`RM ${Math.round(r.myrNet||0).toLocaleString()}`, color:'#16a34a', bold:true },
-  //         { label:'Equivalent in INR',     value:`₹ ${Math.round(r.inrEquivalent||0).toLocaleString()}` },
-  //         { label:'India Net (est.)',       value: r.inrNet ? `₹ ${Math.round(r.inrNet).toLocaleString()}` : 'N/A' },
-  //         { label:'Purchasing Power Ratio',value: r.ppRatio ? `${r.ppRatio.toFixed(1)}x better in Malaysia` : 'N/A', color:'#16a34a' },
-  //       ]},
-  //     ],
-  //     { alert:'Exchange rate: 1 MYR ≈ ₹19.5 (2026). Purchasing power based on KL vs tier-2 India city comparison.' }
-  //   )
-  // }
-
   const exportPDF = () => {
     const r = result
     renderPDF(

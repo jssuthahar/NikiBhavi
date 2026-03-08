@@ -40,34 +40,6 @@ export default function HomeLoanCalc() {
   const fmt = n => `RM ${Math.round(n||0).toLocaleString()}`
 
 
-  // const exportPDF = () => {
-  //   const r = result
-  //   renderPDF(
-  //     'Home Loan Calculator',
-  //     `Property: RM ${(parseFloat(price)||0).toLocaleString()} · ${tenure} years`,
-  //     [
-  //       { type:'summary', title:'Loan Summary', items:[
-  //         { label:'Property Price',  value:`RM ${Math.round(r.pr||parseFloat(price)||0).toLocaleString()}` },
-  //         { label:'Loan Amount',     value:`RM ${Math.round(r.loan).toLocaleString()}` },
-  //         { label:'Monthly Payment', value:`RM ${Math.round(r.monthly).toLocaleString()}`, highlight:true },
-  //         { label:'DSR Ratio',       value:`${(r.dsr||0).toFixed(1)}%` },
-  //       ]},
-  //       { type:'keyvalue', title:'Full Details', items:[
-  //         { label:'Property Price',    value:`RM ${Math.round(r.pr||0).toLocaleString()}` },
-  //         { label:'Down Payment',      value:`RM ${Math.round(r.down).toLocaleString()}` },
-  //         { label:'Loan Amount (90%)', value:`RM ${Math.round(r.loan).toLocaleString()}` },
-  //         { label:'Tenure',            value:`${tenure} years` },
-  //         { label:'Monthly Instalment',value:`RM ${Math.round(r.monthly).toLocaleString()}`, bold:true },
-  //         { label:'Total Payment',     value:`RM ${Math.round(r.totalPay).toLocaleString()}` },
-  //         { label:'Total Interest',    value:`RM ${Math.round(r.interest).toLocaleString()}`, color:'#dc2626' },
-  //         { label:'DSR Ratio',         value:`${(r.dsr||0).toFixed(1)}%`, color: r.eligible ? '#16a34a' : '#dc2626' },
-  //         { label:'Loan Eligibility',  value: r.eligible ? '✅ Likely Eligible' : '⚠️ May Not Qualify', color: r.eligible ? '#16a34a' : '#dc2626', bold:true },
-  //       ]},
-  //     ],
-  //     { alert:'DSR (Debt Service Ratio) should be below 60-70% for loan approval. Rates based on BLR 6.85% (2026).' }
-  //   )
-  // }
-
   const exportPDF = () => {
     const r = result
     renderPDF(

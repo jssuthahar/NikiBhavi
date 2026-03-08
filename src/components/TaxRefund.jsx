@@ -125,35 +125,6 @@ const fmtRM = (n, dec = 2) =>
 function ReliefRow({ relief, value, onChange }) {
   const pct = Math.min(100, ((value || 0) / relief.max) * 100)
 
-  // const exportPDF = () => {
-  //   const r = result
-  //   renderPDF(
-  //     'Income Tax Refund Calculator',
-  //     `YA ${ya} · Income: RM ${Number(income).toLocaleString()}`,
-  //     [
-  //       { type:'summary', title:'Tax Summary', items:[
-  //         { label:'Gross Income',       value:`RM ${Math.round(r.grossIncome||0).toLocaleString()}` },
-  //         { label:'Total Reliefs',      value:`RM ${Math.round(r.totalRelief||0).toLocaleString()}` },
-  //         { label:'Tax Payable',        value:`RM ${Math.round(r.taxPayable||0).toLocaleString()}` },
-  //         { label: r.refund >= 0 ? '✅ Tax Refund' : '⚠️ Tax Due',
-  //           value:`RM ${Math.round(Math.abs(r.refund||0)).toLocaleString()}`, highlight:true },
-  //       ]},
-  //       { type:'keyvalue', title:'Computation Detail', items:[
-  //         { label:'Annual Income',          value:`RM ${Math.round(r.grossIncome||0).toLocaleString()}` },
-  //         { label:'Personal Relief',        value:`− RM 9,000`,  color:'#16a34a' },
-  //         { label:'Other Reliefs',          value:`− RM ${Math.round((r.totalRelief||0)-9000).toLocaleString()}`, color:'#16a34a' },
-  //         { label:'Chargeable Income',      value:`RM ${Math.round(r.chargeableIncome||0).toLocaleString()}` },
-  //         { label:'Tax Payable',            value:`RM ${Math.round(r.taxPayable||0).toLocaleString()}`, color:'#d97706' },
-  //         { label:'Tax Already Paid (PCB)', value:`RM ${Math.round(r.taxAlreadyPaid||0).toLocaleString()}` },
-  //         { label: r.refund >= 0 ? 'Expected Refund' : 'Additional Tax Due',
-  //           value:`RM ${Math.round(Math.abs(r.refund||0)).toLocaleString()}`,
-  //           color: r.refund >= 0 ? '#16a34a' : '#dc2626', bold:true },
-  //       ]},
-  //     ],
-  //     { alert:'File e-Filing at mytax.hasil.gov.my before April 30. Refund arrives in 30–90 days.' }
-  //   )
-  // }
-
   const exportPDF = () => {
     const r = result
     renderPDF(
@@ -302,13 +273,12 @@ export default function TaxRefund() {
   return (
     <div className={styles.wrap}>
 
-
       {/* ── Header ── */}
       <div className={styles.header}>
         <span className={styles.headerEmoji}>💰</span>
         <div>
           <h1 className={styles.headerTitle}>Malaysia Tax Relief & Refund Calculator</h1>
-
+          <button className={styles.pdfBtn} onClick={exportPDF}>📄 Export PDF</button>
         <p className={styles.headerDesc}>Enter your income + reliefs to find out your tax refund or amount due</p>
         </div>
         <div className={styles.headerYear}>YA {taxYear}</div>
