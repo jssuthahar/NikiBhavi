@@ -5,13 +5,18 @@ import { C, s, SP, R, W, shadow, shadowMd } from '../../src/theme/index'
 import { Ionicons } from '@expo/vector-icons'
 
 const PROVIDER_LINKS = {
+  'InstaReM':      'https://referral-link.onelink.me/gbf1/a43c48ca?deep_link_sub1=referral&deep_link_value=kQodAW',
+  'BigPay':        'https://bigpay.link/referrals',
   'Wise':          'https://wise.com',
   'RemitBee':      'https://remitbee.com',
-  'InstaReM':      'https://instarem.com',
   'Western Union': 'https://westernunion.com',
   'Bank TT':       null,
   'Maybank':       null,
 }
+const BIGPAY_CODE   = 'OUGVGERVDT'
+const BIGPAY_URL    = 'https://bigpay.link/referrals'
+const INSTAREM_CODE = 'kQodAW'
+const INSTAREM_URL  = 'https://referral-link.onelink.me/gbf1/a43c48ca?deep_link_sub1=referral&deep_link_value=kQodAW'
 
 export default function RemitScreen() {
   const [amount, setAmount] = useState('')
@@ -76,8 +81,40 @@ export default function RemitScreen() {
 
           <View style={[ls.tipCard]}>
             <Text style={ls.tipTitle}>💡 Transfer Tips</Text>
-            <Text style={s.body}>• Always compare rates before sending{'\n'}• Wise usually gives best rates{'\n'}• Transfers &gt;RM 3,000 may need source of funds proof{'\n'}• No monthly limit for EP holders</Text>
+            <Text style={s.body}>• InstaReM credits to India in ~1 minute ⚡{'\n'}• First transfer FREE with InstaReM{'\n'}• Transfers &gt;RM 3,000 may need source of funds proof{'\n'}• No monthly limit for EP holders</Text>
           </View>
+
+          {/* InstaReM referral card */}
+          <TouchableOpacity style={ls.instaremCard} onPress={() => Linking.openURL(INSTAREM_URL)} activeOpacity={0.85}>
+            <View style={s.between}>
+              <View style={{ flex:1 }}>
+                <Text style={ls.instaremTitle}>⚡ InstaReM — Money in 1 Minute!</Text>
+                <Text style={ls.instaremDesc}>Using it for 3+ years. Super fast, easy & amazing rates. Money credited to India within 1 minute!</Text>
+                <View style={[ls.codePill, { backgroundColor:'#7B61FF' }]}>
+                  <Text style={ls.codeLabel}>Referral code: </Text>
+                  <Text style={ls.codeValue}>{INSTAREM_CODE}</Text>
+                </View>
+                <Text style={[ls.bigpayBonus, { color:'#5B3FCC' }]}>🎁 Your FIRST transfer is FREE!</Text>
+              </View>
+              <Ionicons name="open-outline" size={20} color="#7B61FF" style={{ marginLeft:12 }} />
+            </View>
+          </TouchableOpacity>
+
+          {/* BigPay referral card */}
+          <TouchableOpacity style={ls.bigpayCard} onPress={() => Linking.openURL(BIGPAY_URL)} activeOpacity={0.85}>
+            <View style={s.between}>
+              <View style={{ flex:1 }}>
+                <Text style={ls.bigpayTitle}>💳 BigPay — Best Prepaid Card</Text>
+                <Text style={ls.bigpayDesc}>Great MYR→INR rates, low fees, instant transfers. Trusted by Indians in Malaysia.</Text>
+                <View style={ls.codePill}>
+                  <Text style={ls.codeLabel}>Referral code: </Text>
+                  <Text style={ls.codeValue}>{BIGPAY_CODE}</Text>
+                </View>
+                <Text style={ls.bigpayBonus}>🎁 Get RM5 FREE when you activate your card!</Text>
+              </View>
+              <Ionicons name="open-outline" size={20} color="#00B14F" style={{ marginLeft:12 }} />
+            </View>
+          </TouchableOpacity>
         </>
       )}
       <View style={{ height:40 }} />
@@ -97,4 +134,14 @@ const ls = StyleSheet.create({
   metaTxt:      { fontSize:12, color:C.sub, fontWeight:W.medium },
   tipCard:      { marginHorizontal:SP.lg, backgroundColor:'#F0EDFF', borderRadius:R.xl, padding:SP.lg, marginBottom:SP.md },
   tipTitle:     { fontSize:15, fontWeight:W.bold, color:C.purple, marginBottom:6 },
+  instaremCard: { marginHorizontal:SP.lg, marginBottom:SP.md, backgroundColor:'#F0EDFF', borderRadius:R.xl, padding:SP.lg, borderWidth:2, borderColor:'#7B61FF' },
+  instaremTitle:{ fontSize:15, fontWeight:W.bold, color:'#5B3FCC', marginBottom:4 },
+  instaremDesc: { fontSize:13, color:C.sub, marginBottom:8, lineHeight:19 },
+  bigpayCard:   { marginHorizontal:SP.lg, marginBottom:SP.md, backgroundColor:'#E6F7EE', borderRadius:R.xl, padding:SP.lg, borderWidth:2, borderColor:'#00B14F' },
+  bigpayTitle:  { fontSize:15, fontWeight:W.bold, color:'#007A37', marginBottom:4 },
+  bigpayDesc:   { fontSize:13, color:C.sub, marginBottom:8, lineHeight:19 },
+  codePill:     { flexDirection:'row', alignItems:'center', backgroundColor:'#00B14F', alignSelf:'flex-start', borderRadius:R.full, paddingHorizontal:12, paddingVertical:5, marginBottom:6 },
+  codeLabel:    { fontSize:12, color:'rgba(255,255,255,0.85)', fontWeight:W.medium },
+  codeValue:    { fontSize:13, color:'#fff', fontWeight:W.bold, letterSpacing:1 },
+  bigpayBonus:  { fontSize:13, color:'#007A37', fontWeight:W.semibold },
 })

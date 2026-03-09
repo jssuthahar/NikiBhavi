@@ -223,13 +223,14 @@ export const PAGES = {
       { icon: '🏦', title: 'CIMB Bank', desc: 'Great mobile app and low fees. OctoPay wallet useful for everyday spending.' },
       { icon: '🏦', title: 'RHB Bank',  desc: 'Popular among Indians in Malaysia. Good customer service. Solid salary account.' },
       { icon: '🌍', title: 'HSBC',      desc: 'Best for international wire transfers. Makes sending money to India straightforward.' },
+      { icon: '💳', title: 'BigPay (Recommended!)', desc: 'Best prepaid card for Indians in Malaysia. Great exchange rates for overseas spending & India transfers. No hidden fees. Use referral code OUGVGERVDT to get RM5 free when you activate your card! Sign up: bigpay.link/referrals' },
     ],
     steps: [
       { title: 'Original Passport',    desc: 'With valid Malaysia entry stamp or active visa. Must be original, not a photocopy.' },
       { title: 'Employee Pass / i-Kad',desc: 'Valid work permit or i-Kad is required by all Malaysian banks to open an account.' },
       { title: 'Proof of Address',     desc: 'Malaysian utility bill, tenancy agreement, or employer letter showing your address.' },
     ],
-    tip: { icon: '💸', title: 'Sending Money to India', text: 'Wise (formerly TransferWise) is the best — lowest fees and best exchange rates. Brickfields money changers and Western Union are also good options.' },
+    tip: { icon: '💳', title: 'Try BigPay First!', text: 'Before opening a traditional bank account, get BigPay — it works instantly with just your passport. Great exchange rates for sending money to India. Use code OUGVGERVDT at bigpay.link/referrals to get RM5 free when you activate your card.' },
   },
 
   transport: {
@@ -280,12 +281,12 @@ export const PAGES = {
   money: {
     hero: { variant: 'dark', emoji: '💸', badge: 'Money & Remittance', title: 'Send Money to India —\nBest Options', desc: 'Best exchange rates and lowest fees so your family receives the maximum amount.' },
     cards: [
-      { icon: '⭐', title: 'Wise (Best Option)', desc: 'Best exchange rate and lowest fees. Direct transfer to any Indian bank. Arrives in 1–2 days.' },
-      { icon: '🏪', title: 'Money Changers',      desc: 'Physical shops. Brickfields offers the best rates in KL. No app needed.' },
-      { icon: '🏦', title: 'Bank Wire (TT)',       desc: 'Via HSBC or Maybank. Fee RM 5–15 per transfer. Reliable but slightly costly.' },
-      { icon: '📱', title: 'Western Union',        desc: 'Same-day transfer. Cash pickup available in India. Slightly higher fees.' },
+      { icon: '⚡', title: 'InstaReM (Fastest!)', desc: 'Money credited within 1 minute to Indian bank accounts! Been using it for 3+ years — super fast, easy, amazing rates. First transfer FREE with referral code kQodAW. Sign up: referral-link.onelink.me/gbf1/a43c48ca?deep_link_sub1=referral&deep_link_value=kQodAW' },
+      { icon: '💳', title: 'BigPay (Best for Indians!)', desc: 'Excellent MYR→INR rates, low fees, instant transfers. Use code OUGVGERVDT at bigpay.link/referrals — get RM5 free on activation!' },
+      { icon: '⭐', title: 'Wise', desc: 'Great exchange rate and low fees. Direct transfer to any Indian bank. Arrives in 1–2 days.' },
+      { icon: '🏪', title: 'Money Changers', desc: 'Physical shops. Brickfields offers the best rates in KL. No app needed.' },
     ],
-    tip: { icon: '📊', title: 'Always Check Rates First', text: 'Before transferring, check xe.com for the live rate. A good rate is RM 1 = ₹17–19. Brickfields money changers usually beat bank rates.' },
+    tip: { icon: '⚡', title: 'InstaReM — Money in 1 Minute!', text: 'InstaReM credits money to Indian banks within 1 minute — fastest we\'ve used in 3 years. Your FIRST transfer is FREE! Use referral code kQodAW at the link: referral-link.onelink.me/gbf1/a43c48ca?deep_link_sub1=referral&deep_link_value=kQodAW' },
   },
 
   videos: {
