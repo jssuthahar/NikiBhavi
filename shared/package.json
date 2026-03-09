@@ -1,0 +1,12 @@
+{
+  "name": "@nikibhavi/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./calculators": "./src/calculators/index.js",
+    "./constants":   "./src/constants/index.js",
+    "./nikibot":     "./src/nikibot/index.js"
+  }
+}

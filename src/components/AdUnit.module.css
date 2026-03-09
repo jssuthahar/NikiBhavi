@@ -1,0 +1,27 @@
+/* ── Ad container — never breaks layout ──────────────────── */
+.adWrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  min-height: 90px;           /* reserve space, prevent layout shift */
+  background: transparent;
+  border-radius: 8px;
+}
+
+.adInArticle {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 2rem 0;
+  min-height: 120px;
+  background: transparent;
+}
+
+/* ── On very small screens, collapse gracefully ─────────── */
+@media (max-width: 360px) {
+  .adWrap, .adInArticle {
+    margin: 1rem 0;
+    min-height: 60px;
+  }
+}

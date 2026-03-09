@@ -125,33 +125,6 @@ const fmtRM = (n, dec = 2) =>
 function ReliefRow({ relief, value, onChange }) {
   const pct = Math.min(100, ((value || 0) / relief.max) * 100)
 
-  const exportPDF = () => {
-    const r = result
-    renderPDF(
-      'Income Tax Refund Calculator',
-      `YA ${taxYear} · Income: RM ${Number(income).toLocaleString()}`,
-      [
-        { type:'summary', title:'Tax Summary', items:[
-          { label:'Gross Income',   value:`RM ${Math.round(r.grossIncome||0).toLocaleString()}` },
-          { label:'Total Reliefs',  value:`RM ${Math.round(r.totalRelief||0).toLocaleString()}` },
-          { label:'Tax Payable',    value:`RM ${Math.round(r.taxPayable||0).toLocaleString()}` },
-          { label: (r.refund||0) >= 0 ? '✅ Tax Refund' : '⚠️ Tax Due',
-            value:`RM ${Math.round(Math.abs(r.refund||0)).toLocaleString()}`, highlight:true },
-        ]},
-        { type:'keyvalue', title:'Computation', items:[
-          { label:'Annual Income',           value:`RM ${Math.round(r.grossIncome||0).toLocaleString()}` },
-          { label:'Total Reliefs',           value:`− RM ${Math.round(r.totalRelief||0).toLocaleString()}`, color:'#16a34a' },
-          { label:'Chargeable Income',       value:`RM ${Math.round(r.chargeableIncome||0).toLocaleString()}` },
-          { label:'Tax Payable',             value:`RM ${Math.round(r.taxPayable||0).toLocaleString()}`, color:'#d97706' },
-          { label:'PCB Paid',                value:`RM ${Math.round(r.taxAlreadyPaid||0).toLocaleString()}` },
-          { label: (r.refund||0) >= 0 ? 'Refund' : 'Extra Tax Due',
-            value:`RM ${Math.round(Math.abs(r.refund||0)).toLocaleString()}`,
-            color: (r.refund||0) >= 0 ? '#16a34a' : '#dc2626', bold:true },
-        ]},
-      ],
-      { alert:'File e-Filing at mytax.hasil.gov.my before April 30.' }
-    )
-  }
   return (
     <div className={styles.reliefRow}>
       <div className={styles.reliefInfo}>
@@ -269,6 +242,35 @@ export default function TaxRefund() {
 
   const maxPossibleRelief = RELIEF_SECTIONS.reduce((s, sec) =>
     s + sec.reliefs.reduce((ss, r) => ss + r.max, 0), 0)
+
+  const exportPDF = () => {
+    if (!result) return
+    const r = result
+    renderPDF(
+      'Income Tax Refund Calculator',
+      `YA ${taxYear} · Income: RM ${Number(annualIncome).toLocaleString()}`,
+      [
+        { type: 'summary', title: 'Tax Summary', items: [
+          { label: 'Gross Income',  value: `RM ${Math.round(r.income || 0).toLocaleString()}` },
+          { label: 'Total Reliefs', value: `RM ${Math.round(r.totalRelief || 0).toLocaleString()}` },
+          { label: 'Tax Payable',   value: `RM ${Math.round(r.taxPayable || 0).toLocaleString()}` },
+          { label: (r.refund || 0) >= 0 ? '✅ Tax Refund' : '⚠️ Tax Due',
+            value: `RM ${Math.round(Math.abs(r.refund || 0)).toLocaleString()}`, highlight: true },
+        ]},
+        { type: 'keyvalue', title: 'Computation', items: [
+          { label: 'Annual Income',      value: `RM ${Math.round(r.income || 0).toLocaleString()}` },
+          { label: 'Total Reliefs',      value: `− RM ${Math.round(r.totalRelief || 0).toLocaleString()}`, color: '#16a34a' },
+          { label: 'Chargeable Income',  value: `RM ${Math.round(r.chargeableIncome || 0).toLocaleString()}` },
+          { label: 'Tax Payable',        value: `RM ${Math.round(r.taxPayable || 0).toLocaleString()}`, color: '#d97706' },
+          { label: 'PCB Paid',           value: `RM ${Math.round(r.taxAlreadyPaid || 0).toLocaleString()}` },
+          { label: (r.refund || 0) >= 0 ? 'Refund' : 'Extra Tax Due',
+            value: `RM ${Math.round(Math.abs(r.refund || 0)).toLocaleString()}`,
+            color: (r.refund || 0) >= 0 ? '#16a34a' : '#dc2626', bold: true },
+        ]},
+      ],
+      { alert: 'File e-Filing at mytax.hasil.gov.my before April 30.' }
+    )
+  }
 
   return (
     <div className={styles.wrap}>
