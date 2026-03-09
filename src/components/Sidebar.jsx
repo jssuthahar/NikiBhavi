@@ -58,6 +58,7 @@ const NAV = [
 export default function Sidebar({ activePage, onNavigate, isOpen }) {
   return (
     <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+      <div className={styles.topStrip} />
       <div className={styles.logoRow} onClick={() => onNavigate('home')}>
         <span className={styles.logoEmoji}>🇲🇾</span>
         <div>

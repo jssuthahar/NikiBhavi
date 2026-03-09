@@ -3,9 +3,16 @@
   top: 0; left: 0; right: 0;
   z-index: 400;
   background: var(--ink);
-  height: 34px;
+  height: var(--tn);
   display: flex;
   align-items: center;
+}
+
+/* Desktop: TopNav starts after sidebar */
+@media(min-width: 769px) {
+  .topnav {
+    left: var(--sw);
+  }
 }
 
 .inner {

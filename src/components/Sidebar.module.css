@@ -1,8 +1,8 @@
 .sidebar {
-  position: fixed; top: calc(var(--tn) + var(--th)); left: 0; bottom: 0;
+  position: fixed; top: 0; left: 0; bottom: 0;
   width: var(--sw); background: #fff;
   border-right: 1.5px solid var(--border);
-  z-index: 200; display: flex; flex-direction: column;
+  z-index: 350; display: flex; flex-direction: column;
   overflow: hidden;
   /* Mobile: hidden off-screen */
   transform: translateX(-100%);
@@ -12,10 +12,27 @@
 @media(min-width: 769px) {
   .sidebar {
     transform: none !important;
-    z-index: 200;
+    z-index: 350;
+  }
+}
+/* Mobile: sidebar starts below both bars */
+@media(max-width: 768px) {
+  .sidebar {
+    top: calc(var(--tn) + var(--th));
   }
 }
 .open { transform: translateX(0); box-shadow: 4px 0 30px rgba(0,0,0,.15); }
+
+/* Dark strip at top of sidebar matching TopNav height — desktop only */
+.topStrip {
+  display: none;
+  height: var(--tn);
+  background: var(--ink);
+  flex-shrink: 0;
+}
+@media(min-width: 769px) {
+  .topStrip { display: block; }
+}
 
 .logoRow {
   display: flex; align-items: center; gap: 10px;
