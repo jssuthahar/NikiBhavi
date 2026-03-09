@@ -23,7 +23,8 @@
 
   /* Layout */
   --sw: 256px;
-  --th: 60px;
+  --tn: 34px;  /* top nav bar height */
+  --th: 60px;  /* main topbar height */
   --bn: 64px; /* bottom nav height mobile */
   --r: 16px;
 

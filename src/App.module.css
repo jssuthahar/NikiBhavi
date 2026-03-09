@@ -10,7 +10,7 @@
 
 /* Main content — push right on desktop to clear sidebar */
 .main {
-  padding-top: var(--th);
+  padding-top: calc(var(--tn) + var(--th));
   min-height: 100vh;
 }
 @media(min-width: 769px) {

@@ -1,0 +1,71 @@
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 400;
+  background: var(--ink);
+  height: 34px;
+  display: flex;
+  align-items: center;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Tagline */
+.tagline {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  white-space: nowrap;
+  letter-spacing: 0.1px;
+}
+@media(max-width: 480px) {
+  .tagline { display: none; }
+}
+
+/* Social links row */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background .15s;
+  cursor: pointer;
+}
+.link:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.linkEmoji {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.linkText {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+}
+
+/* On very small screens just show icon */
+@media(max-width: 360px) {
+  .linkText { display: none; }
+  .link { padding: 4px 7px; }
+}

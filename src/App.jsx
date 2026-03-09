@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import TopNav from './components/TopNav'
 import Topbar from './components/Topbar'
 import Sidebar from './components/Sidebar'
 import BottomNav from './components/BottomNav'
@@ -176,6 +177,7 @@ export default function App() {
 
   return (
     <div className={styles.app}>
+      <TopNav />
       <Topbar
         onMenuClick={() => setSidebarOpen(o => !o)}
         onNavigate={navigate}

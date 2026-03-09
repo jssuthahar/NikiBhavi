@@ -1,6 +1,6 @@
 /* ── Top Bar ─────────────────────────────────── */
 .bar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  position: fixed; top: var(--tn); left: 0; right: 0; z-index: 300;
   height: var(--th); background: #fff;
   border-bottom: 1.5px solid var(--border);
   display: flex; align-items: center; gap: 0;
