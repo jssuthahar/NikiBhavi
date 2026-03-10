@@ -3,25 +3,9 @@ import styles from './Sidebar.module.css'
 const NAV = [
   { id:'home', icon:'🏠', label:'Home' },
 
-  { type:'group', label:'Visa & Entry' },
-  { id:'touristinfo', icon:'✈️', label:'Tourist Visa',      badge:'FREE 2026' },
-  { id:'epass',       icon:'💼', label:'Employee Pass',      badge:'⚠️ 2026' },
-  { id:'studentguide',icon:'🎓', label:'Student Pass' },
-  { id:'dp',          icon:'🧳', label:'Dependent Pass' },
-  { id:'prroad',      icon:'🛂', label:'PR Roadmap' },
-  { id:'visatrack',   icon:'📍', label:'Visa Tracker' },
-  { id:'epelig',      icon:'🔍', label:'EP Eligibility' },
-
-  { type:'group', label:'Life in Malaysia' },
-  { id:'housing',     icon:'🏠', label:'Housing' },
-  { id:'hospital',    icon:'💊', label:'Hospitals' },
-  { id:'bank',        icon:'🏦', label:'Banking' },
-  { id:'transport',   icon:'🚇', label:'Transport' },
-  { id:'food',        icon:'🍛', label:'Indian Food' },
-  { id:'sim',         icon:'📱', label:'SIM Card' },
-  { id:'money',       icon:'💸', label:'Money Transfer' },
-  { id:'buycar',      icon:'🚗', label:'Buy a Car' },
-  { id:'moving',      icon:'📦', label:'Moving Here' },
+  { type:'group', label:'Travel & Flights' },
+  { id:'flighthub',   icon:'✈️', label:'Flight Hub',         badge:'NEW' },
+  { id:'tourist',     icon:'🗺️', label:'Tourist Hub' },
 
   { type:'group', label:'Financial Tools' },
   { id:'pcb',         icon:'📊', label:'PCB Tax Calc',       badge:'NEW' },
@@ -36,9 +20,9 @@ const NAV = [
   { id:'homeloan',    icon:'🏡', label:'Home Loan' },
   { id:'rent',        icon:'🏠', label:'Rent Affordability' },
   { id:'costcompare', icon:'⚖️', label:'Cost Compare' },
+  { id:'budget',      icon:'🎯', label:'Budget Simulator',   badge:'NEW' },
 
   { type:'group', label:'Work & Career' },
-  { id:'budget',     icon:'🎯', label:'Budget Simulator',       badge:'NEW' },
   { id:'jobsearch',   icon:'💼', label:'Job Search',         badge:'🔥' },
   { id:'eplifeguide', icon:'🏡', label:'EP Life Guide',      badge:'🔥' },
   { id:'medcard',     icon:'🏥', label:'Medical Card' },
@@ -46,9 +30,25 @@ const NAV = [
   { id:'probation',   icon:'📋', label:'Probation Calc' },
   { id:'schoolfees',  icon:'🎓', label:'School Fees' },
 
-  { type:'group', label:'Travel & Flights' },
-  { id:'flighthub',   icon:'✈️', label:'Flight Hub',         badge:'NEW' },
-  { id:'tourist',     icon:'🗺️', label:'Tourist Hub' },
+  { type:'group', label:'Life in Malaysia' },
+  { id:'housing',     icon:'🏠', label:'Housing' },
+  { id:'hospital',    icon:'💊', label:'Hospitals' },
+  { id:'bank',        icon:'🏦', label:'Banking' },
+  { id:'transport',   icon:'🚇', label:'Transport' },
+  { id:'food',        icon:'🍛', label:'Indian Food' },
+  { id:'sim',         icon:'📱', label:'SIM Card' },
+  { id:'money',       icon:'💸', label:'Money Transfer' },
+  { id:'buycar',      icon:'🚗', label:'Buy a Car' },
+  { id:'moving',      icon:'📦', label:'Moving Here' },
+
+  { type:'group', label:'Visa & Entry' },
+  { id:'touristinfo', icon:'✈️', label:'Tourist Visa',      badge:'FREE 2026' },
+  { id:'epass',       icon:'💼', label:'Employee Pass',      badge:'⚠️ 2026' },
+  { id:'studentguide',icon:'🎓', label:'Student Pass' },
+  { id:'dp',          icon:'🧳', label:'Dependent Pass' },
+  { id:'prroad',      icon:'🛂', label:'PR Roadmap' },
+  { id:'visatrack',   icon:'📍', label:'Visa Tracker' },
+  { id:'epelig',      icon:'🔍', label:'EP Eligibility' },
 
   { type:'group', label:'NikiBhavi' },
   { id:'videos',      icon:'▶️', label:'Videos' },
@@ -71,16 +71,19 @@ export default function Sidebar({ activePage, onNavigate, isOpen }) {
           if (n.type === 'group') return (
             <div key={i} className={styles.group}>{n.label}</div>
           )
-          const active = activePage === n.id
           return (
             <button
               key={n.id}
-              className={`${styles.item} ${active ? styles.active : ''}`}
+              className={`${styles.item} ${activePage === n.id ? styles.active : ''}`}
               onClick={() => onNavigate(n.id)}
             >
               <span className={styles.itemIcon}>{n.icon}</span>
               <span className={styles.itemLabel}>{n.label}</span>
-              {n.badge && <span className={`${styles.badge} ${active ? styles.badgeActive : ''}`}>{n.badge}</span>}
+              {n.badge && (
+                <span className={`${styles.badge} ${activePage === n.id ? styles.badgeActive : ''}`}>
+                  {n.badge}
+                </span>
+              )}
             </button>
           )
         })}

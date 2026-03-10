@@ -53,14 +53,9 @@ const PAGES = [
 // ── Home sections (Grab-style) ────────────────────────────────
 const SECTIONS = [
   {
-    id: 'visa', label: '🛂 Visa & Entry',
-    color: '#3b82f6', dark: false,
-    items: ['touristinfo','epass','studentguide','dp','prroad','visatrack','epelig'],
-  },
-  {
-    id: 'life', label: '🏙️ Life in Malaysia',
-    color: '#10b981', dark: false,
-    items: ['housing','hospital','bank','transport','food','sim','money','buycar','moving'],
+    id: 'travel', label: '✈️ Travel & Flights',
+    color: '#e53e3e', dark: false,
+    items: ['flighthub','tourist'],
   },
   {
     id: 'finance', label: '💰 Financial Tools',
@@ -73,9 +68,14 @@ const SECTIONS = [
     items: ['jobsearch','eplifeguide','medcard','leave','probation','schoolfees'],
   },
   {
-    id: 'travel', label: '✈️ Travel & Flights',
-    color: '#e53e3e', dark: false,
-    items: ['flighthub','tourist'],
+    id: 'life', label: '🏙️ Life in Malaysia',
+    color: '#10b981', dark: false,
+    items: ['housing','hospital','bank','transport','food','sim','money','buycar','moving'],
+  },
+  {
+    id: 'visa', label: '🛂 Visa & Entry',
+    color: '#3b82f6', dark: false,
+    items: ['touristinfo','epass','studentguide','dp','prroad','visatrack','epelig'],
   },
 ]
 
