@@ -41,12 +41,16 @@
     "experiments": {
       "typedRoutes": true
     },
+    "owner": "jssuthahar",
+    "newArchEnabled": false,
+    "jsEngine": "hermes",
     "extra": {
+      "router": {
+        "origin": false
+      },
       "eas": {
-        "projectId": "YOUR_EAS_PROJECT_ID"
+        "projectId": "09ce49d2-9449-4ddc-92ec-9dc5e5d3ac9d"
       }
-    },
-    "owner": "YOUR_EXPO_USERNAME",
-    "newArchEnabled": true
+    }
   }
 }

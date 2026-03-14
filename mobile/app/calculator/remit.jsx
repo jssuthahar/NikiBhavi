@@ -20,18 +20,13 @@ const INSTAREM_URL  = 'https://referral-link.onelink.me/gbf1/a43c48ca?deep_link_
 
 export default function RemitScreen() {
   const [amount, setAmount] = useState('')
+  const [calculated, setCalculated] = useState(false)
   const results = useMemo(() => calcRemittance(parseFloat(amount) || 0), [amount])
   const best = results[0]
   const hasResult = parseFloat(amount) > 0
 
   return (
     <ScrollView style={s.screen} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
-
-      <View style={[ls.heroCard, { backgroundColor: hasResult ? C.purple : '#F0FFF4' }]}>
-        <Text style={[s.resultLabel, !hasResult && { color: '#666' }]}>Best rate — {best?.name}</Text>
-        <Text style={[s.resultValue, !hasResult && { color: '#1A1A1A' }]}>{hasResult ? `₹${best?.received?.toLocaleString()}` : '—'}</Text>
-        <Text style={[s.resultSub, !hasResult && { color: '#666' }]}>{hasResult ? `For RM ${parseFloat(amount).toLocaleString()} · Rate ₹${best?.baseRate}/RM` : 'Enter amount below'}</Text>
-      </View>
 
       <Text style={s.sectionHdr}>Amount to Send</Text>
       <View style={s.inputGroup}>
@@ -44,8 +39,18 @@ export default function RemitScreen() {
         </View>
       </View>
 
-      {hasResult && (
+      <TouchableOpacity style={[s.btnPrimary, !parseFloat(amount) && { opacity:0.45 }]}
+        onPress={() => parseFloat(amount) && setCalculated(true)} activeOpacity={0.8}>
+        <Text style={s.btnText}>Compare Rates</Text>
+      </TouchableOpacity>
+
+      {calculated && parseFloat(amount) > 0 && (
         <>
+          <View style={[ls.heroCard, { backgroundColor:C.purple }]}>
+            <Text style={s.resultLabel}>Best rate — {best?.name}</Text>
+            <Text style={s.resultValue}>₹{best?.received?.toLocaleString()}</Text>
+            <Text style={s.resultSub}>For RM {parseFloat(amount).toLocaleString()} · Rate ₹{best?.baseRate}/RM</Text>
+          </View>
           <Text style={s.sectionHdr}>Provider Comparison</Text>
           {results.map((p, i) => (
             <TouchableOpacity key={p.name}

@@ -48,12 +48,6 @@ export default function ExpenseScreen() {
   return (
     <ScrollView style={s.screen} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
 
-      <View style={[ls.heroCard, { backgroundColor: ok ? C.primary : C.warning }]}>
-        <Text style={s.resultLabel}>{ok ? '✅ On Track' : '⚠️ Low Savings Rate'}</Text>
-        <Text style={s.resultValue}>{fmt(savings)}/mo</Text>
-        <Text style={s.resultSub}>{pct}% savings rate · {fmtI(savings * 12)}/year saved</Text>
-      </View>
-
       <Text style={s.sectionHdr}>Monthly Salary</Text>
       <View style={s.inputGroup}>
         <View style={[s.inputRow, { borderBottomWidth:0 }]}>
@@ -62,6 +56,12 @@ export default function ExpenseScreen() {
           <TextInput style={s.input} value={salary} onChangeText={setSalary}
             keyboardType="numeric" placeholder="8000" placeholderTextColor={C.placeholder} returnKeyType="done" />
         </View>
+      </View>
+
+      <View style={[ls.heroCard, { backgroundColor: ok ? C.primary : C.warning }]}>
+        <Text style={s.resultLabel}>{ok ? '✅ On Track' : '⚠️ Low Savings Rate'}</Text>
+        <Text style={s.resultValue}>{fmt(savings)}/mo saved</Text>
+        <Text style={s.resultSub}>{pct}% savings rate · {fmtI(savings * 12)}/year</Text>
       </View>
 
       <Text style={s.sectionHdr}>Monthly Expenses</Text>

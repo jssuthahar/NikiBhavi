@@ -186,3 +186,21 @@ function emi(principal, ratePA, months) {
   const r = ratePA / 100 / 12
   return principal * r * Math.pow(1+r, months) / (Math.pow(1+r, months) - 1)
 }
+
+// ── Living Cost Calculator ────────────────────────────────────
+export function calcLivingCost({ rent=1800, food=700, transport=250, utilities=200,
+  phone=100, insurance=200, remittance=500, leisure=300, others=200 }) {
+  const total = rent + food + transport + utilities + phone + insurance + remittance + leisure + others
+  const categories = [
+    { label:'Rent',        value:rent,       emoji:'🏠', pct: rent/total       },
+    { label:'Food',        value:food,       emoji:'🍛', pct: food/total       },
+    { label:'Transport',   value:transport,  emoji:'🚇', pct: transport/total  },
+    { label:'Utilities',   value:utilities,  emoji:'💡', pct: utilities/total  },
+    { label:'Phone',       value:phone,      emoji:'📱', pct: phone/total      },
+    { label:'Insurance',   value:insurance,  emoji:'🏥', pct: insurance/total  },
+    { label:'Remittance',  value:remittance, emoji:'💸', pct: remittance/total },
+    { label:'Leisure',     value:leisure,    emoji:'🎬', pct: leisure/total    },
+    { label:'Others',      value:others,     emoji:'📦', pct: others/total     },
+  ].filter(c => c.value > 0)
+  return { total, categories }
+}

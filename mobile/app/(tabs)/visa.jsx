@@ -1,6 +1,7 @@
 import { ScrollView, View, Text, TouchableOpacity, TextInput, StyleSheet, Linking } from 'react-native'
 import { useState } from 'react'
 import { useRouter } from 'expo-router'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
 import { C, s, SP, R, W, shadow, shadowMd } from '../../src/theme/index'
 import { checkEP } from '../../shared/calculators'

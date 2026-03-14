@@ -1,97 +1,91 @@
 import { useState, useMemo } from 'react'
-import { ScrollView, View, Text, TextInput, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import { calcPCB, fmt } from '../../shared/calculators'
 import { C, s, SP, R, W, shadowMd } from '../../src/theme/index'
+
+const KL_AREAS = [
+  { area:'Brickfields',   range:'RM 1,200–2,500', note:'Little India, great Tamil food'   },
+  { area:'Cheras',        range:'RM 900–1,800',   note:'Affordable, big Indian community' },
+  { area:'Petaling Jaya', range:'RM 1,500–3,500', note:'Family-friendly, good schools'    },
+  { area:'Subang Jaya',   range:'RM 1,200–2,500', note:'Tech companies nearby'            },
+  { area:'Bangsar',       range:'RM 2,500–5,000', note:'Upscale, expat-friendly'          },
+  { area:'Mont Kiara',    range:'RM 3,000–8,000', note:'Premium, international schools'   },
+]
 
 export default function RentCalcScreen() {
   const [income, setIncome] = useState('')
   const [rent,   setRent]   = useState('')
+  const [calculated, setCalculated] = useState(false)
 
-  const gross    = parseFloat(income) || 0
-  const rentAmt  = parseFloat(rent)   || 0
-  const pcb      = useMemo(() => calcPCB(gross), [gross])
-  const rentRatio = pcb.takehome > 0 ? (rentAmt / pcb.takehome) * 100 : 0
+  const gross     = parseFloat(income) || 0
+  const rentAmt   = parseFloat(rent) || 0
+  const pcb       = useMemo(() => calcPCB(gross), [gross])
   const affordMax = pcb.takehome * 0.30
-  const status    = rentRatio <= 25 ? 'great' : rentRatio <= 33 ? 'ok' : 'high'
-  const statusColor = status === 'great' ? C.primary : status === 'ok' ? C.warning : C.danger
-
-  const hasResult = gross > 0
-
-  const KL_AREAS = [
-    { area:'Brickfields',    range:'RM 1,200–2,500', note:'Little India, great Tamil food'     },
-    { area:'Cheras',         range:'RM 900–1,800',   note:'Affordable, big Indian community'   },
-    { area:'Petaling Jaya',  range:'RM 1,500–3,500', note:'Family-friendly, good schools'      },
-    { area:'Subang Jaya',    range:'RM 1,200–2,500', note:'Tech companies nearby'              },
-    { area:'Bangsar',        range:'RM 2,500–5,000', note:'Upscale, expat-friendly'            },
-    { area:'Mont Kiara',     range:'RM 3,000–8,000', note:'Premium, international schools'     },
-  ]
+  const rentRatio = pcb.takehome > 0 ? (rentAmt / pcb.takehome) * 100 : 0
+  const statusColor = rentRatio <= 25 ? C.primary : rentRatio <= 33 ? C.warning : C.danger
+  const canCalc   = gross > 0
 
   return (
-    <ScrollView style={s.screen} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
-
-      <View style={[ls.heroCard, { backgroundColor: hasResult ? '#D97706' : '#FFFBEB' }]}>
-        <Text style={[s.resultLabel, !hasResult && { color: '#666' }]}>Max Affordable Rent (30% rule)</Text>
-        <Text style={[s.resultValue, !hasResult && { color: '#1A1A1A' }]}>{hasResult ? fmt(affordMax) : '—'}</Text>
-        <Text style={[s.resultSub, !hasResult && { color: '#666' }]}>{hasResult ? `Take-home: ${fmt(pcb.takehome)}/mo` : 'Enter your salary below'}</Text>
-      </View>
-
+    <ScrollView style={s.screen} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{ paddingBottom:40 }}>
       <Text style={s.sectionHdr}>Your Details</Text>
       <View style={s.inputGroup}>
         {[
-          { label:'Monthly Gross',  value:income, set:setIncome, placeholder:'e.g. 8000' },
-          { label:'Current Rent',   value:rent,   set:setRent,   placeholder:'e.g. 1500', last:true },
-        ].map((f) => (
+          { label:'Monthly Salary', value:income, set:setIncome, prefix:'RM', ph:'e.g. 8000' },
+          { label:'Monthly Rent',   value:rent,   set:setRent,   prefix:'RM', ph:'e.g. 1800', last:true },
+        ].map(f => (
           <View key={f.label} style={[s.inputRow, f.last && { borderBottomWidth:0 }]}>
             <Text style={s.inputLabel}>{f.label}</Text>
-            <Text style={[s.small, { marginRight:6, color:C.muted }]}>RM</Text>
-            <TextInput style={s.input} value={f.value} onChangeText={f.set}
-              keyboardType="numeric" placeholder={f.placeholder}
-              placeholderTextColor={C.placeholder} returnKeyType="done" />
+            <Text style={[s.small, { marginRight:6, color:C.muted }]}>{f.prefix}</Text>
+            <TextInput style={s.input} value={f.value} onChangeText={t => { f.set(t); setCalculated(false) }}
+              keyboardType="numeric" placeholder={f.ph} placeholderTextColor={C.placeholder} returnKeyType="done" />
           </View>
         ))}
       </View>
-
-      {hasResult && rentAmt > 0 && (
+      <TouchableOpacity style={[s.btnPrimary, !canCalc && { opacity:0.45 }]}
+        onPress={() => canCalc && setCalculated(true)} activeOpacity={0.8}>
+        <Text style={s.btnText}>Check Affordability</Text>
+      </TouchableOpacity>
+      {calculated && canCalc && (
         <>
-          <Text style={s.sectionHdr}>Rent Analysis</Text>
-          <View style={[s.card, { paddingHorizontal:SP.lg, paddingVertical:SP.lg }]}>
-            <View style={[s.between, { marginBottom:SP.md }]}>
-              <Text style={s.title}>Rent-to-income ratio</Text>
-              <Text style={[ls.ratioBig, { color:statusColor }]}>{rentRatio.toFixed(0)}%</Text>
-            </View>
-            <View style={ls.ratioBar}>
-              <View style={[ls.ratioFill, { width:`${Math.min(100,rentRatio)}%`, backgroundColor:statusColor }]} />
-            </View>
-            <Text style={[s.small, { marginTop:8, color:statusColor }]}>
-              {status === 'great' ? '✅ Great! Well within budget' : status === 'ok' ? '⚠️ Acceptable but watch expenses' : '❌ Too high — consider cheaper area or raise'}
-            </Text>
+          <View style={[ls.rc, { backgroundColor:'#D97706' }]}>
+            <Text style={s.resultLabel}>Max Affordable Rent (30% rule)</Text>
+            <Text style={s.resultValue}>{fmt(affordMax)}</Text>
+            <Text style={s.resultSub}>Take-home: {fmt(pcb.takehome)}/mo</Text>
+          </View>
+          {rentAmt > 0 && (
+            <>
+              <Text style={s.sectionHdr}>Your Rent Analysis</Text>
+              <View style={s.card}>
+                {[
+                  ['Rent amount',    fmt(rentAmt),         statusColor],
+                  ['% of take-home', `${rentRatio.toFixed(1)}%`, statusColor],
+                  ['Max 30% budget', fmt(affordMax),       C.primary  ],
+                  ['Remaining',      fmt(pcb.takehome - rentAmt), C.label],
+                ].map(([l,v,c],i,arr) => (
+                  <View key={l} style={i < arr.length-1 ? s.row : s.rowLast}>
+                    <Text style={[s.body,{flex:1}]}>{l}</Text>
+                    <Text style={[s.title,{color:c}]}>{v}</Text>
+                  </View>
+                ))}
+              </View>
+            </>
+          )}
+          <Text style={s.sectionHdr}>KL Rental Guide</Text>
+          <View style={[s.card, { paddingVertical:0 }]}>
+            {KL_AREAS.map((a, i) => (
+              <View key={a.area} style={i < KL_AREAS.length-1 ? s.row : s.rowLast}>
+                <View style={{ flex:1 }}>
+                  <Text style={s.title}>{a.area}</Text>
+                  <Text style={s.small}>{a.note}</Text>
+                </View>
+                <Text style={[s.small, { color:C.primary, fontWeight:W.bold }]}>{a.range}</Text>
+              </View>
+            ))}
           </View>
         </>
       )}
-
-      <Text style={s.sectionHdr}>KL Areas for Indians</Text>
-      <View style={s.card}>
-        {KL_AREAS.map((a, i) => (
-          <View key={a.area} style={i < KL_AREAS.length-1 ? s.row : s.rowLast}>
-            <View style={{ flex:1 }}>
-              <Text style={s.title}>{a.area}</Text>
-              <Text style={s.small}>{a.note}</Text>
-            </View>
-            <View style={[s.pill]}>
-              <Text style={s.pillText}>{a.range}</Text>
-            </View>
-          </View>
-        ))}
-      </View>
-
-      <View style={{ height:40 }} />
     </ScrollView>
   )
 }
-
-const ls = StyleSheet.create({
-  heroCard:  { marginHorizontal:SP.lg, marginTop:SP.lg, borderRadius:R.xxl, padding:SP.xl, ...shadowMd },
-  ratioBig:  { fontSize:28, fontWeight:W.bold },
-  ratioBar:  { height:8, backgroundColor:'#EEE', borderRadius:4, overflow:'hidden' },
-  ratioFill: { height:8, borderRadius:4 },
-})
+const ls = StyleSheet.create({ rc: { marginHorizontal:SP.lg, marginTop:SP.lg, borderRadius:R.xxl, padding:SP.xl, ...shadowMd } })

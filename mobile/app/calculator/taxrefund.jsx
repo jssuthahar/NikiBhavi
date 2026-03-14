@@ -23,6 +23,7 @@ export default function TaxRefundScreen() {
   const [income,  setIncome]  = useState('')
   const [taxPaid, setTaxPaid] = useState('')
   const [values,  setValues]  = useState({ self:9000 })
+  const [calculated, setCalculated] = useState(false)
 
   const setVal = (id, v) => {
     const relief = RELIEFS.find(r => r.id === id)
@@ -45,21 +46,6 @@ export default function TaxRefundScreen() {
   return (
     <ScrollView style={s.screen} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
 
-      {/* Hero result card */}
-      <View style={[ls.heroCard, { backgroundColor: heroColor }]}>
-        <Text style={[s.resultLabel, !hasResult && { color: '#666' }]}>
-          {isRefund ? '🎉 Estimated Tax Refund' : hasResult ? '📋 Tax Balance Due' : 'Tax Refund Calculator'}
-        </Text>
-        <Text style={[s.resultValue, !hasResult && { color: '#1A1A1A' }]}>
-          {hasResult ? `RM ${Math.abs(result.refund).toLocaleString()}` : '—'}
-        </Text>
-        <Text style={[s.resultSub, !hasResult && { color: '#666' }]}>
-          {hasResult
-            ? `Effective rate: ${result.effectiveRate}% · Chargeable: RM ${result.chargeableIncome.toLocaleString()}`
-            : 'Enter your annual income below'}
-        </Text>
-      </View>
-
       {/* Income inputs */}
       <Text style={s.sectionHdr}>Income & Tax Paid</Text>
       <View style={s.inputGroup}>
@@ -78,6 +64,11 @@ export default function TaxRefundScreen() {
             placeholderTextColor={C.placeholder} returnKeyType="done" />
         </View>
       </View>
+
+      <TouchableOpacity style={[s.btnPrimary, !parseFloat(income) && { opacity:0.45 }]}
+        onPress={() => parseFloat(income) && setCalculated(true)} activeOpacity={0.8}>
+        <Text style={s.btnText}>Calculate Tax Refund</Text>
+      </TouchableOpacity>
 
       {/* Relief summary pill */}
       <View style={ls.reliefSummary}>
@@ -115,8 +106,17 @@ export default function TaxRefundScreen() {
         ))}
       </View>
 
+      {/* Result hero */}
+      {calculated && hasResult && (
+        <View style={[ls.heroCard, { backgroundColor: isRefund ? C.primary : C.danger }]}>
+          <Text style={s.resultLabel}>{isRefund ? '🎉 Estimated Tax Refund' : '📋 Tax Balance Due'}</Text>
+          <Text style={s.resultValue}>RM {Math.abs(result.refund).toLocaleString()}</Text>
+          <Text style={s.resultSub}>Effective rate: {result.effectiveRate}% · Chargeable: RM {result.chargeableIncome.toLocaleString()}</Text>
+        </View>
+      )}
+
       {/* Computation result */}
-      {hasResult && (
+      {calculated && hasResult && (
         <>
           <Text style={s.sectionHdr}>Computation</Text>
           <View style={s.card}>
