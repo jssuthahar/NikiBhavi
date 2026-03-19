@@ -74,7 +74,7 @@ export default function HomeScreen() {
       </View>
 
       {/* ── Live Rate Strip ── */}
-      <TouchableOpacity style={ls.rateStrip} onPress={() => router.push('/(tabs)/dashboard')} activeOpacity={0.85}>
+      <TouchableOpacity style={ls.rateStrip} onPress={() => router.push('/(tabs)/memy')} activeOpacity={0.85}>
         <View style={{ flex:1 }}>
           <Text style={ls.rateStripLabel}>Live MYR → INR</Text>
           <Text style={ls.rateStripVal}>{rateLoading ? 'Loading...' : `₹${rate.toFixed(2)} per RM 1`}</Text>
@@ -112,7 +112,7 @@ export default function HomeScreen() {
         {/* Next event card */}
         {nextEvent && (
           <TouchableOpacity style={[ls.nextEventCard, { flex:1 }]}
-            onPress={() => router.push('/(tabs)/calendar')} activeOpacity={0.8}>
+            onPress={() => router.push('/(tabs)/memy')} activeOpacity={0.8}>
             <Text style={ls.nextEventLabel}>Next Event</Text>
             <Text style={{ fontSize:28, marginVertical:2 }}>{nextEvent.emoji}</Text>
             <Text style={ls.nextEventName} numberOfLines={2}>{nextEvent.name}</Text>
@@ -124,7 +124,7 @@ export default function HomeScreen() {
       </View>
 
       {/* ── Today's Tip ── */}
-      <TouchableOpacity style={ls.tipStrip} onPress={() => router.push('/(tabs)/dashboard')} activeOpacity={0.85}>
+      <TouchableOpacity style={ls.tipStrip} onPress={() => router.push('/(tabs)/memy')} activeOpacity={0.85}>
         <Text style={{fontSize:20}}>{tip.emoji}</Text>
         <View style={{flex:1, marginLeft:SP.sm}}>
           <Text style={ls.tipStripCat}>💡 {tip.cat} Tip</Text>

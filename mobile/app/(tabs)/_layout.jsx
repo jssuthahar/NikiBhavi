@@ -11,33 +11,50 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{
       tabBarActiveTintColor:   C.primary,
-      tabBarInactiveTintColor: '#AAAAAA',
+      tabBarInactiveTintColor: '#BBBBBB',
       tabBarStyle: {
         backgroundColor: '#FFFFFF',
         borderTopColor:  '#EEEEEE',
         borderTopWidth:  1,
-        height:          Platform.OS === 'ios' ? 88 : 64,
-        paddingBottom:   Platform.OS === 'ios' ? 28 : 10,
+        height:          Platform.OS === 'ios' ? 85 : 62,
+        paddingBottom:   Platform.OS === 'ios' ? 26 : 8,
         paddingTop:      6,
-        elevation:       8,
+        elevation:       12,
         shadowColor:     '#000',
-        shadowOffset:    { width:0, height:-2 },
-        shadowOpacity:   0.06,
-        shadowRadius:    8,
+        shadowOffset:    { width:0, height:-3 },
+        shadowOpacity:   0.08,
+        shadowRadius:    10,
       },
-      tabBarLabelStyle:    { fontSize:10, fontWeight:'700', marginTop:2, letterSpacing:0.2 },
+      tabBarLabelStyle: { fontSize:11, fontWeight:'700', marginTop:1 },
       headerStyle:         { backgroundColor: C.primary },
       headerTitleStyle:    { fontWeight:'700', color:'#fff', fontSize:17 },
       headerTintColor:     '#fff',
       headerShadowVisible: false,
     }}>
-      <Tabs.Screen name="index"     options={{ title:'Home',     headerShown:false,        tabBarIcon: ICON('home') }} />
-      <Tabs.Screen name="dashboard" options={{ title:'My MY',    headerTitle:'My Malaysia', tabBarIcon: ICON('person-circle') }} />
-      <Tabs.Screen name="calendar"  options={{ title:'Calendar', tabBarIcon: ICON('calendar') }} />
-      <Tabs.Screen name="tracker"   options={{ title:'Tracker',  tabBarIcon: ICON('trending-up') }} />
-      <Tabs.Screen name="tools"     options={{ title:'Tools',    tabBarIcon: ICON('calculator') }} />
-      <Tabs.Screen name="guides"    options={{ title:'Guides',   tabBarIcon: ICON('book') }} />
-      <Tabs.Screen name="chat"      options={{ title:'NikiBot',  tabBarIcon: ICON('chatbubble-ellipses') }} />
+      {/* 1. Home — landing, rates, weather, tips */}
+      <Tabs.Screen name="index"
+        options={{ title:'Home', headerShown:false, tabBarIcon: ICON('home') }} />
+
+      {/* 2. My MY — dashboard + calendar + tracker merged */}
+      <Tabs.Screen name="memy"
+        options={{ title:'My MY', headerTitle:'My Malaysia', tabBarIcon: ICON('person-circle') }} />
+
+      {/* 3. Tools — all calculators */}
+      <Tabs.Screen name="tools"
+        options={{ title:'Tools', tabBarIcon: ICON('calculator') }} />
+
+      {/* 4. Guides — all guides */}
+      <Tabs.Screen name="guides"
+        options={{ title:'Guides', tabBarIcon: ICON('book') }} />
+
+      {/* 5. NikiBot — AI chat */}
+      <Tabs.Screen name="chat"
+        options={{ title:'NikiBot', tabBarIcon: ICON('chatbubble-ellipses') }} />
+
+      {/* Hidden tabs — accessible via navigation but not in bottom bar */}
+      <Tabs.Screen name="dashboard" options={{ href: null }} />
+      <Tabs.Screen name="calendar"  options={{ href: null }} />
+      <Tabs.Screen name="tracker"   options={{ href: null }} />
     </Tabs>
   )
 }

@@ -4,11 +4,11 @@ import {
   StyleSheet, Animated, RefreshControl
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { storage } from '../../shared/storage'
+import { storage } from '../shared/storage'
 import { Ionicons } from '@expo/vector-icons'
-import { useLiveRate } from '../../shared/useLiveRate'
-import { getTodayTip, getMultipleTips } from '../../shared/dailyTips'
-import { C, s, SP, R, W, shadow, shadowMd } from '../../src/theme/index'
+import { useLiveRate } from '../shared/useLiveRate'
+import { getTodayTip, getMultipleTips } from '../shared/dailyTips'
+import { C, s, SP, R, W, shadow, shadowMd } from '../src/theme/index'
 
 const KEY = 'nikibhavi_profile'
 
@@ -22,7 +22,7 @@ function parseDate(str) {
   return new Date(y, m - 1, d)
 }
 
-export default function DashboardScreen() {
+export default function DashboardContent() {
   const insets   = useSafeAreaInsets()
   const { rate, loading: rateLoading, error: rateError, refetch, updated } = useLiveRate()
 
@@ -103,15 +103,14 @@ export default function DashboardScreen() {
       contentContainerStyle={{ paddingBottom: 32 + insets.bottom }}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={C.primary} />}>
 
-      {/* ── Header ── */}
-      <View style={ls.header}>
+      {/* ── Header row (compact — no green bar, memy provides context) ── */}
+      <View style={ls.headerCompact}>
         <View style={{ flex:1 }}>
           <Text style={ls.greeting}>Good {getGreeting()}! 🙏</Text>
-          <Text style={ls.name}>{profile?.name || 'My Malaysia Dashboard'}</Text>
-          <Text style={ls.subline}>🇮🇳 → 🇲🇾  Pull to refresh rates</Text>
+          <Text style={ls.name}>{profile?.name || 'My Malaysia'}</Text>
         </View>
-        <TouchableOpacity style={ls.editBtn} onPress={() => setEditing(true)}>
-          <Ionicons name="settings-outline" size={20} color="rgba(255,255,255,0.8)" />
+        <TouchableOpacity style={ls.editBtnDark} onPress={() => setEditing(true)}>
+          <Ionicons name="settings-outline" size={18} color={C.muted} />
         </TouchableOpacity>
       </View>
 
@@ -336,13 +335,13 @@ function getGreeting() {
 }
 
 const ls = StyleSheet.create({
-  header:      { backgroundColor:C.primary, paddingHorizontal:SP.lg, paddingTop:SP.xl, paddingBottom:SP.xxl,
-                 flexDirection:'row', alignItems:'flex-start' },
+  header:      { display:'none' },  // removed — memy provides context
+  headerCompact:{ flexDirection:'row', alignItems:'center', paddingHorizontal:SP.lg, paddingVertical:SP.md, backgroundColor:'#fff', borderBottomWidth:1, borderBottomColor:'#EEE' },
   greeting:    { fontSize:13, color:'rgba(255,255,255,0.75)', marginBottom:2 },
   name:        { fontSize:24, fontWeight:W.heavy, color:'#fff', letterSpacing:-0.5 },
   subline:     { fontSize:12, color:'rgba(255,255,255,0.6)', marginTop:2 },
-  editBtn:     { width:40, height:40, borderRadius:20, backgroundColor:'rgba(255,255,255,0.15)',
-                 alignItems:'center', justifyContent:'center' },
+  editBtn:     { display:'none' },
+  editBtnDark: { width:36, height:36, borderRadius:18, backgroundColor:'#F5F5F5', alignItems:'center', justifyContent:'center' },
 
   rateCard:    { marginHorizontal:SP.lg, marginTop:-SP.xl, borderRadius:R.xxl,
                  backgroundColor:'#1a1a2e', padding:SP.lg, ...shadowMd },

@@ -4,11 +4,11 @@ import {
   StyleSheet, Dimensions
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { storage } from '../../shared/storage'
+import { storage } from '../shared/storage'
 import { Ionicons } from '@expo/vector-icons'
-import { useLiveRate } from '../../shared/useLiveRate'
-import { useGoldRate } from '../../shared/useGoldRate'
-import { C, s, SP, R, W, shadow, shadowMd } from '../../src/theme/index'
+import { useLiveRate } from '../shared/useLiveRate'
+import { useGoldRate } from '../shared/useGoldRate'
+import { C, s, SP, R, W, shadow, shadowMd } from '../src/theme/index'
 
 const KEY_SAL  = 'salary_history'
 const { width: SW } = Dimensions.get('window')
@@ -17,7 +17,7 @@ const EPF_EMP  = 0.11
 const EPF_ER   = 0.13
 const EPF_DIV  = 0.055
 
-export default function TrackerScreen() {
+export default function TrackerContent() {
   const insets = useSafeAreaInsets()
   const { rate }  = useLiveRate()
   const { gold }  = useGoldRate()

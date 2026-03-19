@@ -30,7 +30,6 @@
       "minSdkVersion": 24
     },
     "plugins": [
-      "expo-router",
       [
         "expo-splash-screen",
         {
