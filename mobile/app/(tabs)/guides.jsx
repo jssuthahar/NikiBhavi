@@ -37,6 +37,7 @@ const SECTIONS = [
       { emoji:'📱', label:'SIM Card Guide',    sub:'Maxis, Celcom, Digi comparison',         color:C.primary, route:'/guide/sim-card'                        },
       { emoji:'🍛', label:'Indian Food Guide', sub:'Must-try dishes & best food areas',      color:C.orange,  route:'/guide/food-guide'                      },
       { emoji:'🚇', label:'Transport Guide',   sub:'Grab, MRT, bus, Touch\'n Go',            color:C.info,    route:'/guide/transport'                       },
+      { emoji:'🪪', label:'Driving Licence',   sub:'Renewal — docs, fees, JPJ location',     color:C.purple,  route:'/guide/driving-licence', badge:'New'    },
       { emoji:'💊', label:'Hospitals & Clinics',sub:'Panel clinics, govt hospitals, ER',     color:C.danger,  route:'/guide/hospital'                        },
       { emoji:'📦', label:'Moving Checklist',  sub:'Step-by-step relocation guide',          color:C.orange,  route:'/guide/moving-checklist'                },
     ],

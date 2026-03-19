@@ -52,6 +52,7 @@ export default function RootLayout() {
           <Stack.Screen name="guide/living-cost"       options={{ title:'Living Cost Guide' }} />
           <Stack.Screen name="guide/pr-roadmap"        options={{ title:'PR Roadmap' }} />
           <Stack.Screen name="guide/moving-checklist"  options={{ title:'Moving Checklist' }} />
+          <Stack.Screen name="guide/driving-licence"   options={{ title:'Driving Licence Renewal' }} />
           <Stack.Screen name="guide/flights"           options={{ title:'Flight & Baggage' }} />
           <Stack.Screen name="guide/job-search"        options={{ title:'Job Search Guide' }} />
           <Stack.Screen name="guide/housing"           options={{ title:'Housing Guide' }} />

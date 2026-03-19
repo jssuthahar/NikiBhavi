@@ -2,7 +2,7 @@
   "expo": {
     "name": "NikiBhavi",
     "slug": "nikibhavi",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "nikibhavi",
@@ -23,8 +23,11 @@
         "backgroundColor": "#00B14F"
       },
       "package": "com.nikibhavi.app",
-      "versionCode": 1,
-      "permissions": []
+      "versionCode": 2,
+      "permissions": [],
+      "targetSdkVersion": 35,
+      "compileSdkVersion": 35,
+      "minSdkVersion": 24
     },
     "plugins": [
       "expo-router",
@@ -41,16 +44,13 @@
     "experiments": {
       "typedRoutes": true
     },
-    "owner": "jssuthahar",
-    "newArchEnabled": false,
-    "jsEngine": "hermes",
     "extra": {
-      "router": {
-        "origin": false
-      },
       "eas": {
-        "projectId": "09ce49d2-9449-4ddc-92ec-9dc5e5d3ac9d"
+        "projectId": "YOUR_EAS_PROJECT_ID"
       }
-    }
+    },
+    "owner": "YOUR_EXPO_USERNAME",
+    "newArchEnabled": false,
+    "jsEngine": "hermes"
   }
 }

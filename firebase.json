@@ -51,8 +51,5 @@
     ],
     "cleanUrls": true,
     "trailingSlash": false
-  },
-  "remoteconfig": {
-    "template": "remoteconfig.template.json"
   }
 }

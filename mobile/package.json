@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npx expo@~52.0.0 start --clear",
     "android": "npx expo@~52.0.0 start --android --clear",
-    "ios": "npx expo@~52.0.0 start --ios --clear"
+    "ios": "npx expo@~52.0.0 start --ios --clear",
+    "postinstall": "echo \"Install complete\""
   },
   "dependencies": {
     "expo": "~52.0.0",
@@ -28,7 +29,7 @@
     "react-native-web": "~0.19.13",
     "@expo/vector-icons": "~14.0.4",
     "@react-navigation/native": "^6.1.18",
-    "@react-native-async-storage/async-storage": "1.23.1"
+    "@react-native-async-storage/async-storage": "2.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.0"

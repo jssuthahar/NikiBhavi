@@ -17,6 +17,7 @@ import {
   CarLoanPage, PCBCalcPage, MedicalCardPage, PRRoadmapPage, ExpenseTrackerPage,
   BuyCarGuidePage, HospitalGuidePage, MovingChecklistPage, DependentPassPage, EPFWithdrawalPage,
   StudentGuidePage, JobSearchPage, FlightHubPage,
+  DrivingLicencePage,
   TermsPageFull, PrivacyPageFull,
   BudgetSimPage
 } from './components/Pages'
@@ -71,6 +72,7 @@ const ROUTES = {
   'job-search':     'jobsearch',
   'flight-hub':     'flighthub',
   'budget':         'budget',
+  'driving-licence':'drivinglicence',
   'terms':          'terms',
   'privacy':        'privacy',
 }
@@ -125,6 +127,7 @@ const PAGE_MAP = {
   flighthub:   FlightHubPage,
   probation:   ProbationPage,
   budget:      BudgetSimPage,
+  drivinglicence: DrivingLicencePage,
   terms:       TermsPageFull,
   privacy:     PrivacyPageFull,
   schoolfees:  SchoolFeesPage,

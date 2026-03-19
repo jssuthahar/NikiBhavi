@@ -38,8 +38,9 @@ const NAV = [
   { id:'food',        icon:'🍛', label:'Indian Food' },
   { id:'sim',         icon:'📱', label:'SIM Card' },
   { id:'money',       icon:'💸', label:'Money Transfer' },
-  { id:'buycar',      icon:'🚗', label:'Buy a Car' },
-  { id:'moving',      icon:'📦', label:'Moving Here' },
+  { id:'buycar',        icon:'🚗', label:'Buy a Car' },
+  { id:'drivinglicence',icon:'🪪', label:'Driving Licence',  badge:'NEW' },
+  { id:'moving',        icon:'📦', label:'Moving Here' },
 
   { type:'group', label:'Visa & Entry' },
   { id:'touristinfo', icon:'✈️', label:'Tourist Visa',      badge:'FREE 2026' },

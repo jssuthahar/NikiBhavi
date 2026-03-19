@@ -4,6 +4,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
 import { C, s, SP, R, W, shadow, shadowMd, shadowLg } from '../../src/theme/index'
 import { useLiveRate } from '../../shared/useLiveRate'
+import { useWeather } from '../../shared/useWeather'
+import { getUpcomingEvents, getDaysUntil } from '../../shared/eventsData'
 import { getTodayTip } from '../../shared/dailyTips'
 
 const CALC_TILES = [
@@ -37,6 +39,8 @@ export default function HomeScreen() {
   const router = useRouter()
   const insets = useSafeAreaInsets()
   const { rate, loading: rateLoading } = useLiveRate()
+  const { weather } = useWeather()
+  const nextEvent = getUpcomingEvents(14)[0]
   const tip = getTodayTip()
 
   return (
@@ -80,6 +84,44 @@ export default function HomeScreen() {
           <Text style={[ls.rateStripLabel,{opacity:0.7}]}>Tap for full dashboard →</Text>
         </View>
       </TouchableOpacity>
+
+      {/* ── Weather + Next Event ── */}
+      <View style={ls.weatherRow}>
+        {/* Weather card */}
+        {weather && (
+          <View style={[ls.weatherCard, { flex:1 }]}>
+            <View style={{ flexDirection:'row', alignItems:'center', gap:SP.xs }}>
+              <Text style={{ fontSize:28 }}>{weather.emoji}</Text>
+              <View>
+                <Text style={ls.weatherTemp}>{weather.temp}°C</Text>
+                <Text style={ls.weatherCond}>{weather.condition}</Text>
+              </View>
+            </View>
+            <View style={[ls.umbrellaBadge, { backgroundColor: weather.umbrella ? '#FFF0EF' : '#E6F7EE' }]}>
+              <Text style={[ls.umbrellaTxt, { color: weather.umbrella ? C.danger : C.primary }]}>
+                {weather.umbrella ? '☔ Bring umbrella!' : '☀️ No umbrella needed'}
+              </Text>
+            </View>
+            <Text style={ls.weatherFeel}>{weather.feel} · 💧{weather.humidity}%</Text>
+            {weather.maxRainProb > 0 && (
+              <Text style={ls.weatherRain}>🌧 Rain chance: {weather.maxRainProb}%</Text>
+            )}
+          </View>
+        )}
+
+        {/* Next event card */}
+        {nextEvent && (
+          <TouchableOpacity style={[ls.nextEventCard, { flex:1 }]}
+            onPress={() => router.push('/(tabs)/calendar')} activeOpacity={0.8}>
+            <Text style={ls.nextEventLabel}>Next Event</Text>
+            <Text style={{ fontSize:28, marginVertical:2 }}>{nextEvent.emoji}</Text>
+            <Text style={ls.nextEventName} numberOfLines={2}>{nextEvent.name}</Text>
+            <View style={ls.nextEventDays}>
+              <Text style={ls.nextEventDaysTxt}>{getDaysUntil(nextEvent.date)}d away</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      </View>
 
       {/* ── Today's Tip ── */}
       <TouchableOpacity style={ls.tipStrip} onPress={() => router.push('/(tabs)/dashboard')} activeOpacity={0.85}>
@@ -220,6 +262,21 @@ const ls = StyleSheet.create({
   rateStripVal:   { fontSize:18, fontWeight:W.bold, color:'#C9F53B', marginTop:2 },
   rateStripRight: { alignItems:'flex-end' },
   rateStripRM:    { fontSize:13, fontWeight:W.bold, color:'#fff' },
+
+  // Weather + event row
+  weatherRow:       { flexDirection:'row', paddingHorizontal:SP.lg, gap:SP.sm, marginBottom:4 },
+  weatherCard:      { backgroundColor:'#fff', borderRadius:R.xl, padding:SP.md, ...shadow },
+  weatherTemp:      { fontSize:22, fontWeight:W.heavy, color:C.label },
+  weatherCond:      { fontSize:11, color:C.muted, fontWeight:W.medium },
+  umbrellaBadge:    { borderRadius:R.full, paddingHorizontal:8, paddingVertical:4, marginTop:SP.sm, alignSelf:'flex-start' },
+  umbrellaTxt:      { fontSize:11, fontWeight:W.bold },
+  weatherFeel:      { fontSize:10, color:C.muted, marginTop:4 },
+  weatherRain:      { fontSize:10, color:C.info, marginTop:2 },
+  nextEventCard:    { backgroundColor:'#fff', borderRadius:R.xl, padding:SP.md, alignItems:'center', ...shadow },
+  nextEventLabel:   { fontSize:10, color:C.muted, fontWeight:W.bold, textTransform:'uppercase', letterSpacing:0.5 },
+  nextEventName:    { fontSize:12, fontWeight:W.bold, color:C.label, textAlign:'center', marginTop:2 },
+  nextEventDays:    { backgroundColor:C.primaryLt, borderRadius:R.full, paddingHorizontal:10, paddingVertical:3, marginTop:SP.xs },
+  nextEventDaysTxt: { fontSize:11, fontWeight:W.bold, color:C.primaryDk },
 
   // Tip strip
   tipStrip:       { marginHorizontal:SP.lg, marginBottom:4, backgroundColor:'#fff', borderRadius:R.xl,

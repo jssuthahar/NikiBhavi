@@ -37,6 +37,7 @@ import BudgetSim from './BudgetSim'
 import StudentGuide  from './StudentGuide'
 import JobSearch     from './JobSearch'
 import FlightHub     from './FlightHub'
+import DrivingLicence from './DrivingLicence'
 import { BuyMeCoffeeCard } from './BuyMeCoffee'
 import { FollowBanner } from './FollowBanner'
 import ShareUrl from './ShareUrl'
@@ -399,7 +400,8 @@ export function DependentPassPage(){ return <PageWrapper id="dp"><DependentPass 
 export function EPFWithdrawalPage(){ return <PageWrapper id="epfout"><EPFWithdrawal /><ToolFooter /></PageWrapper> }
 export function StudentGuidePage() { return <PageWrapper id="studentguide"><StudentGuide /><ToolFooter /></PageWrapper> }
 export function JobSearchPage()    { return <PageWrapper id="jobsearch"><JobSearch /><ToolFooter /></PageWrapper> }
-export function FlightHubPage()    { return <PageWrapper id="flighthub"><FlightHub /><ToolFooter /></PageWrapper> }
-export function BudgetSimPage()    { return <PageWrapper id="budget"><BudgetSim /><ToolFooter /></PageWrapper> }
+export function FlightHubPage()      { return <PageWrapper id="flighthub"><FlightHub /><ToolFooter /></PageWrapper> }
+export function BudgetSimPage()      { return <PageWrapper id="budget"><BudgetSim /><ToolFooter /></PageWrapper> }
+export function DrivingLicencePage() { return <PageWrapper id="drivinglicence"><DrivingLicence /><ToolFooter /></PageWrapper> }
 export function TermsPageFull()    { return <PageWrapper id="terms"><TermsPage /><BuyMeCoffeeCard /></PageWrapper> }
 export function PrivacyPageFull()  { return <PageWrapper id="privacy"><PrivacyPage /><BuyMeCoffeeCard /></PageWrapper> }

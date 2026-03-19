@@ -1,0 +1,63 @@
+.wrap { max-width: 780px; margin: 0 auto; padding: 0 0 40px; }
+
+/* Hero */
+.hero { display:flex; align-items:center; gap:16px; background:var(--ink); color:#fff; padding:24px 28px; border-radius:20px; margin-bottom:24px; }
+.heroIcon { font-size:40px; flex-shrink:0; }
+.heroTitle { font-size:22px; font-weight:900; color:#fff; margin:0 0 4px; }
+.heroDesc  { font-size:14px; color:rgba(255,255,255,0.7); margin:0; }
+
+/* Location card */
+.locationCard { background:#E6F7EE; border:2px solid #00B14F; border-radius:16px; padding:16px 20px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.locationTitle { font-size:14px; font-weight:700; color:#007A37; margin-bottom:10px; }
+.locationSteps { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:13px; }
+.lrtStep    { background:#fff; border-radius:20px; padding:4px 12px; font-weight:600; color:#333; }
+.lrtArrow   { color:#00B14F; font-weight:bold; }
+.lrtStation { background:#00B14F; color:#fff; border-radius:20px; padding:4px 12px; font-weight:700; }
+.lrtWalk    { background:#fff; border-radius:20px; padding:4px 12px; font-weight:600; color:#333; }
+.lrtEnd     { background:#0D0D0D; color:#C9F53B; border-radius:20px; padding:4px 12px; font-weight:700; }
+.locationBadge { background:#00B14F; color:#fff; border-radius:20px; padding:8px 18px; font-size:13px; font-weight:800; white-space:nowrap; }
+
+/* Sections */
+.section { margin-bottom:28px; }
+.sectionTitle { font-size:17px; font-weight:800; color:var(--ink); margin:0 0 14px; }
+
+/* Documents */
+.docGrid { display:flex; flex-direction:column; gap:10px; }
+.docCard { display:flex; align-items:flex-start; gap:14px; background:#fff; border-radius:14px; padding:14px 16px; border:1.5px solid var(--border); }
+.docCardOptional { border-color:#F59E0B; background:#FFFBEB; }
+.docIcon  { font-size:24px; flex-shrink:0; margin-top:2px; }
+.docTitle { font-size:14px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.docNote  { font-size:13px; color:var(--sub); line-height:1.5; }
+.optBadge { font-size:10px; font-weight:800; background:#F59E0B; color:#fff; padding:2px 8px; border-radius:20px; }
+
+/* Steps */
+.steps { display:flex; flex-direction:column; gap:0; }
+.step  { display:flex; gap:16px; position:relative; padding-bottom:4px; }
+.step::before { content:''; position:absolute; left:18px; top:36px; bottom:0; width:2px; background:#EEE; }
+.step:last-child::before { display:none; }
+.stepNum  { width:36px; height:36px; border-radius:50%; background:var(--ink); color:#C9F53B; font-size:14px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.stepBody { padding-bottom:20px; flex:1; }
+.stepTitle{ font-size:14px; font-weight:800; color:var(--ink); margin-bottom:4px; margin-top:6px; }
+.stepDesc { font-size:13px; color:var(--sub); line-height:1.6; }
+
+/* Fees */
+.feesTable { background:#fff; border-radius:16px; border:1.5px solid var(--border); overflow:hidden; margin-bottom:14px; }
+.feeRow    { display:flex; align-items:flex-start; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border); gap:12px; }
+.feeLeft   { display:flex; align-items:flex-start; gap:12px; flex:1; }
+.feeDot    { width:10px; height:10px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+.feeItem   { font-size:14px; font-weight:700; color:var(--ink); margin-bottom:3px; }
+.feeNote   { font-size:12px; color:var(--muted); line-height:1.5; }
+.feeAmount { font-size:16px; font-weight:900; white-space:nowrap; }
+.feeTotal  { display:flex; justify-content:space-between; padding:14px 16px; background:var(--ink); color:#C9F53B; font-size:16px; font-weight:900; }
+
+.feeCalc       { background:#F5F5F5; border-radius:12px; padding:14px 16px; }
+.feeCalcTitle  { font-size:12px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
+.feeCalcRow    { display:flex; gap:16px; font-size:13px; padding:4px 0; border-bottom:1px solid #EEE; }
+.feeCalcRow:last-child { border-bottom:none; }
+.feeCalcRow span:first-child { width:60px; color:var(--sub); }
+.feeCalcRow span:nth-child(2) { font-weight:700; color:var(--ink); width:80px; }
+.perYear { color:#00B14F; font-weight:600; }
+
+/* Tips */
+.tips { display:flex; flex-direction:column; gap:10px; }
+.tip  { background:#fff; border-radius:12px; padding:12px 16px; font-size:13px; color:var(--sub); line-height:1.6; border-left:3px solid var(--ink); border:1.5px solid var(--border); }
