@@ -33,7 +33,7 @@ jobs:
       - name: Copy google-services
         working-directory: mobile
         run: cp google-services.json android/app/google-services.json
-      - name: Build APK
+      - name: Build APK for Firebase
         working-directory: mobile/android
         run: ./gradlew assembleRelease
         env:
@@ -41,16 +41,33 @@ jobs:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-      - uses: actions/upload-artifact@v4
+      - name: Build AAB for Google Play
+        working-directory: mobile/android
+        run: ./gradlew bundleRelease
+        env:
+          ANDROID_KEYSTORE: ../nikibhavi.keystore
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
         with:
           name: nikibhavi-apk-${{ github.run_number }}
           path: mobile/android/app/build/outputs/apk/release/app-release.apk
           retention-days: 30
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nikibhavi-aab-${{ github.run_number }}
+          path: mobile/android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 30
+
   distribute:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download APK
+        uses: actions/download-artifact@v4
         with:
           name: nikibhavi-apk-${{ github.run_number }}
           path: ./apk
@@ -58,9 +75,10 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          groups: testers
+          testers: ${{ secrets.FIREBASE_TESTER_EMAILS }}
           file: ./apk/app-release.apk
           releaseNotes: Build ${{ github.run_number }}
+
   notify:
     runs-on: ubuntu-latest
     needs: distribute
