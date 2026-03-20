@@ -1,17 +1,9 @@
-import { AppRegistry } from 'react-native'
-import { name as appName } from './app.json'
-
-// ── Register background FCM handler BEFORE everything else ───
-// This MUST be at the top level — not inside a component
+// Register background FCM handler BEFORE app loads
 try {
-  const { default: messaging } = require('@react-native-firebase/messaging')
-  messaging().setBackgroundMessageHandler(async remoteMessage => {
-    console.log('Background FCM message:', remoteMessage)
-    // System shows the notification automatically in background/quit state
-  })
+  const { registerBackgroundHandler } = require('./src/firebase')
+  registerBackgroundHandler()
 } catch (e) {
-  console.warn('Background handler setup failed:', e.message)
+  console.warn('Background handler:', e.message)
 }
 
-// ── Register the main app ─────────────────────────────────────
 import('expo-router/entry')
