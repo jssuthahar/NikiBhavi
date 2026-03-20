@@ -23,15 +23,12 @@ export default function RootLayout() {
   useEffect(() => {
     async function init() {
       try {
-        // Initialize Firebase (analytics, crashlytics, push notifications)
         await initFirebase()
-
-        // Track launch count and maybe show review dialog
         await trackLaunchAndReview()
-
-        // Check for app updates (after 2 second delay so app feels snappy)
-        setTimeout(() => checkForUpdate(), 2000)
-
+        // Delay update check 5 seconds so app loads first
+        setTimeout(() => {
+          checkForUpdate().catch(e => console.warn('Update check:', e.message))
+        }, 5000)
       } catch (e) {
         console.warn('Init error:', e.message)
       } finally {
