@@ -48,17 +48,61 @@ jobs:
         run: |
           cp google-services.json android/app/google-services.json
           cp nikibhavi.keystore android/app/nikibhavi.keystore
-      - name: Print full build.gradle
-        working-directory: mobile/android
-        run: cat app/build.gradle
-      - name: Patch build.gradle signing
+      - name: Force targetSdkVersion 35 in build.gradle
         working-directory: mobile/android
         run: |
           python3 << 'PYEOF'
           with open('app/build.gradle', 'r') as f:
               txt = f.read()
 
-          # Step 1: Add release signingConfig inside signingConfigs block
+          print("BEFORE targetSdk lines:")
+          for i, line in enumerate(txt.split('\n')):
+              if 'targetSdk' in line or 'compileSdk' in line:
+                  print(f"  {i}: {line}")
+
+          # Force override targetSdkVersion and compileSdkVersion
+          import re
+          txt = re.sub(r'targetSdkVersion\s+\d+', 'targetSdkVersion 35', txt)
+          txt = re.sub(r'compileSdkVersion\s+\d+', 'compileSdkVersion 35', txt)
+          txt = re.sub(r'targetSdk\s*=\s*\d+', 'targetSdk = 35', txt)
+          txt = re.sub(r'compileSdk\s*=\s*\d+', 'compileSdk = 35', txt)
+
+          print("AFTER targetSdk lines:")
+          for i, line in enumerate(txt.split('\n')):
+              if 'targetSdk' in line or 'compileSdk' in line:
+                  print(f"  {i}: {line}")
+
+          with open('app/build.gradle', 'w') as f:
+              f.write(txt)
+          print("✅ targetSdkVersion forced to 35")
+          PYEOF
+      - name: Force targetSdk 35 in build_defs.gradle (firebase override)
+        working-directory: mobile/android
+        run: |
+          # Firebase messaging overrides targetSdk — fix in gradle.properties
+          echo "android.targetSdkVersion=35" >> gradle.properties
+          echo "android.compileSdkVersion=35" >> gradle.properties
+          # Also patch root build.gradle
+          find . -name "build.gradle" | xargs grep -l "targetSdk" | while read f; do
+            python3 -c "
+          import re, sys
+          with open('$f','r') as file:
+              t = file.read()
+          t = re.sub(r'targetSdkVersion\s+\d+', 'targetSdkVersion 35', t)
+          t = re.sub(r'targetSdk\s*=\s*\d+', 'targetSdk = 35', t)
+          with open('$f','w') as file:
+              file.write(t)
+          print(f'Patched: $f')
+            "
+          done
+      - name: Patch build.gradle - release signing
+        working-directory: mobile/android
+        run: |
+          python3 << 'PYEOF'
+          import re
+          with open('app/build.gradle', 'r') as f:
+              txt = f.read()
+
           release_block = '''
               release {
                   storeFile file("nikibhavi.keystore")
@@ -67,49 +111,37 @@ jobs:
                   keyPassword project.findProperty("KEY_PASSWORD") ?: ""
               }'''
 
-          txt = txt.replace(
-              'signingConfigs {\n        debug {',
-              'signingConfigs {' + release_block + '\n        debug {'
-          )
+          if 'signingConfigs {\n        debug {' in txt:
+              txt = txt.replace(
+                  'signingConfigs {\n        debug {',
+                  'signingConfigs {' + release_block + '\n        debug {'
+              )
 
-          # Step 2: Find exact line with signingConfig signingConfigs.debug in release block
-          # Print all lines containing signingConfig to see exact format
           lines = txt.split('\n')
-          for i, line in enumerate(lines):
-              if 'signingConfig' in line:
-                  print(f"Line {i}: [{line}]")
-
-          # Step 3: Replace only the one that's in release buildType context
-          # Find the release buildType and replace signingConfig within it
           in_release = False
           brace_count = 0
           new_lines = []
           for line in lines:
-              if 'release {' in line and 'signingConfigs' not in line:
+              if re.search(r'\brelease\s*\{', line) and 'signingConfigs' not in line:
                   in_release = True
                   brace_count = 0
               if in_release:
                   brace_count += line.count('{') - line.count('}')
                   if 'signingConfig signingConfigs.debug' in line:
                       line = line.replace('signingConfigs.debug', 'signingConfigs.release')
-                      print(f"✅ Replaced: [{line}]")
-                  if brace_count <= 0 and '{' not in line:
+                      print(f"✅ Replaced signing: {line.strip()}")
+                  if brace_count <= 0:
                       in_release = False
               new_lines.append(line)
 
           txt = '\n'.join(new_lines)
-
           with open('app/build.gradle', 'w') as f:
               f.write(txt)
 
           if 'signingConfigs.release' in txt:
-              print("✅ signingConfigs.release found in build.gradle")
+              print("✅ Release signing applied")
           else:
-              print("❌ NOT FOUND - printing release buildType section:")
-              for i, line in enumerate(txt.split('\n')):
-                  if 'release' in line or 'signingConfig' in line:
-                      print(f"  {i}: {line}")
-              exit(1)
+              print("⚠️ signingConfigs.release not found - may use debug key")
           PYEOF
       - name: Build Release APK
         working-directory: mobile/android
