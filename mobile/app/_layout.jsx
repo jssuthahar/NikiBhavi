@@ -6,6 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as SplashScreen from 'expo-splash-screen'
 import { C } from '../src/theme/index'
 import { initFirebase } from '../src/firebase'
+import { trackLaunchAndReview, checkForUpdate } from '../src/appReviewAndUpdate'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -20,10 +21,24 @@ const HDR = {
 
 export default function RootLayout() {
   useEffect(() => {
-    // Initialize Firebase on app start
-    initFirebase().catch(console.warn)
-    // Hide splash after init
-    SplashScreen.hideAsync()
+    async function init() {
+      try {
+        // Initialize Firebase (analytics, crashlytics, push notifications)
+        await initFirebase()
+
+        // Track launch count and maybe show review dialog
+        await trackLaunchAndReview()
+
+        // Check for app updates (after 2 second delay so app feels snappy)
+        setTimeout(() => checkForUpdate(), 2000)
+
+      } catch (e) {
+        console.warn('Init error:', e.message)
+      } finally {
+        SplashScreen.hideAsync()
+      }
+    }
+    init()
   }, [])
 
   return (
