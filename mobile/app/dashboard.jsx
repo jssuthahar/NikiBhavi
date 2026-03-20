@@ -4,7 +4,7 @@ import {
   StyleSheet, Animated, RefreshControl
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { storage } from '../shared/storage'
 import { Ionicons } from '@expo/vector-icons'
 import { useLiveRate } from '../shared/useLiveRate'
 import { getTodayTip, getMultipleTips } from '../shared/dailyTips'
@@ -47,7 +47,7 @@ export default function DashboardScreen() {
 
   const loadProfile = async () => {
     try {
-      const raw = await AsyncStorage.getItem(KEY)
+      const raw = await storage.getItem(KEY)
       if (raw) {
         const p = JSON.parse(raw)
         setProfile(p)
@@ -62,7 +62,7 @@ export default function DashboardScreen() {
 
   const saveProfile = async () => {
     const p = { name, arrival, epExpiry, salary, savings }
-    await AsyncStorage.setItem(KEY, JSON.stringify(p))
+    await storage.setItem(KEY, JSON.stringify(p))
     setProfile(p)
     setEditing(false)
   }
