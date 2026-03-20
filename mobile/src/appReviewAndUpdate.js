@@ -1,5 +1,5 @@
 import { Platform, Alert, Linking } from 'react-native'
-import { storage } from './storage'
+import { storage } from '../shared/storage'
 
 const LAUNCH_COUNT_KEY      = 'app_launch_count'
 const LAST_REVIEW_KEY       = 'last_review_date'
