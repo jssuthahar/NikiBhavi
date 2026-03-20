@@ -1,171 +1,176 @@
-// ── Firebase Setup ────────────────────────────────────────────
-// Central Firebase initialization for NikiBhavi app
-
 import { Platform } from 'react-native'
 
-let analytics    = null
-let crashlytics  = null
-let messaging    = null
-let firebaseApp  = null
+let _messaging = null
 
-// Safe init — won't crash if Firebase not configured yet
+// ── Main init — call once in _layout.jsx ─────────────────────
 export async function initFirebase() {
   try {
-    const app = require('@react-native-firebase/app').default
-    firebaseApp = app()
+    // Must import app first
+    const { default: app } = require('@react-native-firebase/app')
+    app() // initialize
 
     // Analytics
     try {
-      const fa = require('@react-native-firebase/analytics').default
-      analytics = fa()
-      await analytics.setAnalyticsCollectionEnabled(true)
-      console.log('✅ Firebase Analytics ready')
-    } catch (e) { console.warn('Analytics init failed:', e.message) }
+      const { default: analytics } = require('@react-native-firebase/analytics')
+      await analytics().setAnalyticsCollectionEnabled(true)
+      console.log('✅ Analytics ready')
+    } catch (e) { console.warn('Analytics:', e.message) }
 
     // Crashlytics
     try {
-      const fc = require('@react-native-firebase/crashlytics').default
-      crashlytics = fc()
-      await crashlytics.setCrashlyticsCollectionEnabled(true)
-      console.log('✅ Firebase Crashlytics ready')
-    } catch (e) { console.warn('Crashlytics init failed:', e.message) }
+      const { default: crashlytics } = require('@react-native-firebase/crashlytics')
+      await crashlytics().setCrashlyticsCollectionEnabled(true)
+      console.log('✅ Crashlytics ready')
+    } catch (e) { console.warn('Crashlytics:', e.message) }
 
-    // Messaging (Push Notifications)
-    try {
-      const fm = require('@react-native-firebase/messaging').default
-      messaging = fm()
-      await setupPushNotifications(messaging)
-      console.log('✅ Firebase Messaging ready')
-    } catch (e) { console.warn('Messaging init failed:', e.message) }
+    // Push Notifications
+    await setupPushNotifications()
 
   } catch (e) {
-    console.warn('Firebase init failed — running without Firebase:', e.message)
+    console.warn('Firebase init failed:', e.message)
   }
 }
 
-// ── Push Notifications Setup ──────────────────────────────────
-async function setupPushNotifications(fcm) {
-  // Request permission (iOS requires explicit permission)
-  const authStatus = await fcm.requestPermission()
-  const enabled =
-    authStatus === fcm.AuthorizationStatus?.AUTHORIZED ||
-    authStatus === fcm.AuthorizationStatus?.PROVISIONAL ||
-    authStatus === 1 || authStatus === 2
+// ── Push Notifications ────────────────────────────────────────
+async function setupPushNotifications() {
+  try {
+    const { default: messaging } = require('@react-native-firebase/messaging')
+    _messaging = messaging()
 
-  if (!enabled) {
-    console.log('Push notification permission denied')
-    return
-  }
+    // ── Step 1: Create Android notification channel ────────────
+    // Without this, notifications are SILENTLY DROPPED on Android 8+
+    if (Platform.OS === 'android') {
+      try {
+        const { default: notifee, AndroidImportance } = require('@notifee/react-native')
+        await notifee.createChannel({
+          id:          'nikibhavi_default',
+          name:        'NikiBhavi Notifications',
+          importance:  AndroidImportance.HIGH,
+          sound:       'default',
+          vibration:   true,
+        })
+        await notifee.createChannel({
+          id:          'nikibhavi_updates',
+          name:        'App Updates',
+          importance:  AndroidImportance.HIGH,
+          sound:       'default',
+        })
+        console.log('✅ Notification channels created')
+      } catch (e) {
+        console.warn('Notifee channel creation failed:', e.message)
+      }
+    }
 
-  // Subscribe to topic — all users get NikiBhavi announcements
-  await fcm.subscribeToTopic('nikibhavi')
-  console.log('✅ Subscribed to topic: nikibhavi')
+    // ── Step 2: Request permission ─────────────────────────────
+    const authStatus = await _messaging.requestPermission({
+      alert:         true,
+      announcement:  false,
+      badge:         true,
+      carPlay:       false,
+      criticalAlert: false,
+      provisional:   false,
+      sound:         true,
+    })
 
-  // Subscribe to platform-specific topic
-  await fcm.subscribeToTopic('nikibhavi_android')
-  console.log('✅ Subscribed to: nikibhavi_android')
+    const enabled = authStatus === 1 || authStatus === 2
+    console.log('📱 Notification permission:', authStatus, enabled ? '✅' : '❌')
 
-  // Get FCM token for this device
-  const token = await fcm.getToken()
-  console.log('FCM Token:', token)
+    if (!enabled) {
+      console.warn('❌ Push notifications permission DENIED by user')
+      return
+    }
 
-  // Handle foreground messages (app is open)
-  fcm.onMessage(async remoteMessage => {
-    console.log('📱 Foreground notification:', remoteMessage)
-    handleNotification(remoteMessage)
-  })
+    // ── Step 3: Subscribe to topic ─────────────────────────────
+    await _messaging.subscribeToTopic('nikibhavi')
+    console.log('✅ Subscribed to topic: nikibhavi')
 
-  // Handle background/quit state messages
-  fcm.setBackgroundMessageHandler(async remoteMessage => {
-    console.log('📱 Background notification:', remoteMessage)
-  })
+    // ── Step 4: Get FCM Token ──────────────────────────────────
+    const token = await _messaging.getToken()
+    console.log('📱 FCM Token:', token)
 
-  // Handle notification tap (app opened from notification)
-  fcm.onNotificationOpenedApp(remoteMessage => {
-    console.log('📱 Notification opened app:', remoteMessage)
-    handleNotificationTap(remoteMessage)
-  })
+    // ── Step 5: Handle foreground messages ────────────────────
+    // When app is OPEN — FCM does NOT show notification automatically
+    // You must show it manually using notifee
+    _messaging.onMessage(async remoteMessage => {
+      console.log('📨 Foreground message:', JSON.stringify(remoteMessage))
+      try {
+        const { default: notifee, AndroidImportance } = require('@notifee/react-native')
+        await notifee.displayNotification({
+          title: remoteMessage.notification?.title || 'NikiBhavi',
+          body:  remoteMessage.notification?.body  || 'New update!',
+          android: {
+            channelId:  'nikibhavi_default',
+            importance:  AndroidImportance.HIGH,
+            pressAction: { id: 'default' },
+            smallIcon:   'ic_notification',
+          },
+        })
+      } catch (e) {
+        console.warn('Foreground display failed:', e.message)
+      }
+    })
 
-  // Check if app was opened from a notification (quit state)
-  const initialNotification = await fcm.getInitialNotification()
-  if (initialNotification) {
-    console.log('📱 App opened from quit state notification')
-    handleNotificationTap(initialNotification)
+    // ── Step 6: Handle background tap ─────────────────────────
+    _messaging.onNotificationOpenedApp(remoteMessage => {
+      console.log('📱 Notification tapped (background):', remoteMessage)
+    })
+
+    // ── Step 7: Handle quit state tap ─────────────────────────
+    const initial = await _messaging.getInitialNotification()
+    if (initial) {
+      console.log('📱 App opened from notification:', initial)
+    }
+
+    // ── Step 8: Background handler ────────────────────────────
+    _messaging.setBackgroundMessageHandler(async remoteMessage => {
+      console.log('📨 Background message:', remoteMessage)
+      // Background messages from FCM are shown automatically by the system
+      // No need to call notifee here
+    })
+
+    console.log('✅ Push notifications fully set up')
+
+  } catch (e) {
+    console.warn('Push notification setup failed:', e.message)
   }
 }
 
-function handleNotification(msg) {
-  const { notification, data } = msg
-  // You can show an in-app banner here
-  console.log('Notification:', notification?.title, notification?.body)
-}
-
-function handleNotificationTap(msg) {
-  const { data } = msg
-  // Navigate based on data.screen if provided
-  if (data?.screen) {
-    console.log('Navigate to:', data.screen)
-  }
-}
-
-// ── Analytics Helpers ─────────────────────────────────────────
+// ── Analytics helpers ─────────────────────────────────────────
 export function logEvent(name, params = {}) {
-  try { analytics?.logEvent(name, params) } catch {}
+  try {
+    const { default: analytics } = require('@react-native-firebase/analytics')
+    analytics().logEvent(name, params)
+  } catch {}
 }
 
 export function logScreenView(screenName) {
   try {
-    analytics?.logScreenView({ screen_name: screenName, screen_class: screenName })
+    const { default: analytics } = require('@react-native-firebase/analytics')
+    analytics().logScreenView({ screen_name: screenName, screen_class: screenName })
   } catch {}
 }
 
-export function logCalculatorUsed(calculatorName) {
-  logEvent('calculator_used', { calculator: calculatorName, platform: Platform.OS })
+export function logCalculatorUsed(name) {
+  logEvent('calculator_used', { calculator: name, platform: Platform.OS })
 }
 
-export function logGuideViewed(guideName) {
-  logEvent('guide_viewed', { guide: guideName, platform: Platform.OS })
+export function logGuideViewed(name) {
+  logEvent('guide_viewed', { guide: name, platform: Platform.OS })
 }
 
-export function logChatMessage() {
-  logEvent('nikibot_message_sent', { platform: Platform.OS })
-}
-
-// ── Crashlytics Helpers ───────────────────────────────────────
-export function recordError(error, context = '') {
-  try {
-    crashlytics?.recordError(error)
-    if (context) crashlytics?.log(context)
-  } catch {}
-}
-
-export function setUserProperty(key, value) {
-  try { analytics?.setUserProperty(key, String(value)) } catch {}
-}
-
-// ── Topic Management ──────────────────────────────────────────
+// ── Topic subscription helpers ────────────────────────────────
 export async function subscribeToTopic(topic) {
   try {
-    const fcm = require('@react-native-firebase/messaging').default
-    await fcm().subscribeToTopic(topic)
-    console.log(`✅ Subscribed to: ${topic}`)
-    return true
-  } catch (e) {
-    console.warn('Subscribe failed:', e.message)
-    return false
-  }
+    const { default: messaging } = require('@react-native-firebase/messaging')
+    await messaging().subscribeToTopic(topic)
+    console.log('✅ Subscribed:', topic)
+  } catch (e) { console.warn('Subscribe failed:', e.message) }
 }
 
 export async function unsubscribeFromTopic(topic) {
   try {
-    const fcm = require('@react-native-firebase/messaging').default
-    await fcm().unsubscribeFromTopic(topic)
-    console.log(`✅ Unsubscribed from: ${topic}`)
-    return true
-  } catch (e) {
-    console.warn('Unsubscribe failed:', e.message)
-    return false
-  }
+    const { default: messaging } = require('@react-native-firebase/messaging')
+    await messaging().unsubscribeFromTopic(topic)
+    console.log('✅ Unsubscribed:', topic)
+  } catch (e) { console.warn('Unsubscribe failed:', e.message) }
 }
-
-export { analytics, crashlytics, messaging }
