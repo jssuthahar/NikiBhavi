@@ -45,9 +45,7 @@ jobs:
 
       - name: Decode keystore
         working-directory: mobile
-        run: |
-          echo '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' | base64 --decode > nikibhavi.keystore
-          ls -la nikibhavi.keystore
+        run: echo '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' | base64 --decode > nikibhavi.keystore
 
       - name: Expo prebuild
         working-directory: mobile
@@ -59,83 +57,70 @@ jobs:
           cp google-services.json android/app/google-services.json
           cp nikibhavi.keystore android/app/nikibhavi.keystore
 
-      - name: Setup release signing in gradle.properties
-        working-directory: mobile/android
-        run: |
-          echo "" >> gradle.properties
-          echo "STORE_FILE=nikibhavi.keystore" >> gradle.properties
-          echo "STORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> gradle.properties
-          echo "KEY_ALIAS=${{ secrets.ANDROID_KEY_ALIAS }}" >> gradle.properties
-          echo "KEY_PASSWORD=${{ secrets.ANDROID_KEY_PASSWORD }}" >> gradle.properties
-          echo "✅ gradle.properties:"
-          cat gradle.properties
-
-      - name: Patch app/build.gradle with release signing
+      - name: Patch build.gradle - add release signingConfig
         working-directory: mobile/android
         run: |
           python3 << 'PYEOF'
           with open('app/build.gradle', 'r') as f:
               txt = f.read()
 
-          # Add signingConfigs block
-          signing = '''
-              signingConfigs {
-                  release {
-                      storeFile file(STORE_FILE)
-                      storePassword STORE_PASSWORD
-                      keyAlias KEY_ALIAS
-                      keyPassword KEY_PASSWORD
-                  }
-              }'''
+          print("=== BEFORE ===")
+          # Find signingConfigs block
+          idx = txt.find('signingConfigs {')
+          print(txt[idx:idx+200])
 
-          # Insert before android { buildTypes
-          if 'signingConfigs' not in txt:
-              txt = txt.replace('    buildTypes {', signing + '\n    buildTypes {')
+          # Add release entry inside existing signingConfigs block
+          # Expo generates: signingConfigs {\n        debug {
+          # We add release config after the debug closing brace
 
-          # Add signingConfig to release buildType
-          if 'signingConfig signingConfigs.release' not in txt:
-              txt = txt.replace(
-                  'release {\n',
-                  'release {\n            signingConfig signingConfigs.release\n',
-                  1
-              )
+          release_entry = """
+              release {
+                  storeFile file("nikibhavi.keystore")
+                  storePassword "$STORE_PASSWORD"
+                  keyAlias "$KEY_ALIAS"
+                  keyPassword "$KEY_PASSWORD"
+              }"""
+
+          # Insert release config inside signingConfigs block after debug block
+          txt = txt.replace(
+              'signingConfigs {\n        debug {',
+              'signingConfigs {' + release_entry + '\n        debug {'
+          )
+
+          # Replace signingConfigs.debug with signingConfigs.release in release buildType
+          # Only replace inside the release { } block
+          txt = txt.replace(
+              'release {\n            signingConfig signingConfigs.debug',
+              'release {\n            signingConfig signingConfigs.release'
+          )
 
           with open('app/build.gradle', 'w') as f:
               f.write(txt)
 
-          # Verify
+          print("=== AFTER ===")
           with open('app/build.gradle', 'r') as f:
               content = f.read()
-          if 'signingConfigs' in content:
-              print('✅ signingConfigs found in build.gradle')
-          else:
-              print('❌ signingConfigs NOT found!')
-              exit(1)
-          if 'signingConfig signingConfigs.release' in content:
-              print('✅ signingConfig applied to release buildType')
-          else:
-              print('❌ signingConfig NOT applied to release!')
-              exit(1)
+          idx = content.find('signingConfigs {')
+          print(content[idx:idx+400])
+
+          assert 'signingConfigs.release' in content, "ERROR: signingConfig.release not found!"
+          print("✅ Release signing config injected successfully")
           PYEOF
 
-      - name: Print build.gradle for verification
+      - name: Write passwords to local.properties
         working-directory: mobile/android
-        run: grep -A 20 "signingConfigs" app/build.gradle
+        run: |
+          echo "STORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> local.properties
+          echo "KEY_ALIAS=${{ secrets.ANDROID_KEY_ALIAS }}" >> local.properties
+          echo "KEY_PASSWORD=${{ secrets.ANDROID_KEY_PASSWORD }}" >> local.properties
 
       - name: Build Release APK
         working-directory: mobile/android
-        run: ./gradlew assembleRelease --no-daemon
+        run: ./gradlew assembleRelease --no-daemon -PSTORE_PASSWORD="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" -PKEY_ALIAS="${{ secrets.ANDROID_KEY_ALIAS }}" -PKEY_PASSWORD="${{ secrets.ANDROID_KEY_PASSWORD }}"
 
       - name: Build Release AAB
         working-directory: mobile/android
-        run: ./gradlew bundleRelease --no-daemon
-
-      - name: Verify APK signed with release key
-        working-directory: mobile/android
-        run: |
-          APK=app/build/outputs/apk/release/app-release.apk
-          echo "APK size: $(wc -c < $APK) bytes"
-          keytool -printcert -jarfile $APK 2>/dev/null | grep -E "SHA1|Owner" || true
+        run: ./gradlew bundleRelease --no-daemon -PSTORE_PASSWORD="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" -PKEY_ALIAS="${{ secrets.ANDROID_KEY_ALIAS }}" -PKEY_PASSWORD="${{ secrets.ANDROID_KEY_PASSWORD }}"
 
       - uses: actions/upload-artifact@v4.6.2
         with:
