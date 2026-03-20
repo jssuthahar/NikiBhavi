@@ -15,7 +15,8 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.nikibhavi.app",
-      "buildNumber": "1"
+      "buildNumber": "1",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,7 +28,8 @@
       "permissions": [],
       "targetSdkVersion": 35,
       "compileSdkVersion": 35,
-      "minSdkVersion": 24
+      "minSdkVersion": 24,
+      "googleServicesFile": "./google-services.json"
     },
     "plugins": [
       [
@@ -38,7 +40,9 @@
           "resizeMode": "contain",
           "backgroundColor": "#00B14F"
         }
-      ]
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/crashlytics"
     ],
     "experiments": {
       "typedRoutes": true
