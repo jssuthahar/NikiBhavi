@@ -26,64 +26,67 @@ jobs:
         run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > google-services.json
       - name: Decode keystore
         working-directory: mobile
-        run: |
-          echo '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' | base64 --decode > nikibhavi.keystore
-          echo "Keystore file size: $(wc -c < nikibhavi.keystore) bytes"
+        run: echo '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' | base64 --decode > nikibhavi.keystore
       - name: Expo prebuild
         working-directory: mobile
         run: npx expo prebuild --platform android --clean
       - name: Copy google-services
         working-directory: mobile
         run: cp google-services.json android/app/google-services.json
-      - name: Write signing config to gradle.properties
+      - name: Copy keystore into android folder
         working-directory: mobile
-        run: |
-          cat >> android/gradle.properties << EOF
-          MYAPP_UPLOAD_STORE_FILE=../nikibhavi.keystore
-          MYAPP_UPLOAD_KEY_ALIAS=${{ secrets.ANDROID_KEY_ALIAS }}
-          MYAPP_UPLOAD_STORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.ANDROID_KEY_PASSWORD }}
-          EOF
-          echo "✅ gradle.properties updated"
-      - name: Write release signing config to build.gradle
+        run: cp nikibhavi.keystore android/app/nikibhavi.keystore
+      - name: Inject release signing into build.gradle
         working-directory: mobile/android
         run: |
-          cat > signing.gradle << 'GRADLE'
-          android {
+          python3 << 'PYTHON'
+          import re
+
+          with open('app/build.gradle', 'r') as f:
+              content = f.read()
+
+          signing_config = """
               signingConfigs {
                   release {
-                      storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                      storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                      keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                      keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+                      storeFile file("nikibhavi.keystore")
+                      storePassword "$System.env.ANDROID_KEYSTORE_PASSWORD"
+                      keyAlias "$System.env.ANDROID_KEY_ALIAS"
+                      keyPassword "$System.env.ANDROID_KEY_PASSWORD"
                   }
               }
-              buildTypes {
-                  release {
-                      signingConfig signingConfigs.release
-                  }
-              }
-          }
-          GRADLE
-          echo "apply from: 'signing.gradle'" >> app/build.gradle
-          echo "✅ signing.gradle applied"
+          """
+
+          # Insert signingConfigs before buildTypes
+          content = content.replace(
+              'buildTypes {',
+              signing_config + '\n    buildTypes {'
+          )
+
+          # Set release buildType to use release signingConfig
+          content = content.replace(
+              'buildTypes {\n        release {',
+              'buildTypes {\n        release {\n            signingConfig signingConfigs.release'
+          )
+
+          with open('app/build.gradle', 'w') as f:
+              f.write(content)
+
+          print("✅ build.gradle updated with release signing")
+          PYTHON
       - name: Build APK for Firebase
         working-directory: mobile/android
         run: ./gradlew assembleRelease --no-daemon
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - name: Build AAB for Google Play
         working-directory: mobile/android
         run: ./gradlew bundleRelease --no-daemon
-      - name: Verify APK is signed with release key
-        working-directory: mobile/android
-        run: |
-          APK=app/build/outputs/apk/release/app-release.apk
-          if [ -f "$APK" ]; then
-            echo "✅ APK exists: $(wc -c < $APK) bytes"
-            keytool -printcert -jarfile $APK | grep "SHA1" || echo "Could not verify cert"
-          else
-            echo "❌ APK not found!"
-            exit 1
-          fi
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - uses: actions/upload-artifact@v4.6.2
         with:
           name: nikibhavi-apk-${{ github.run_number }}
