@@ -34,8 +34,8 @@
     "@react-native-firebase/analytics": "21.14.0",
     "@react-native-firebase/crashlytics": "21.14.0",
     "@react-native-firebase/messaging": "21.14.0",
-    "react-native-in-app-review": "4.3.4",
-    "expo-updates": "~0.26.0"
+    "expo-updates": "~0.26.0",
+    "expo-store-review": "~7.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.0"
