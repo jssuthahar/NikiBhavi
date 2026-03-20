@@ -29,7 +29,8 @@
       "targetSdkVersion": 35,
       "compileSdkVersion": 35,
       "minSdkVersion": 24,
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "buildType": "apk"
     },
     "plugins": [
       [
