@@ -4,11 +4,11 @@ import {
   StyleSheet, Animated, RefreshControl
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { storage } from '../shared/storage'
+import { storage } from '../../shared/storage'
 import { Ionicons } from '@expo/vector-icons'
-import { useLiveRate } from '../shared/useLiveRate'
-import { getTodayTip, getMultipleTips } from '../shared/dailyTips'
-import { C, s, SP, R, W, shadow, shadowMd } from '../src/theme/index'
+import { useLiveRate } from '../../shared/useLiveRate'
+import { getTodayTip, getMultipleTips } from '../../shared/dailyTips'
+import { C, s, SP, R, W, shadow, shadowMd } from '../../src/theme/index'
 
 const KEY = 'nikibhavi_profile'
 

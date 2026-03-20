@@ -2,8 +2,8 @@ import { useState, useRef } from 'react'
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
-import { EVENTS_2026, EVENTS_2027, TYPE_COLORS, getUpcomingEvents, getDaysUntil } from '../shared/eventsData'
-import { C, s, SP, R, W, shadow, shadowMd } from '../src/theme/index'
+import { EVENTS_2026, EVENTS_2027, TYPE_COLORS, getUpcomingEvents, getDaysUntil } from '../../shared/eventsData'
+import { C, s, SP, R, W, shadow, shadowMd } from '../../src/theme/index'
 
 const ALL_EVENTS = [...EVENTS_2026, ...EVENTS_2027]
   .map(e => ({ ...e, dateObj: new Date(e.date) }))
