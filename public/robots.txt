@@ -4,9 +4,46 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemaps
 Sitemap: https://nikibhavi.msdevbuild.com/sitemap.xml
+Sitemap: https://nikibhavi.msdevbuild.com/sitemap-images.xml
 
 # Block build artifacts
 Disallow: /src/
 Disallow: /node_modules/
+Disallow: /*.json$
+
+# Allow all major crawlers explicitly
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Crawl-delay for politeness
+User-agent: *
+Crawl-delay: 1

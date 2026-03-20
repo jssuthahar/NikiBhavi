@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
 import styles from './HomeHub.module.css'
+import AppPromo from './AppPromo'
 
 // ── Master catalogue ─────────────────────────────────────────
 const PAGES = [
@@ -115,6 +116,7 @@ export default function HomeHub({ onNavigate }) {
 
   return (
     <div className={styles.hub}>
+      <AppPromo />
 
       {/* ── Breaking alert ── */}
       <button className={styles.alert} onClick={() => onNavigate('touristinfo')}>

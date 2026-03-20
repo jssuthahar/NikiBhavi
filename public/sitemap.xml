@@ -1,72 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
 
-  <!-- Home -->
+  <!-- ── Home ── -->
   <url>
     <loc>https://nikibhavi.msdevbuild.com/</loc>
-    <lastmod>2026-03-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-my" href="https://nikibhavi.msdevbuild.com/"/>
     <xhtml:link rel="alternate" hreflang="en-in" href="https://nikibhavi.msdevbuild.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://nikibhavi.msdevbuild.com/"/>
+    <image:image>
+      <image:loc>https://nikibhavi.msdevbuild.com/og-image.png</image:loc>
+      <image:title>NikiBhavi — Malaysia Life Guide for Indians</image:title>
+    </image:image>
   </url>
 
-  <!-- Visa & Entry (high priority — most searched) -->
-  <url><loc>https://nikibhavi.msdevbuild.com/#/tourist-visa</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.98</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/employee-pass</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.97</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/visa</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/tourist-hub</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/ep-eligibility</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/visa-tracker</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/dependent-pass</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/pr-roadmap</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/student-visa</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/student-guide</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <!-- ── Visa & Entry ── -->
+  <url><loc>https://nikibhavi.msdevbuild.com/#/tourist-visa</loc><lastmod>2026-03-21</lastmod><changefreq>weekly</changefreq><priority>0.98</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/employee-pass</loc><lastmod>2026-03-21</lastmod><changefreq>weekly</changefreq><priority>0.98</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/ep-eligibility</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/tourist-hub</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/visa-tracker</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/dependent-pass</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/pr-roadmap</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/student-guide</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/driving-licence</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
 
-  <!-- Financial Tools (high search value) -->
-  <url><loc>https://nikibhavi.msdevbuild.com/#/tax-residency</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.97</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/tax-refund</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.97</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/salary</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/living-cost</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/remittance</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.93</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/pcb</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/epf</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/epf-withdrawal</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/home-loan</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/car-loan</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/rent</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.87</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/cost-compare</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/budget</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/expense</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.83</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/leave</loc><lastmod>2026-03-09</lastmod><changefreq>yearly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/probation</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/school-fees</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <!-- ── Financial Tools ── -->
+  <url><loc>https://nikibhavi.msdevbuild.com/#/tax-calculator</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.97</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/tax-refund</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.97</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/tax-residency</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/epf-calculator</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/epf-withdrawal</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.93</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/salary-comparison</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.93</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/remittance</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.93</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/living-cost</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/car-loan</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/home-loan</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/expense-tracker</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/budget-simulator</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/cost-compare</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/rent-calculator</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/probation-calculator</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
 
-  <!-- Life in Malaysia -->
-  <url><loc>https://nikibhavi.msdevbuild.com/#/ep-life-guide</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/job-search</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/housing</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/moving</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.87</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/banking</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/money-transfer</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/health</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.83</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/hospital</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.83</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/medical-card</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/transport</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/buy-car</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/driving-licence</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/food</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/sim-card</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-
-  <!-- Travel -->
-  <url><loc>https://nikibhavi.msdevbuild.com/#/flight-hub</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-
-  <!-- Channel -->
-  <url><loc>https://nikibhavi.msdevbuild.com/#/videos</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/about</loc><lastmod>2026-03-09</lastmod><changefreq>yearly</changefreq><priority>0.50</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/terms</loc><lastmod>2026-03-09</lastmod><changefreq>yearly</changefreq><priority>0.30</priority></url>
-  <url><loc>https://nikibhavi.msdevbuild.com/#/privacy</loc><lastmod>2026-03-09</lastmod><changefreq>yearly</changefreq><priority>0.30</priority></url>
+  <!-- ── Life Guides ── -->
+  <url><loc>https://nikibhavi.msdevbuild.com/#/ep-life-guide</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.93</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/housing</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/banking</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/money-transfer</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/transport</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/sim-card</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/hospital</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/food-guide</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/moving-checklist</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/job-search</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/buy-car</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://nikibhavi.msdevbuild.com/#/health-insurance</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
 
 </urlset>
