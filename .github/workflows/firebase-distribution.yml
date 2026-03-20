@@ -11,20 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
-
       - uses: actions/setup-node@v4.4.0
         with:
           node-version: "20"
-
       - uses: actions/setup-java@v4.7.0
         with:
           java-version: "17"
           distribution: temurin
-
       - name: Install dependencies
         working-directory: mobile
         run: npm install --legacy-peer-deps
-
       - name: Auto increment versionCode
         working-directory: mobile
         run: |
@@ -38,40 +34,32 @@ jobs:
               json.dump(d, f, indent=2)
           print(f'versionCode: {v} to {v+1}')
           "
-
       - name: Write google-services.json
         working-directory: mobile
         run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > google-services.json
-
       - name: Decode keystore
         working-directory: mobile
         run: echo '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' | base64 --decode > nikibhavi.keystore
-
       - name: Expo prebuild
         working-directory: mobile
         run: npx expo prebuild --platform android --clean
-
       - name: Copy files into android project
         working-directory: mobile
         run: |
           cp google-services.json android/app/google-services.json
           cp nikibhavi.keystore android/app/nikibhavi.keystore
-
-      - name: Print build.gradle for debugging
+      - name: Print full build.gradle
         working-directory: mobile/android
-        run: grep -n "signingConfig\|release\|buildTypes" app/build.gradle
-
-      - name: Patch build.gradle - release signing
+        run: cat app/build.gradle
+      - name: Patch build.gradle signing
         working-directory: mobile/android
         run: |
           python3 << 'PYEOF'
-          import re
-
           with open('app/build.gradle', 'r') as f:
               txt = f.read()
 
-          # Add release entry inside signingConfigs block
-          release_entry = '''
+          # Step 1: Add release signingConfig inside signingConfigs block
+          release_block = '''
               release {
                   storeFile file("nikibhavi.keystore")
                   storePassword project.findProperty("STORE_PASSWORD") ?: ""
@@ -81,31 +69,48 @@ jobs:
 
           txt = txt.replace(
               'signingConfigs {\n        debug {',
-              'signingConfigs {' + release_entry + '\n        debug {'
+              'signingConfigs {' + release_block + '\n        debug {'
           )
 
-          # Use regex to find and replace signingConfig inside release buildType
-          # Pattern: release { ... signingConfig signingConfigs.debug ... }
-          txt = re.sub(
-              r'(buildTypes\s*\{[^}]*release\s*\{[^}]*)signingConfig\s+signingConfigs\.debug',
-              r'\1signingConfig signingConfigs.release',
-              txt,
-              flags=re.DOTALL
-          )
+          # Step 2: Find exact line with signingConfig signingConfigs.debug in release block
+          # Print all lines containing signingConfig to see exact format
+          lines = txt.split('\n')
+          for i, line in enumerate(lines):
+              if 'signingConfig' in line:
+                  print(f"Line {i}: [{line}]")
+
+          # Step 3: Replace only the one that's in release buildType context
+          # Find the release buildType and replace signingConfig within it
+          in_release = False
+          brace_count = 0
+          new_lines = []
+          for line in lines:
+              if 'release {' in line and 'signingConfigs' not in line:
+                  in_release = True
+                  brace_count = 0
+              if in_release:
+                  brace_count += line.count('{') - line.count('}')
+                  if 'signingConfig signingConfigs.debug' in line:
+                      line = line.replace('signingConfigs.debug', 'signingConfigs.release')
+                      print(f"✅ Replaced: [{line}]")
+                  if brace_count <= 0 and '{' not in line:
+                      in_release = False
+              new_lines.append(line)
+
+          txt = '\n'.join(new_lines)
 
           with open('app/build.gradle', 'w') as f:
               f.write(txt)
 
-          # Verify
-          result = open('app/build.gradle').read()
-          print("=== Signing section ===")
-          start = result.find('signingConfigs {')
-          print(result[start:start+500])
-
-          assert 'signingConfigs.release' in result, "signingConfig.release not applied!"
-          print("✅ Release signing config applied successfully")
+          if 'signingConfigs.release' in txt:
+              print("✅ signingConfigs.release found in build.gradle")
+          else:
+              print("❌ NOT FOUND - printing release buildType section:")
+              for i, line in enumerate(txt.split('\n')):
+                  if 'release' in line or 'signingConfig' in line:
+                      print(f"  {i}: {line}")
+              exit(1)
           PYEOF
-
       - name: Build Release APK
         working-directory: mobile/android
         run: |
@@ -113,7 +118,6 @@ jobs:
             -PSTORE_PASSWORD="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" \
             -PKEY_ALIAS="${{ secrets.ANDROID_KEY_ALIAS }}" \
             -PKEY_PASSWORD="${{ secrets.ANDROID_KEY_PASSWORD }}"
-
       - name: Build Release AAB
         working-directory: mobile/android
         run: |
@@ -121,13 +125,11 @@ jobs:
             -PSTORE_PASSWORD="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" \
             -PKEY_ALIAS="${{ secrets.ANDROID_KEY_ALIAS }}" \
             -PKEY_PASSWORD="${{ secrets.ANDROID_KEY_PASSWORD }}"
-
       - uses: actions/upload-artifact@v4.6.2
         with:
           name: nikibhavi-apk-${{ github.run_number }}
           path: mobile/android/app/build/outputs/apk/release/app-release.apk
           retention-days: 30
-
       - uses: actions/upload-artifact@v4.6.2
         with:
           name: nikibhavi-aab-${{ github.run_number }}
@@ -142,9 +144,7 @@ jobs:
         with:
           name: nikibhavi-apk-${{ github.run_number }}
           path: ./apk
-
-      - name: Upload to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
+      - uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
